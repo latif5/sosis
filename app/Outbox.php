@@ -16,6 +16,7 @@ class Outbox extends Model
         'SendBefore',
         'SendAfter',
         'DestinationNumber',
+        'Class',
         'TextDecoded',
         'CreatorID'
     ];

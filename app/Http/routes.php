@@ -15,10 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function () {
+Route::get('home', ['as' => 'home.index', function () {
     return view('home.index');
-});
+}]);
 
-Route::get('login', function () {
+Route::get('login', ['as' => 'guest.login', function () {
     return view('guest.login');
-});
+}]);
+
+Route::get('send/create', ['as' => 'send.create', function () {
+    return view('send.create');
+}]);

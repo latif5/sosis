@@ -2,7 +2,7 @@
     {{-- Bagian Pengaturan --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('home*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('home.index') }}">
                 <span class="glyphicon glyphicon-home"></span>
                 Beranda
             </a>
@@ -14,7 +14,7 @@
     {{-- Bagian Perpesanan --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('send*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('send.create') }}">
                 <span class="glyphicon glyphicon-file"></span>
                 Tulis Pesan
             </a>
