@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ImportGammuTables.php extends Migration
+class ImportGammuTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class ImportGammuTables.php extends Migration
     public function up()
     {
         // Import file schema bawaan gammu
-        DB::unprepared(File::get('gammu.sql'));
+        DB::unprepared(File::get('database/imports/gammu.sql'));
 
         // Menghapus tabel bawaan gammu yang kurang perlu
         Schema::dropIfExists('pbk');
