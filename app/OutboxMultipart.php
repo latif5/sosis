@@ -10,5 +10,5 @@ class OutboxMultipart extends Model
 
     protected $primaryKey = 'ID';
 
-    public $timestamp = false;
+    public $timestamps = false;
 }
