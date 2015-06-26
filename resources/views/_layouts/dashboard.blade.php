@@ -8,17 +8,17 @@
         <meta name="author" content="Miftah Afina - www.miftahafina.com">
         <link rel="icon" href="assets/ico/favicon.ico">
 
-        <title>OPH Javanet</title>
+        <title>SOSIS</title>
 
         <!-- CSS inti bootstrap -->
-        {{ Html::style('assets/css/bootstrap.min.css') }}
+        <link href="assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
 
         <!-- CSS ubahsuaian untuk template ini -->
-        {{ Html::style('assets/css/dashboard.css') }}
+        <link href="assets/css/dashboard.css" type="text/css" rel="stylesheet"/>
 
         <!-- CSS pengaya untuk template ini -->
-        {{ Html::style('assets/css/bootstrap-select.min.css') }}
-        {{ Html::style('assets/css/datepicker3.css') }}
+        <link href="assets/css/bootstrap-select.min.css" type="text/css" rel="stylesheet"/>
+        <link href="assets/css/datepicker3.css" type="text/css" rel="stylesheet"/>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -51,17 +51,17 @@
         @include('_partials.footer')
 
         <!-- Inti JavaScript Bootstrap -->
-        {{ Html::script('assets/js/jquery.min.js') }}
-        {{ Html::script('assets/js/bootstrap.min.js') }}
-        {{ Html::script('assets/js/docs.min.js') }}
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/docs.min.js"></script>
 
         <!-- JavaScript Pengaya Bootstrap -->
-        {{ Html::script('assets/js/bootstrap-select.min.js') }}
-        {{ Html::script('assets/js/bootstrap-datepicker.js') }}
-        {{ Html::script('assets/js/locales/bootstrap-datepicker.id.js') }}
+        <script src="assets/js/bootstrap-select.min.js"></script>
+        <script src="assets/js/bootstrap-datepicker.js"></script>
+        <script src="assets/js/locales/bootstrap-datepicker.id.js"></script>
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        {{ Html::script('assets/js/ie10-viewport-bug-workaround.js') }}
+        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 
         <!-- JavaScript Ubahsuaian -->
         <script>
@@ -87,20 +87,6 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "auto right"
-        });
-
-        $('#pelanggan_id_tagihan').on('change', function() {
-            var tarif = $("#pelanggan_id_tagihan option:selected").data("tarif");
-            var paket = $("#pelanggan_id_tagihan option:selected").data("paket");
-            $("#nominal_tagihan").val(tarif);
-            $("#paket_id_tagihan").val(paket);
-        });
-
-        $('#tagihan_id_bayar').on('change', function() {
-            var nominal = $("#tagihan_id_bayar option:selected").data("nominal");
-            var pelanggan = $("#tagihan_id_bayar option:selected").data("pelanggan");
-            $("#nominal_bayar").val(nominal);
-            $("#pelanggan_id_bayar").val(pelanggan);
         });
         </script>
     </body>
