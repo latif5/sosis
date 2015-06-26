@@ -11,14 +11,14 @@
         <title>OPH Javanet</title>
 
         <!-- CSS inti bootstrap -->
-        {{ HTML::style('assets/css/bootstrap.min.css') }}
+        {{ Html::style('assets/css/bootstrap.min.css') }}
 
         <!-- CSS ubahsuaian untuk template ini -->
-        {{ HTML::style('assets/css/dashboard.css') }}
+        {{ Html::style('assets/css/dashboard.css') }}
 
         <!-- CSS pengaya untuk template ini -->
-        {{ HTML::style('assets/css/bootstrap-select.min.css') }}
-        {{ HTML::style('assets/css/datepicker3.css') }}
+        {{ Html::style('assets/css/bootstrap-select.min.css') }}
+        {{ Html::style('assets/css/datepicker3.css') }}
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -51,17 +51,17 @@
         @include('_partials.footer')
 
         <!-- Inti JavaScript Bootstrap -->
-        {{ HTML::script('assets/js/jquery.min.js') }}
-        {{ HTML::script('assets/js/bootstrap.min.js') }}
-        {{ HTML::script('assets/js/docs.min.js') }}
+        {{ Html::script('assets/js/jquery.min.js') }}
+        {{ Html::script('assets/js/bootstrap.min.js') }}
+        {{ Html::script('assets/js/docs.min.js') }}
 
         <!-- JavaScript Pengaya Bootstrap -->
-        {{ HTML::script('assets/js/bootstrap-select.min.js') }}
-        {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
-        {{ HTML::script('assets/js/locales/bootstrap-datepicker.id.js') }}
+        {{ Html::script('assets/js/bootstrap-select.min.js') }}
+        {{ Html::script('assets/js/bootstrap-datepicker.js') }}
+        {{ Html::script('assets/js/locales/bootstrap-datepicker.id.js') }}
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        {{ HTML::script('assets/js/ie10-viewport-bug-workaround.js') }}
+        {{ Html::script('assets/js/ie10-viewport-bug-workaround.js') }}
 
         <!-- JavaScript Ubahsuaian -->
         <script>
