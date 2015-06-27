@@ -30,7 +30,7 @@ Route::resource('sentitem', 'SentItemController',
         ['only' => ['index']]);
 
 Route::resource('contact', 'ContactController',
-        ['only' => ['index']]);
+        ['only' => ['index', 'create']]);
 
 Route::resource('group', 'GroupController',
-        ['only' => ['index']]);
+        ['only' => ['index', 'create']]);

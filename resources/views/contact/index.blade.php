@@ -16,7 +16,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Satuan</a></li>
+                <li><a href="{{ route('contact.create') }}">Satuan</a></li>
                 <li><a href="#">Import</a></li>
             </ul>
         </div>

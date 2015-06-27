@@ -16,7 +16,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Satuan</a></li>
+                <li><a href="{{ route('group.create') }}">Satuan</a></li>
             </ul>
         </div>
     </div>
