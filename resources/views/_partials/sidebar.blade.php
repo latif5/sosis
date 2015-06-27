@@ -23,7 +23,9 @@
             <a href="{{ route('inbox.index') }}">
                 <span class="glyphicon glyphicon-envelope"></span>
                 Kotak Masuk 
-                <span class="badge">3</span>
+                <span class="badge">
+                    {{ \App\Inbox::where('Processed', '=', 'false')->count() }}
+                </span>
             </a>
         </li>
 {{--         <li class="{{ Request::is('draft*') ? 'active' : '' }}">

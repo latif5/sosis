@@ -4824,7 +4824,8 @@ a.badge:focus {
   cursor: pointer;
 }
 .list-group-item.active > .badge,
-.nav-pills > .active > a > .badge {
+.nav-pills > .active > a > .badge,
+.nav-sidebar > .active > a > .badge {
   color: #337ab7;
   background-color: #fff;
 }
