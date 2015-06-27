@@ -54,7 +54,14 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-1">
+        <button type="button" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-ban-circle"></span> 
+            Batalkan
+        </button>
+    </div>
+
+    <div class="col-md-5">
         <form class="form-inline pull-right">
             <div class="form-group">
                 <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">

@@ -33,4 +33,4 @@ Route::resource('contact', 'ContactController',
         ['only' => ['index']]);
 
 Route::resource('group', 'GroupController',
-        ['only' => ['index']]); 
+        ['only' => ['index']]);
