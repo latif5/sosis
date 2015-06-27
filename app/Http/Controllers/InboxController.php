@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Inbox;
+
 class InboxController extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class InboxController extends Controller
      */
     public function index()
     {
-        return view('inbox.index');
+        $all_inbox = Inbox::all();
+
+        return view('inbox.index', compact('all_inbox'));
     }
 
     /**

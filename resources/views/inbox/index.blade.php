@@ -76,28 +76,31 @@
             <tr>
                 <th width="5%">No.</th>
                 <th width="10%">Tanggal</th>
-                <th width="10%">Pengirim</th>
-                <th width="65%">Isi Pesan</th>
+                <th width="15%">Pengirim</th>
+                <th width="60%">Isi Pesan</th>
                 <th width="5%">Status</th>
                 <th width="5%">Pilihan</th>
             </tr>
         </thead>
         <tbody>
+            @forelse($all_inbox as $inbox)
             <tr>
                 <td>1.</td>
                 <td>
-                    4 Jun 2015 12.24
+                   <small>{{ $inbox->ReceivingDateTime }}</small>
                     <br>
-                    <small class="text-muted">3 hours ago</small>
+                    <small class="text-muted">
+                        {{ \Carbon\Carbon::parse($inbox->ReceivingDateTime)->diffForHumans() }}
+                    </small>
                 </td>
                 <td>
-                    085742302328
+                    {{ $inbox->SenderNumber }}
                     <br>
                     <small>Miftah Afina</small>
                 </td>
-                <td>lksdjf asdf aklsdjf asdfkjas dfasdhfl asdflkjasdf asdflkjhasd flaskdjf alsdkjfha lsdfljaksdf alsdkjfh alsdkjfha lsdkfjha sldkfjha sldkfja sdkfjalsdkjfhskjdfasd</td>
+                <td>{{ $inbox->TextDecoded }}</td>
                 <td>
-                    <span class="label label-success">ok</span>
+                    <span class="label label-success">{{ $inbox->Processed }}</span>
                 </td>
                 <td>
                     <!-- Single button -->
@@ -116,6 +119,13 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="6">
+                    <p>Tidak ada pesan yang diterima.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
     <p>

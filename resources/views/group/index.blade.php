@@ -1,7 +1,7 @@
 @extends('_layouts.dashboard')
 
 @section('content')
-<h1 class="page-header">Group <small>SOSIS</small></h1>
+<h1 class="page-header">Grup <small>SOSIS</small></h1>
 
 <div class="row">
     <div class="col-md-2">
