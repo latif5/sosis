@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OutboxController extends Controller
+class GuestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class OutboxController extends Controller
      */
     public function index()
     {
-        return view('outbox.index');
+        return view('guest.login');
     }
 
     /**

@@ -51,13 +51,13 @@
     {{-- Bagian Kontak --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('contact*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('contact.index') }}">
                 <span class="glyphicon glyphicon-book"></span>
                 Kontak
             </a>
         </li>
         <li class="{{ Request::is('group*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('group.index') }}">
                 <span class="glyphicon glyphicon-tags"></span>
                 Grup
             </a>

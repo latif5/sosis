@@ -11,30 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('guest', 'GuestController',
+        ['only' => ['index', 'login']]);
 
-Route::get('home', ['as' => 'home.index', function () {
-    return view('home.index');
-}]);
+Route::resource('home', 'HomeController',
+        ['only' => ['index']]);
 
-Route::get('login', ['as' => 'guest.login', function () {
-    return view('guest.login');
-}]);
+Route::resource('send', 'SendController',
+        ['only' => ['create']]);
 
-Route::get('send/create', ['as' => 'send.create', function () {
-    return view('send.create');
-}]);
+Route::resource('inbox', 'InboxController',
+        ['only' => ['index']]);
 
-Route::get('inbox/index', ['as' => 'inbox.index', function () {
-    return view('inbox.index');
-}]);
+Route::resource('outbox', 'OutboxController',
+        ['only' => ['index']]);
 
-Route::get('outbox/index', ['as' => 'outbox.index', function () {
-    return view('outbox.index');
-}]);
+Route::resource('sentitem', 'SentItemController',
+        ['only' => ['index']]);
 
-Route::get('sentitem/index', ['as' => 'sentitem.index', function () {
-    return view('sentitem.index');
-}]);
+Route::resource('contact', 'ContactController',
+        ['only' => ['index']]);
+
+Route::resource('group', 'GroupController',
+        ['only' => ['index']]);
