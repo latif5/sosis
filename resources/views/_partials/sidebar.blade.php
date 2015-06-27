@@ -20,20 +20,26 @@
             </a>
         </li>
         <li class="{{ Request::is('inbox*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('inbox.index') }}">
                 <span class="glyphicon glyphicon-envelope"></span>
                 Kotak Masuk 
                 <span class="badge">3</span>
             </a>
         </li>
-        <li class="{{ Request::is('outbox*') ? 'active' : '' }}">
+{{--         <li class="{{ Request::is('draft*') ? 'active' : '' }}">
             <a href="">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                Draft
+            </a>
+        </li> --}}
+        <li class="{{ Request::is('outbox*') ? 'active' : '' }}">
+            <a href="{{ route('outbox.index') }}">
                 <span class="glyphicon glyphicon-inbox"></span>
                 Kotak Keluar
             </a>
         </li>
         <li class="{{ Request::is('sentitem*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('sentitem.index') }}">
                 <span class="glyphicon glyphicon-saved"></span>
                 Pesan Terkirim
             </a>
@@ -65,14 +71,14 @@
         <li class="{{ Request::is('bayar*') ? 'active' : '' }}">
             <a href="">
                 <span class="glyphicon glyphicon-transfer"></span>
-                Data Pembayaran
+                Pembayaran
                 <span class="badge">23</span>
             </a>
         </li>
         <li class="{{ Request::is('donasi*') ? 'active' : '' }}">
             <a href="">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                Data Donasi
+                Donasi
                 <span class="badge">3</span>
             </a>
         </li>

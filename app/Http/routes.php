@@ -26,3 +26,15 @@ Route::get('login', ['as' => 'guest.login', function () {
 Route::get('send/create', ['as' => 'send.create', function () {
     return view('send.create');
 }]);
+
+Route::get('inbox/index', ['as' => 'inbox.index', function () {
+    return view('inbox.index');
+}]);
+
+Route::get('outbox/index', ['as' => 'outbox.index', function () {
+    return view('outbox.index');
+}]);
+
+Route::get('sentitem/index', ['as' => 'sentitem.index', function () {
+    return view('sentitem.index');
+}]);

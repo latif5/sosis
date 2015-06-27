@@ -9,8 +9,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Tulis Pesan</h3>
             </div>
+            {!! Form::open() !!}
             <div class="panel-body">
-                {!! Form::open() !!}
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -57,14 +57,14 @@
                 </div> <!-- ./row -->
             </div> {{-- panel-body --}}
                 
-                <div class="panel-footer">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Kirim</button>
+            <div class="panel-footer">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Kirim</button>
 
-                        <button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
-                    </div> {{-- .btn-group --}}
-                </div> {{-- .panel-footer --}}
-                {!! Form::close() !!}
+                    <button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
+                </div> {{-- .btn-group --}}
+            </div> {{-- .panel-footer --}}
+            {!! Form::close() !!}
         </div> {{-- .panel --}}
     </div>
 </div>
