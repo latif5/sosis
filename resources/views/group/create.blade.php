@@ -1,13 +1,13 @@
 @extends('_layouts.dashboard')
 
 @section('content')
-<h1 class="page-header">Kontak <small>SOSIS</small></h1>
+<h1 class="page-header">Grup <small>SOSIS</small></h1>
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Tambah Kontak</h3>
+                <h3 class="panel-title">Tambah Grup</h3>
             </div>
             {!! Form::open() !!}
             <div class="panel-body">
@@ -39,6 +39,23 @@
                             <label>Keterangan</label>
                             {!! Form::textarea('keterangan', null, $attributes = ['class' => 'form-control', 'rows' => '6']) !!}
                             {{ $errors->first('keterangan', '<p class="text-danger"><small>:message</small></p>') }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Penjadwalan</label>
+                            {!! Form::text('tanggal', date('Y-m-d'), array('class' => 'form-control datepicker')) !!}
+                            {{ $errors->first('tanggal', '<p class="text-danger"><small>:message</small></p>') }}
+                            <small>Ket: Pakai date time picker dari mallot.fr (bookmarked)</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis</label>
+                            {!! Form::select('status', array(
+                                '-1'    => '-pilih-',
+                                '-1'    => 'Normal',
+                                '0'     => 'Flash'
+                            ), null, $attributes = ['class' => 'form-control selectpicker']) !!}
+                            {{ $errors->first('status', '<p class="text-danger"><small>:message</small></p>') }}
                         </div>
                     </div>
                 </div> <!-- ./row -->
