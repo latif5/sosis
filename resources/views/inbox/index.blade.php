@@ -16,8 +16,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Tanggal</a></li>
-                <li><a href="#">Status</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort=ReceivingDateTime&mode={{ $mode }}">Tanggal</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort=Processed&mode={{ $mode }}">Status</a></li>
             </ul>
         </div>
     </div>
@@ -34,8 +34,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Asc</a></li>
-                <li><a href="#">Desc</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort={{ $sort }}&mode=asc">Asc</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort={{ $sort }}&mode=desc">Desc</a></li>
             </ul>
         </div>
     </div>
@@ -83,9 +83,10 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($all_inbox as $inbox)
+            <?php $nomor = $inbox_all->firstItem() ?>
+            @forelse($inbox_all as $inbox)
             <tr>
-                <td>1.</td>
+                <td>{{ $nomor++ }}.</td>
                 <td>
                    <small>{{ $inbox->ReceivingDateTime }}</small>
                     <br>
@@ -96,11 +97,15 @@
                 <td>
                     {{ $inbox->SenderNumber }}
                     <br>
-                    <small>Miftah Afina</small>
+                    <small>Contact Name</small>
                 </td>
                 <td>{{ $inbox->TextDecoded }}</td>
                 <td>
+                    @if($inbox->Processed == 'true')
                     <span class="label label-success">{{ $inbox->Processed }}</span>
+                    @else
+                    <span class="label label-danger">{{ $inbox->Processed }}</span>
+                    @endif                   
                 </td>
                 <td>
                     <!-- Single button -->
@@ -128,9 +133,10 @@
             @endforelse
         </tbody>
     </table>
+    {!! $inbox_all->appends(['sort' => $sort, 'mode' => $mode])->render() !!}
     <p>
-        Menampilkan 5 dari total 10 pesan <br>
-        <small class="text-muted">dengan urutan berdasarkan tanggal (desc) untuk kata kunci 'ada'</small>
+        Menampilkan {{ $inbox_all->count() }} dari total {{ $inbox_all->total() }} pesan <br>
+        <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci 'ada'</small>
     </p>
 </div>
 

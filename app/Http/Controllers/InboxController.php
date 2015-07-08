@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
 
 use App\Inbox;
 
@@ -18,9 +19,14 @@ class InboxController extends Controller
      */
     public function index()
     {
-        $all_inbox = Inbox::all();
+        $sort = Input::get('sort', 'ReceivingDateTime');
+        $mode = Input::get('mode', 'desc');
 
-        return view('inbox.index', compact('all_inbox'));
+        $inbox_all = Inbox::
+              orderBy($sort, $mode)
+            ->paginate(2);
+
+        return view('inbox.index', compact('inbox_all', 'sort', 'mode'));
     }
 
     /**
