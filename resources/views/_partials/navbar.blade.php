@@ -22,7 +22,7 @@
                         <li><a href="">Ubah Profil</a></li>
                         <li><a href="">Ubah Kata Sandi</a></li>
                         <li class="divider"></li>
-                        <li><a href=""><span class="glyphicon glyphicon-log-out"></span> Keluar</a></li>
+                        <li><a href="{{ route('home.login') }}"><span class="glyphicon glyphicon-log-out"></span> Keluar</a></li>
                     </ul>
                 </li>
             </ul>

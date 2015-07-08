@@ -14,6 +14,8 @@
 Route::resource('guest', 'GuestController',
         ['only' => ['index', 'login']]);
 
+Route::get('login', ['as' => 'home.login', 'uses' => 'HomeController@login']);
+Route::post('authenticate', ['as' => 'home.login.post', 'uses' => 'HomeController@index']);
 Route::resource('home', 'HomeController',
         ['only' => ['index']]);
 

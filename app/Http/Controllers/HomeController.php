@@ -10,6 +10,16 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     /**
+     * Display a login form.
+     *
+     * @return Response
+     */
+    public function login()
+    {
+        return view('guest.login');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
