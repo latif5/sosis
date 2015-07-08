@@ -29,7 +29,7 @@
             </div> {{-- panel-body --}}
                 
             <div class="panel-footer">
-                <a href="{{ route('balance') }}" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Muat ulang</a>
+                <a href="{{ route('balance.index') }}" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Muat ulang</a>
             </div> {{-- .panel-footer --}}
         </div> {{-- .panel --}}
     </div>

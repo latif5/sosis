@@ -91,7 +91,7 @@
     {{-- Bagian Pengaturan --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('balance*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('balance.index') }}">
                 <span class="glyphicon glyphicon-stats"></span>
                 Cek Pulsa
             </a>

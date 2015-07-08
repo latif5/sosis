@@ -35,7 +35,8 @@ Route::resource('contact', 'ContactController',
 Route::resource('group', 'GroupController',
         ['only' => ['index', 'create']]);
 
-Route::get('balance', ['as' => 'balance', 'uses' => 'SettingController@balance']);
-
 Route::resource('setting',  'SettingController',
-        ['only' => ['create']]);
+        ['only' => ['index']]);
+
+Route::resource('balance',  'BalanceController',
+        ['only' => ['index']]);
