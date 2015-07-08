@@ -7,10 +7,10 @@
     <div class="col-md-2">
         <!-- Split button -->
         <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-sm">
+            <a href="{{ route('group.create') }}" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-plus"></span> 
                 Tambahkan
-            </button>
+            </a>
             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
