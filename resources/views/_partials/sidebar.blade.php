@@ -70,15 +70,15 @@
 
     {{-- Bagian Konfirmasi --}}
     <ul class="nav nav-sidebar">
-        <li class="{{ Request::is('bayar*') ? 'active' : '' }}">
-            <a href="">
+        <li class="{{ Request::is('confirmation*') ? 'active' : '' }}">
+            <a href="{{ route('confirmation.index') }}">
                 <span class="glyphicon glyphicon-transfer"></span>
                 Pembayaran
                 <span class="badge">23</span>
             </a>
         </li>
-        <li class="{{ Request::is('donasi*') ? 'active' : '' }}">
-            <a href="">
+        <li class="{{ Request::is('donation*') ? 'active' : '' }}">
+            <a href="{{ route('donation.index') }}">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                 Donasi
                 <span class="badge">3</span>
