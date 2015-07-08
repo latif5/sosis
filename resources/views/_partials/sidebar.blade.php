@@ -1,7 +1,7 @@
 <div class="col-sm-3 col-md-2 sidebar">
     {{-- Bagian Pengaturan --}}
     <ul class="nav nav-sidebar">
-        <li class="{{ Request::is('home*') ? 'active' : '' }}">
+        <li class="{{ Request::is('home*') || Request::is('authenticate*') ? 'active' : '' }}">
             <a href="{{ route('home.index') }}">
                 <span class="glyphicon glyphicon-home"></span>
                 Beranda
