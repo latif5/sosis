@@ -43,3 +43,9 @@ Route::resource('user', 'UserController',
 
 Route::resource('setting',  'SettingController',
         ['only' => ['index']]);
+
+Route::resource('confirmation',  'ConfirmationController',
+        ['only' => ['index']]);
+
+Route::resource('donation',  'DonationController',
+        ['only' => ['index']]);
