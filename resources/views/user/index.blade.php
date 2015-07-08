@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-md-2">
-        <a href="{{ route('contact.create') }}" class="btn btn-primary btn-sm">
+        <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">
             <span class="glyphicon glyphicon-plus"></span> 
             Tambahkan
         </a>
