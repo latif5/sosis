@@ -35,8 +35,11 @@ Route::resource('contact', 'ContactController',
 Route::resource('group', 'GroupController',
         ['only' => ['index', 'create']]);
 
-Route::resource('setting',  'SettingController',
+Route::resource('balance',  'BalanceController',
         ['only' => ['index']]);
 
-Route::resource('balance',  'BalanceController',
+Route::resource('user', 'UserController',
+        ['only' => ['index', 'create']]);
+
+Route::resource('setting',  'SettingController',
         ['only' => ['index']]);

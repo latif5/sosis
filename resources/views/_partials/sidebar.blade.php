@@ -97,13 +97,13 @@
             </a>
         </li>
         <li class="{{ Request::is('user*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('user.index') }}">
                 <span class="glyphicon glyphicon-user"></span>
                 Pengguna
             </a>
         </li>
         <li class="{{ Request::is('setting*') ? 'active' : '' }}">
-            <a href="">
+            <a href="{{ route('setting.index') }}">
                 <span class="glyphicon glyphicon-wrench"></span>
                 Pengaturan
             </a>
