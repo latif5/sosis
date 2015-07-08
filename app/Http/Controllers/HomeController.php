@@ -26,7 +26,52 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        // Inbox
+        $inbox = \App\Inbox::count();
+        $inbox_false = \App\Inbox::where('Processed', 'false')->count();
+
+        // Outbox
+        $outbox = \App\Outbox::count();
+
+        // SentItem
+        $sentitem = \App\SentItem::count();
+        $sentitem_sendingok = \App\SentItem::where('Status', 'SendingOK')->count();
+        $sentitem_sendingerror = \App\SentItem::where('Status', 'SendingError')->count();
+
+        // Contact
+        $contact = \App\Contact::count();
+
+        // Group
+        $group = \App\Group::count();
+
+        // Confirmation
+        $confirmation = \App\Confirmation::count();
+        $confirmation_belum = \App\Confirmation::where('status', 'Belum')->count();
+
+        // Donation
+        $donation = \App\Donation::count();
+        $donation_belum = \App\Donation::where('status', 'Belum')->count();
+
+        return view('home.index', compact(
+            'inbox',
+            'inbox_false',
+
+            'outbox',
+
+            'sentitem',
+            'sentitem_sendingok',
+            'sentitem_sendingerror',
+
+            'contact',
+
+            'group',
+
+            'confirmation',
+            'confirmation_belum',
+
+            'donation',
+            'donation_belum'
+        ));
     }
 
     /**
