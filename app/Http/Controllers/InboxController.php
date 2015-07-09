@@ -22,13 +22,15 @@ class InboxController extends Controller
         $sort = Input::get('sort', 'ReceivingDateTime');
         $mode = Input::get('mode', 'desc');
         $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
 
         $inbox_all = Inbox::
               where('TextDecoded', 'like', "%$cari%")
+            ->where('ReceivingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
             ->paginate(1);
 
-        return view('inbox.index', compact('inbox_all', 'sort', 'mode', 'cari'));
+        return view('inbox.index', compact('inbox_all', 'sort', 'mode', 'cari', 'cari_bulan'));
     }
 
     /**

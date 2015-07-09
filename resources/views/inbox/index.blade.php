@@ -58,7 +58,7 @@
         <form class="form-inline pull-right" action="{{ route('inbox.index') }}" method="get">
             <div class="form-group">
                 <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
-                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="">
+                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="{{ $cari_bulan }}">
                 <input type="hidden" name="sort" value="{{ $sort }}">
                 <input type="hidden" name="mode" value="{{ $mode }}">
             </div>
@@ -133,7 +133,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $inbox_all->appends(['sort' => $sort, 'mode' => $mode, 'cari' => $cari])->render() !!}
+    {!! $inbox_all->appends(['sort' => $sort, 'mode' => $mode, 'cari' => $cari, 'cari_bulan' => $cari_bulan])->render() !!}
     <p>
         Menampilkan {{ $inbox_all->count() }} dari total {{ $inbox_all->total() }} pesan <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
