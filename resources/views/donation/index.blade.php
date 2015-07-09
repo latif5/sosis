@@ -16,8 +16,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Tanggal</a></li>
-                <li><a href="#">Status</a></li>
+                <li><a href="{{ route('donation.index') }}?sort=tanggal&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tanggal</a></li>
+                <li><a href="{{ route('donation.index') }}?sort=status&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Status</a></li>
             </ul>
         </div>
     </div>
@@ -34,8 +34,25 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Asc</a></li>
-                <li><a href="#">Desc</a></li>
+                <li><a href="{{ route('donation.index') }}?sort={{ $sort }}&mode=asc&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Asc</a></li>
+                <li><a href="{{ route('donation.index') }}?sort={{ $sort }}&mode=desc&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Desc</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <!-- Split button -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-flag"></span> Status</button>
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('donation.index') }}?sort={{ $sort }}&mode=asc&status=&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">All</a></li>
+                <li><a href="{{ route('donation.index') }}?sort={{ $sort }}&mode=desc&status=Belum&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Belum</a></li>
+                <li><a href="{{ route('donation.index') }}?sort={{ $sort }}&mode=desc&status=Sudah&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Sudah</a></li>
+                <li><a href="{{ route('donation.index') }}?sort={{ $sort }}&mode=desc&status=Tunda&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tunda</a></li>
             </ul>
         </div>
     </div>
@@ -54,13 +71,14 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <form class="form-inline pull-right">
+    <div class="col-md-4">
+        <form class="form-inline pull-right" action="{{ route('donation.index') }}" method="get">
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">
-                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="">
-                <input type="hidden" name="sort" value="">
-                <input type="hidden" name="arrange" value="">
+                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
+                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="{{ $cari_bulan }}">
+                <input type="hidden" name="sort" value="{{ $sort }}">
+                <input type="hidden" name="mode" value="{{ $mode }}">
+                <input type="hidden" name="status" value="{{ $status }}">
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
@@ -87,17 +105,25 @@
             </tr>
         </thead>
         <tbody>
+            <?php $nomor = $donation_all->firstItem() ?>
+            @forelse($donation_all as $donation)
             <tr>
-                <td>1.</td>
-                <td>4 Mei 2015</td>
-                <td>085742302328</td>
-                <td>1.000.000</td>
-                <td>3 Mei 2015</td>
-                <td>Agus S.</td>
-                <td>Donasi Masjid</td>
-                <td>Masjid PIA</td>
+                <td>{{ $nomor++ }}.</td>
+                <td>{{ $donation->tanggal }}</td>
+                <td>{{ $donation->ponsel }}</td>
+                <td>{{ $donation->jumlah }}</td>
+                <td>{{ $donation->tanggal_kirim }}</td>
+                <td>{{ $donation->pengirim }}</td>
+                <td>{{ $donation->keperluan }}</td>
+                <td>{{ $donation->Keterangan }}</td>
                 <td>
-                    <span class="label label-danger">Belum</span>
+                    @if($donation->status == 'Belum')
+                    <span class="label label-danger">{{ $donation->status }}</span>
+                    @elseif($donation->status == 'Sudah')
+                    <span class="label label-success">{{ $donation->status }}</span>
+                    @elseif($donation->status == 'Tunda')
+                    <span class="label label-warning">{{ $donation->status }}</span>
+                    @endif
                 </td>
                 <td>
                     <!-- Single button -->
@@ -117,11 +143,19 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="10">
+                    <p>Tidak ada data yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+    {!! $donation_all->appends(compact('sort', 'mode', 'status', 'cari', 'cari_bulan'))->render() !!}
     <p>
-        Menampilkan 5 dari total 10 pesan <br>
-        <small class="text-muted">dengan urutan berdasarkan tanggal (desc) untuk kata kunci 'ada'</small>
+        Menampilkan {{ $donation_all->count() }} dari total {{ $donation_all->total() }} pesan <br>
+        <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>
     </p>
 </div>
 

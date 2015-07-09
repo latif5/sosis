@@ -19,7 +19,6 @@
                 <li><a href="{{ route('confirmation.index') }}?sort=tanggal&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tanggal</a></li>
                 <li><a href="{{ route('confirmation.index') }}?sort=status&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Status</a></li>
             </ul>
-
         </div>
     </div>
 

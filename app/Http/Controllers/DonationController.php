@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
+
+use App\Donation;
 
 class DonationController extends Controller
 {
@@ -16,7 +19,20 @@ class DonationController extends Controller
      */
     public function index()
     {
-        return view('donation.index');
+        $sort = Input::get('sort', 'tanggal');
+        $mode = Input::get('mode', 'desc');
+        $status = Input::get('status', '');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $donation_all = Donation::
+              where('status', 'like', "%$status%")
+            ->where('pengirim', 'like', "%$cari%")
+            ->where('tanggal', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->paginate(1);
+
+        return view('donation.index', compact('donation_all', 'sort', 'mode', 'status', 'cari', 'cari_bulan'));
     }
 
     /**

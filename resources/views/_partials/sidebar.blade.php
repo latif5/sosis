@@ -97,7 +97,11 @@
             <a href="{{ route('donation.index') }}">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                 Donasi
-                <span class="badge">3</span>
+                @if(\App\Donation::where('status', '!=', 'Sudah')->count() != 0)
+                <span class="badge">
+                    {{ \App\Donation::where('status', '!=', 'Sudah')->count() }}
+                </span>
+                @endif
             </a>
         </li>
     </ul>
