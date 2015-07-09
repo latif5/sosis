@@ -16,8 +16,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Tanggal</a></li>
-                <li><a href="#">Status</a></li>
+                <li><a href="{{ route('outbox.index') }}?sort=UpdatedInDB&mode={{ $mode }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tanggal</a></li>
             </ul>
         </div>
     </div>
@@ -34,8 +33,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Asc</a></li>
-                <li><a href="#">Desc</a></li>
+                <li><a href="{{ route('outbox.index') }}?sort={{ $sort }}&mode=asc&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Asc</a></li>
+                <li><a href="{{ route('outbox.index') }}?sort={{ $sort }}&mode=desc&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Desc</a></li>
             </ul>
         </div>
     </div>
@@ -62,12 +61,12 @@
     </div>
 
     <div class="col-md-5">
-        <form class="form-inline pull-right">
+        <form class="form-inline pull-right" action="{{ route('outbox.index') }}" method="get">
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">
-                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="">
-                <input type="hidden" name="sort" value="">
-                <input type="hidden" name="arrange" value="">
+                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
+                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="{{ $cari_bulan }}">
+                <input type="hidden" name="sort" value="{{ $sort }}">
+                <input type="hidden" name="mode" value="{{ $mode }}">
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
@@ -122,9 +121,10 @@
             </tr>
         </tbody>
     </table>
+    {!! $outbox_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
-        Menampilkan 5 dari total 10 pesan <br>
-        <small class="text-muted">dengan urutan berdasarkan tanggal (desc) untuk kata kunci 'ada'</small>
+        Menampilkan {{ $outbox_all->count() }} dari total {{ $outbox_all->total() }} pesan <br>
+        <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
 

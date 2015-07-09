@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
+
+use App\Outbox;
 
 class OutboxController extends Controller
 {
@@ -16,7 +19,18 @@ class OutboxController extends Controller
      */
     public function index()
     {
-        return view('outbox.index');
+        $sort = Input::get('sort', 'UpdatedInDB');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $outbox_all = Outbox::
+              where('TextDecoded', 'like', "%$cari%")
+            ->where('UpdatedInDB', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->paginate(1);
+
+        return view('outbox.index', compact('outbox_all', 'sort', 'mode', 'cari', 'cari_bulan'));
     }
 
     /**

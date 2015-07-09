@@ -16,8 +16,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ route('inbox.index') }}?sort=ReceivingDateTime&mode={{ $mode }}">Tanggal</a></li>
-                <li><a href="{{ route('inbox.index') }}?sort=Processed&mode={{ $mode }}">Status</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort=ReceivingDateTime&mode={{ $mode }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tanggal</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort=Processed&mode={{ $mode }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Status</a></li>
             </ul>
         </div>
     </div>
@@ -34,8 +34,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ route('inbox.index') }}?sort={{ $sort }}&mode=asc">Asc</a></li>
-                <li><a href="{{ route('inbox.index') }}?sort={{ $sort }}&mode=desc">Desc</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort={{ $sort }}&mode=asc&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Asc</a></li>
+                <li><a href="{{ route('inbox.index') }}?sort={{ $sort }}&mode=desc&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Desc</a></li>
             </ul>
         </div>
     </div>
@@ -133,7 +133,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $inbox_all->appends(['sort' => $sort, 'mode' => $mode, 'cari' => $cari, 'cari_bulan' => $cari_bulan])->render() !!}
+    {!! $inbox_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $inbox_all->count() }} dari total {{ $inbox_all->total() }} pesan <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
