@@ -23,9 +23,11 @@
             <a href="{{ route('inbox.index') }}">
                 <span class="glyphicon glyphicon-envelope"></span>
                 Kotak Masuk 
+                @if(\App\Inbox::where('Processed', '=', 'false')->count() != 0)
                 <span class="badge">
                     {{ \App\Inbox::where('Processed', '=', 'false')->count() }}
                 </span>
+                @endif
             </a>
         </li>
 {{--         <li class="{{ Request::is('draft*') ? 'active' : '' }}">
@@ -38,12 +40,22 @@
             <a href="{{ route('outbox.index') }}">
                 <span class="glyphicon glyphicon-inbox"></span>
                 Kotak Keluar
+                @if(\App\Outbox::count() != 0)
+                <span class="badge">
+                    {{ \App\Outbox::count() }}
+                </span>
+                @endif
             </a>
         </li>
         <li class="{{ Request::is('sentitem*') ? 'active' : '' }}">
             <a href="{{ route('sentitem.index') }}">
                 <span class="glyphicon glyphicon-saved"></span>
                 Pesan Terkirim
+                @if(\App\SentItem::where('Status', '=', 'SendingError')->count() != 0)
+                <span class="badge">
+                    {{ \App\SentItem::where('Status', '=', 'SendingError')->count() }}
+                </span>
+                @endif
             </a>
         </li>
     </ul>
