@@ -35,6 +35,6 @@ class CreateDonationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('confirmation');
+        Schema::drop('donation');
     }
 }
