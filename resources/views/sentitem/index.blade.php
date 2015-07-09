@@ -86,7 +86,7 @@
             <?php $nomor = $sentitem_all->firstItem() ?>
             @forelse($sentitem_all as $sentitem)
             <tr>
-                <td>{{ $nomor++ }}</td>
+                <td>{{ $nomor++ }}.</td>
                 <td>
                     {{ $sentitem->SendingDateTime }}
                     <br>
