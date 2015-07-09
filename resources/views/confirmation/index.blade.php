@@ -16,9 +16,10 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Tanggal</a></li>
-                <li><a href="#">Status</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort=tanggal&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tanggal</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort=status&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Status</a></li>
             </ul>
+
         </div>
     </div>
 
@@ -34,8 +35,25 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Asc</a></li>
-                <li><a href="#">Desc</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort={{ $sort }}&mode=asc&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Asc</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort={{ $sort }}&mode=desc&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Desc</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <!-- Split button -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-flag"></span> Status</button>
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('confirmation.index') }}?sort={{ $sort }}&mode=asc&status=&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">All</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort={{ $sort }}&mode=desc&status=Belum&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Belum</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort={{ $sort }}&mode=desc&status=Sudah&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Sudah</a></li>
+                <li><a href="{{ route('confirmation.index') }}?sort={{ $sort }}&mode=desc&status=Tunda&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tunda</a></li>
             </ul>
         </div>
     </div>
@@ -54,13 +72,14 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <form class="form-inline pull-right">
+    <div class="col-md-4">
+        <form class="form-inline pull-right" action="{{ route('confirmation.index') }}" method="get">
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">
-                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="">
-                <input type="hidden" name="sort" value="">
-                <input type="hidden" name="arrange" value="">
+                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
+                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="{{ $cari_bulan }}">
+                <input type="hidden" name="sort" value="{{ $sort }}">
+                <input type="hidden" name="mode" value="{{ $mode }}">
+                <input type="hidden" name="status" value="{{ $status }}">
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
@@ -88,18 +107,26 @@
             </tr>
         </thead>
         <tbody>
+            <?php $nomor = $confirmation_all->firstItem() ?>
+            @forelse($confirmation_all as $confirmation)
             <tr>
-                <td>1.</td>
-                <td>4 Mei 2015</td>
-                <td>085742302328</td>
-                <td>Steven</td>
-                <td>7A</td>
-                <td>1.000.000</td>
-                <td>3 Mei 2015</td>
-                <td>Agus S.</td>
-                <td>SPP bulan Juli</td>
+                <td>{{ $nomor++ }}.</td>
+                <td>{{ $confirmation->tanggal }}</td>
+                <td>{{ $confirmation->ponsel }}</td>
+                <td>{{ $confirmation->santri }}</td>
+                <td>{{ $confirmation->kelas }}</td>
+                <td>{{ $confirmation->jumlah }}</td>
+                <td>{{ $confirmation->tanggal_kirim }}</td>
+                <td>{{ $confirmation->pengirim }}</td>
+                <td>{{ $confirmation->keperluan }}</td>
                 <td>
-                    <span class="label label-success">Sudah</span>
+                    @if($confirmation->status == 'Belum')
+                    <span class="label label-danger">{{ $confirmation->status }}</span>
+                    @elseif($confirmation->status == 'Sudah')
+                    <span class="label label-success">{{ $confirmation->status }}</span>
+                    @elseif($confirmation->status == 'Tunda')
+                    <span class="label label-warning">{{ $confirmation->status }}</span>
+                    @endif
                 </td>
                 <td>
                     <!-- Single button -->
@@ -119,11 +146,19 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="11">
+                    <p>Tidak ada data yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+    {!! $confirmation_all->appends(compact('sort', 'mode', 'status', 'cari', 'cari_bulan'))->render() !!}
     <p>
-        Menampilkan 5 dari total 10 pesan <br>
-        <small class="text-muted">dengan urutan berdasarkan tanggal (desc) untuk kata kunci 'ada'</small>
+        Menampilkan {{ $confirmation_all->count() }} dari total {{ $confirmation_all->total() }} pesan <br>
+        <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>
     </p>
 </div>
 
