@@ -1,5 +1,7 @@
 <?php
 
+use \Faker\Factory;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -51,3 +53,8 @@ Route::resource('confirmation',  'ConfirmationController',
 
 Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
+
+Route::get('fin', function (){
+        $faker = Factory::create();
+        echo $faker->name;
+});
