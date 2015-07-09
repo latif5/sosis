@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
+
+use App\Group;
 
 class GroupController extends Controller
 {
@@ -16,7 +19,16 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('group.index');
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $group_all = Group::
+              where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->paginate(1);
+
+        return view('group.index', compact('group_all', 'sort', 'mode', 'cari'));
     }
 
     /**

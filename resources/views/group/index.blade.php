@@ -33,8 +33,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Nama</a></li>
-                <li><a href="#">Tanggal</a></li>
+                <li><a href="{{ route('group.index') }}?sort=nama&mode={{ $mode }}&cari={{ $cari }}">Nama</a></li>
+                <li><a href="{{ route('group.index') }}?sort=created_at&mode={{ $mode }}&cari={{ $cari }}">Tanggal</a></li>
             </ul>
         </div>
     </div>
@@ -51,8 +51,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Asc</a></li>
-                <li><a href="#">Desc</a></li>
+                <li><a href="{{ route('group.index') }}?sort={{ $sort }}&mode=asc&cari={{ $cari }}">Asc</a></li>
+                <li><a href="{{ route('group.index') }}?sort={{ $sort }}&mode=desc&cari={{ $cari }}">Desc</a></li>
             </ul>
         </div>
     </div>
@@ -72,11 +72,11 @@
     </div>
 
     <div class="col-md-4">
-        <form class="form-inline pull-right">
+        <form class="form-inline pull-right" action="{{ route('group.index') }}" method="get">
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">
-                <input type="hidden" name="sort" value="">
-                <input type="hidden" name="arrange" value="">
+                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
+                <input type="hidden" name="sort" value="{{ $sort }}">
+                <input type="hidden" name="mode" value="{{ $mode }}">
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
@@ -98,12 +98,14 @@
             </tr>
         </thead>
         <tbody>
+            <?php $nomor = $group_all->firstItem() ?>
+            @forelse($group_all as $group)
             <tr>
-                <td>1.</td>
-                <td>Dakwah dan Humas</td>
-                <td>Group untuk civitas dibawah Humas dan Dakwah PIA</td>
+                <td>{{ $nomor++ }}.</td>
+                <td>{{ $group->nama }}</td>
+                <td>{{ $group->keterangan }}</td>
                 <td>
-                    <span class="label label-default">40</span>
+                    <span class="label label-default">Jml Anggota</span>
                     </td>
                 <td>
                     <!-- Single button -->
@@ -122,11 +124,19 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="5">
+                    <p>Tidak ada data yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+    {!! $group_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
-        Menampilkan 5 dari total 10 pesan <br>
-        <small class="text-muted">dengan urutan berdasarkan tanggal (desc) untuk kata kunci 'ada'</small>
+        Menampilkan {{ $group_all->count() }} dari total {{ $group_all->total() }} data <br>
+        <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
 
