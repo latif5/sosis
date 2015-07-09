@@ -100,15 +100,17 @@
             </tr>
         </thead>
         <tbody>
+            <?php $nomor = $contact_all->firstItem() ?>
+            @forelse($contact_all as $contact)
             <tr>
-                <td>1.</td>
-                <td>Miftah Afina</td>
-                <td>0857 4230 2328</td>
-                <td>Staf Dokumentasi dan Publikasi</td>
+                <td>{{ $nomor++ }}</td>
+                <td>{{ $contact->nama }}</td>
+                <td>{{ $contact->ponsel }}</td>
+                <td>{{ $contact->keterangan }}</td>
                 <td>
-                    <span class="label label-default">Pegawai</span>
-                    <span class="label label-default">Tarbiyah</span>
-                    <span class="label label-default">Dakwah dan Humas</span>
+                    <span class="label label-default">Group 1</span>
+                    <span class="label label-default">Group 2</span>
+                    <span class="label label-default">Group 3</span>
                 </td>
                 <td>
                     <!-- Single button -->
@@ -126,6 +128,13 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="6">
+                    <p>Tidak ada data yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
     {!! $contact_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
