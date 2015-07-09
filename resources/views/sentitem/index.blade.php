@@ -16,8 +16,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Tanggal</a></li>
-                <li><a href="#">Status</a></li>
+                <li><a href="{{ route('sentitem.index') }}?sort=SendingDateTime&mode={{ $mode }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Tanggal</a></li>
+                <li><a href="{{ route('sentitem.index') }}?sort=Status&mode={{ $mode }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Status</a></li>
             </ul>
         </div>
     </div>
@@ -34,8 +34,8 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Asc</a></li>
-                <li><a href="#">Desc</a></li>
+                <li><a href="{{ route('sentitem.index') }}?sort={{ $sort }}&mode=asc&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Asc</a></li>
+                <li><a href="{{ route('sentitem.index') }}?sort={{ $sort }}&mode=desc&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Desc</a></li>
             </ul>
         </div>
     </div>
@@ -55,12 +55,12 @@
     </div>
 
     <div class="col-md-6">
-        <form class="form-inline pull-right">
+        <form class="form-inline pull-right" action="{{ route('sentitem.index') }}" method="get">
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">
-                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="">
-                <input type="hidden" name="sort" value="">
-                <input type="hidden" name="arrange" value="">
+                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
+                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="{{ $cari_bulan }}">
+                <input type="hidden" name="sort" value="{{ $sort }}">
+                <input type="hidden" name="mode" value="{{ $mode }}">
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
@@ -77,27 +77,33 @@
                 <th width="5%">No.</th>
                 <th width="10%">Tanggal</th>
                 <th width="10%">Pengirim</th>
-                <th width="65%">Isi Pesan</th>
-                <th width="5%">Status</th>
+                <th width="60%">Isi Pesan</th>
+                <th width="10%">Status</th>
                 <th width="5%">Pilihan</th>
             </tr>
         </thead>
         <tbody>
+            <?php $nomor = $sentitem_all->firstItem() ?>
+            @forelse($sentitem_all as $sentitem)
             <tr>
-                <td>1.</td>
+                <td>{{ $nomor++ }}</td>
                 <td>
-                    4 Jun 2015 12.24
+                    {{ $sentitem->SendingDateTime }}
                     <br>
-                    <small class="text-muted">3 hours ago</small>
+                    <small class="text-muted">{{ \Carbon\Carbon::parse($sentitem->SendingDateTime)->diffForHumans() }}</small>
                 </td>
                 <td>
-                    085742302328
+                    {{ $sentitem->DestinationNumber }}
                     <br>
-                    <small>Miftah Afina</small>
+                    <small>Contact Name</small>
                 </td>
-                <td>lksdjf asdf aklsdjf asdfkjas dfasdhfl asdflkjasdf asdflkjhasd flaskdjf alsdkjfha lsdfljaksdf alsdkjfh alsdkjfha lsdkfjha sldkfjha sldkfja sdkfjalsdkjfhskjdfasd</td>
+                <td>{{ $sentitem->TextDecoded }}</td>
                 <td>
-                    <span class="label label-success">ok</span>
+                    @if($sentitem->Status == 'SendingOK')
+                    <span class="label label-success">{{ $sentitem->Status }}</span>
+                    @else
+                    <span class="label label-danger">{{ $sentitem->Status }}</span>
+                    @endif  
                 </td>
                 <td>
                     <!-- Single button -->
@@ -114,11 +120,19 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="6">
+                    <p>Tidak ada pesan yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+    {!! $sentitem_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
-        Menampilkan 5 dari total 10 pesan <br>
-        <small class="text-muted">dengan urutan berdasarkan tanggal (desc) untuk kata kunci 'ada'</small>
+        Menampilkan {{ $sentitem_all->count() }} dari total {{ $sentitem_all->total() }} pesan <br>
+        <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
 
