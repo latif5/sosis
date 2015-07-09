@@ -13,16 +13,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="well">
-                            <strong>*555#</strong> &raquo; Sisa pulsa anda adalah...
+                            <strong>*555#</strong> &raquo; {{ $balance['ussd1'] }}
+                        </div>
+{{-- 
+                        <div class="well">
+                            <strong>*555*1#</strong> &raquo; {{ $balance['ussd1'] }}
                         </div>
                         <div class="well">
-                            <strong>*555*1#</strong> &raquo; Sisa pulsa anda adalah...
+                            <strong>*555*2#</strong> &raquo; {{ $balance['ussd2'] }}
                         </div>
+--}}
                         <div class="well">
-                            <strong>*555*2#</strong> &raquo; Sisa pulsa anda adalah...
-                        </div>
-                        <div class="well">
-                            <strong>Status</strong> &raquo; Service aktif...
+                            <strong>Status</strong> &raquo; {{ $balance['status'] }}
                         </div>
                     </div>
                 </div> <!-- ./row -->
