@@ -86,7 +86,11 @@
             <a href="{{ route('confirmation.index') }}">
                 <span class="glyphicon glyphicon-transfer"></span>
                 Pembayaran
-                <span class="badge">23</span>
+                @if(\App\Confirmation::where('status', '!=', 'Sudah')->count() != 0)
+                <span class="badge">
+                    {{ \App\Confirmation::where('status', '!=', 'Sudah')->count() }}
+                </span>
+                @endif
             </a>
         </li>
         <li class="{{ Request::is('donation*') ? 'active' : '' }}">
