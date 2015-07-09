@@ -127,7 +127,7 @@
             @empty
             <tr>
                 <td colspan="6">
-                    <p>Tidak ada pesan yang diterima.</p>
+                    <p>Tidak ada pesan yang dapat ditampilkan.</p>
                 </td>
             </tr>
             @endforelse
