@@ -81,30 +81,28 @@
         <thead>
             <tr>
                 <th width="5%">No.</th>
-                <th width="10%">Tanggal</th>
+                <th width="15%">Tanggal</th>
                 <th width="10%">Tujuan</th>
                 <th width="65%">Isi Pesan</th>
-                <th width="5%">Status</th>
                 <th width="5%">Pilihan</th>
             </tr>
         </thead>
         <tbody>
+            <?php $nomor = $outbox_all->firstItem() ?>
+            @forelse($outbox_all as $outbox)
             <tr>
-                <td>1.</td>
+                <td>{{ $nomor++ }}</td>
                 <td>
-                    4 Jun 2015 12.24
+                    <small>{{ $outbox->UpdatedInDB }}</small>
                     <br>
-                    <small class="text-muted">3 hours ago</small>
+                    <small class="text-muted">{{ \Carbon\Carbon::parse($outbox->UpdatedInDB)->diffForHumans() }}</small>
                 </td>
                 <td>
-                    085742302328
+                    {{ $outbox->DestinationNumber }}
                     <br>
-                    <small>Miftah Afina</small>
+                    <small>Contact Name</small>
                 </td>
-                <td>lksdjf asdf aklsdjf asdfkjas dfasdhfl asdflkjasdf asdflkjhasd flaskdjf alsdkjfha lsdfljaksdf alsdkjfh alsdkjfha lsdkfjha sldkfjha sldkfja sdkfjalsdkjfhskjdfasd</td>
-                <td>
-                    <span class="label label-success">ok</span>
-                </td>
+                <td>{{ $outbox->TextDecoded }}</td>
                 <td>
                     <!-- Single button -->
                     <div class="btn-group">
@@ -119,6 +117,13 @@
                     </div>
                 </td>
             </tr>
+            @empty
+            <tr>
+                <td colspan="6">
+                    <p>Tidak ada pesan yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
     {!! $outbox_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
