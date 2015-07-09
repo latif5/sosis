@@ -23,7 +23,8 @@ class CreateConfirmationTable extends Migration
             $table->string('tanggal_kirim');
             $table->string('pengirim');
             $table->string('keperluan');
-            $table->enum('status', ['Belum', 'Sudah', 'Tunda']);
+            $table->enum('status', ['Belum', 'Sudah', 'Tunda'])
+                ->default('Belum');
 
             $table->timestamps();
         });
