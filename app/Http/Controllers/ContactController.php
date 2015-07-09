@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
+
+use App\Contact;
 
 class ContactController extends Controller
 {
@@ -16,7 +19,16 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contact.index');
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $contact_all = Contact::
+              where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->paginate(1);
+
+        return view('contact.index', compact('contact_all', 'sort', 'mode', 'cari'));
     }
 
     /**

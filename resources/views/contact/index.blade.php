@@ -103,8 +103,10 @@
             <?php $nomor = $contact_all->firstItem() ?>
             @forelse($contact_all as $contact)
             <tr>
-                <td>{{ $nomor++ }}</td>
-                <td>{{ $contact->nama }}</td>
+                <td>{{ $nomor++ }}.</td>
+                <td>
+                    <a href="{{ route('contact.show', [$contact->id]) }}">{{ $contact->nama }}</a>
+                </td>
                 <td>{{ $contact->ponsel }}</td>
                 <td>{{ $contact->keterangan }}</td>
                 <td>

@@ -91,7 +91,7 @@
             <?php $nomor = $outbox_all->firstItem() ?>
             @forelse($outbox_all as $outbox)
             <tr>
-                <td>{{ $nomor++ }}</td>
+                <td>{{ $nomor++ }}.</td>
                 <td>
                     <small>{{ $outbox->UpdatedInDB }}</small>
                     <br>

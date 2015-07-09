@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
+
+use App\SentItem;
 
 class SentItemController extends Controller
 {
@@ -16,7 +19,18 @@ class SentItemController extends Controller
      */
     public function index()
     {
-        return view('sentitem.index');
+        $sort = Input::get('sort', 'SendingDateTime');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $sentitem_all = SentItem::
+              where('TextDecoded', 'like', "%$cari%")
+            ->where('SendingDateTime', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->paginate(1);
+
+        return view('sentitem.index', compact('sentitem_all', 'sort', 'mode', 'cari', 'cari_bulan'));
     }
 
     /**
