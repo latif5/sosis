@@ -62,17 +62,17 @@
     </div>
 
     <div class="col-md-4">
-        <form class="form-inline pull-right">
+        {!! Form::open(['method' => 'get', 'class' => 'form-inline pull-right']) !!}
+            {!! Form::hidden('sort', $sort) !!}
+            {!! Form::hidden('mode', $mode) !!}
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="">
-                <input type="hidden" name="sort" value="">
-                <input type="hidden" name="arrange" value="">
+                {!! Form::text('cari', $cari, ['id' => 'search', 'class' => 'form-control input-sm', 'placeholder' => 'Pencarian...']) !!}
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
                 Cari
             </button>
-        </form>
+         {!! Form::close() !!}
     </div>
 </div><br>
 
