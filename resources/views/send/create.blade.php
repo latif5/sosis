@@ -9,7 +9,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Tulis Pesan</h3>
             </div>
-            {!! Form::open() !!}
+            {!! Form::open(['route' => 'send.store']) !!}
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3">

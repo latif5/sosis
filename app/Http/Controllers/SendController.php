@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Outbox;
+
 class SendController extends Controller
 {
     /**
@@ -36,8 +38,31 @@ class SendController extends Controller
      */
     public function store()
     {
-        //
+        $input = \Request::all();
+
+        $send = new Outbox;
+
+        $send->DestinationNumber = $input['DestinationNumber'];
+        $send->TextDecoded = $input['TextDecoded'];
+        
+        $send->save();
+
+        return redirect()->route('outbox.index');
+
+        // $input = \Request::get('TextDecoded');
+        // dd($input);
     }
+
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @return Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $input = $request->all();
+    //     dd($input);
+    // }
 
     /**
      * Display the specified resource.

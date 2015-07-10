@@ -22,7 +22,7 @@ Route::resource('home', 'HomeController',
         ['only' => ['index']]);
 
 Route::resource('send', 'SendController',
-        ['only' => ['create']]);
+        ['only' => ['create', 'store']]);
 
 Route::resource('inbox', 'InboxController',
         ['only' => ['index']]);
