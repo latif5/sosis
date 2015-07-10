@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Outbox;
 
+use App\Http\Requests\CreateSendRequest;
+
 class SendController extends Controller
 {
     /**
@@ -36,21 +38,17 @@ class SendController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(CreateSendRequest $request)
     {
-        $input = \Request::all();
-
         $send = new Outbox;
 
-        $send->DestinationNumber = $input['DestinationNumber'];
-        $send->TextDecoded = $input['TextDecoded'];
-        
+        $send->TextDecoded = $request->TextDecoded;
+        $send->DestinationNumber = $request->DestinationNumber;
+        $send->Class = $request->Class;
+
         $send->save();
 
         return redirect()->route('outbox.index');
-
-        // $input = \Request::get('TextDecoded');
-        // dd($input);
     }
 
     // /**

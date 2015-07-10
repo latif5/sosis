@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <label>No. Tujuan</label>
                             {!! Form::text('DestinationNumber', null, $attributes = ['class' => 'form-control']) !!}
-                            {{ $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') }}
+                            {!! $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
@@ -26,7 +26,7 @@
                                 '2'     => 'Staf',
                                 '3'     => 'Karyawan'
                             ), null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
-                            {{ $errors->first('group', '<p class="text-danger"><small>:message</small></p>') }}
+                            {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -34,24 +34,24 @@
                             <label>Pesan</label>
                             {!! Form::textarea('TextDecoded', null, $attributes = ['class' => 'form-control', 'id' => 'pesan', 'rows' => '6']) !!}
                             <small id="count_message"></small>
-                            {{ $errors->first('TextDecoded', '<p class="text-danger"><small>:message</small></p>') }}
+                            {!! $errors->first('TextDecoded', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Penjadwalan</label>
                             {!! Form::text('tanggal', date('Y-m-d'), array('class' => 'form-control datepicker')) !!}
-                            {{ $errors->first('tanggal', '<p class="text-danger"><small>:message</small></p>') }}
+                            {!! $errors->first('tanggal', '<p class="text-danger"><small>:message</small></p>') !!}
                             <small>Ket: Pakai date time picker dari mallot.fr (bookmarked)</small>
                         </div>
                         <div class="form-group">
                             <label>Jenis</label>
-                            {!! Form::select('status', array(
+                            {!! Form::select('Class', array(
                                 '-1'    => '-pilih-',
                                 '-1'    => 'Normal',
                                 '0'     => 'Flash'
                             ), null, $attributes = ['class' => 'form-control selectpicker']) !!}
-                            {{ $errors->first('status', '<p class="text-danger"><small>:message</small></p>') }}
+                            {!! $errors->first('Class', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
                 </div> <!-- ./row -->
