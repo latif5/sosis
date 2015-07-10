@@ -55,18 +55,18 @@
     </div>
 
     <div class="col-md-6">
-        <form class="form-inline pull-right" action="{{ route('inbox.index') }}" method="get">
+        {!! Form::open(['method' => 'get', 'class' => 'form-inline pull-right']) !!}
+                {!! Form::hidden('sort', $sort) !!}
+                {!! Form::hidden('mode', $mode) !!}
             <div class="form-group">
-                <input type="text" class="form-control input-sm" id="search" name="cari" placeholder="Pencarian..." value="{{ $cari }}">
-                <input type="text" class="form-control input-sm datepicker-month" id="cari_bulan" name="cari_bulan" placeholder="Bulan" value="{{ $cari_bulan }}">
-                <input type="hidden" name="sort" value="{{ $sort }}">
-                <input type="hidden" name="mode" value="{{ $mode }}">
+                {!! Form::text('cari', $cari, ['id' => 'search', 'class' => 'form-control input-sm', 'placeholder' => 'Pencarian...']) !!}
+                {!! Form::text('cari_bulan', $cari_bulan, ['id' => 'cari_bulan', 'class' => 'form-control input-sm datepicker-month', 'placeholder' => 'Bulan']) !!}
             </div>
             <button type="submit" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-search"></span>
                 Cari
             </button>
-        </form>
+        {!! Form::close() !!}
     </div>
 </div><br>
 
