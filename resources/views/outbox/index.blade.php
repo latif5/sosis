@@ -116,7 +116,7 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href=""><span class="glyphicon glyphicon-eye-open"></span> Lengkap</a></li>
                             <li class="divider"></li>
-                            <li><a href=""><span class="glyphicon glyphicon-ban-circle"></span> Batalkan</a></li>
+                            <li><a href="{{ route('outbox.delete', [$outbox->ID]) }}"><span class="glyphicon glyphicon-ban-circle"></span> Batalkan</a></li>
                         </ul>
                     </div>
                 </td>

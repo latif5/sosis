@@ -109,4 +109,18 @@ class OutboxController extends Controller
         return redirect()->route('outbox.index')
             ->with('infoMessage', 'Seluruh pengiriman pesan telah dibatalkan');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $outbox = Outbox::destroy($id);
+
+        return redirect()->route('outbox.index')
+            ->with('infoMessage', 'Pesan telah dihapus');
+    }
 }

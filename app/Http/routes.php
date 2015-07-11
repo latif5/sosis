@@ -28,6 +28,7 @@ Route::get('inbox/delete/{inbox}', ['as' => 'inbox.delete', 'uses' => 'InboxCont
 Route::resource('inbox', 'InboxController',
         ['only' => ['index']]);
 
+Route::get('outbox/delete/{outbox}', ['as' => 'outbox.delete', 'uses' => 'OutboxController@delete']);
 Route::get('outbox/truncate', ['as' => 'outbox.truncate', 'uses' => 'OutboxController@truncate']);
 Route::resource('outbox', 'OutboxController',
         ['only' => ['index', 'destroy']]);
