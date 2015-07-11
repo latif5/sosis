@@ -96,4 +96,18 @@ class InboxController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $inbox = Inbox::destroy($id);
+
+        return redirect()->route('inbox.index')
+            ->with('infoMessage', 'Pesan telah dihapus');
+    }
 }

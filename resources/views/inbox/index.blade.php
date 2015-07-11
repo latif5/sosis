@@ -119,7 +119,7 @@
                             <li><a href=""><span class="glyphicon glyphicon-comment"></span> Balas</a></li>
                             <li><a href=""><span class="glyphicon glyphicon-share-alt"></span> Teruskan</a></li>
                             <li class="divider"></li>
-                            <li><a href=""><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('inbox.delete', [$inbox->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
                     </div>
                 </td>

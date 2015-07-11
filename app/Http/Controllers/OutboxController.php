@@ -102,7 +102,7 @@ class OutboxController extends Controller
      *
      * @return Response
      */
-    public function destroyAll()
+    public function truncate()
     {
         $outbox = Outbox::truncate();
 

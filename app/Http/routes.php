@@ -24,10 +24,11 @@ Route::resource('home', 'HomeController',
 Route::resource('send', 'SendController',
         ['only' => ['create', 'store']]);
 
+Route::get('inbox/delete/{inbox}', ['as' => 'inbox.delete', 'uses' => 'InboxController@delete']);
 Route::resource('inbox', 'InboxController',
         ['only' => ['index']]);
 
-Route::get('outbox/destroyAll', ['as' => 'outbox.destroyAll', 'uses' => 'OutboxController@destroyAll']);
+Route::get('outbox/truncate', ['as' => 'outbox.truncate', 'uses' => 'OutboxController@truncate']);
 Route::resource('outbox', 'OutboxController',
         ['only' => ['index', 'destroy']]);
 

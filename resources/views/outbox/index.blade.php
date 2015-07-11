@@ -54,7 +54,7 @@
     </div>
 
     <div class="col-md-1">
-        <a href="{{ route('outbox.destroyAll') }}" class="btn btn-danger btn-sm">
+        <a href="{{ route('outbox.truncate') }}" class="btn btn-danger btn-sm">
             <span class="glyphicon glyphicon-ban-circle"></span> 
             Batalkan
         </a>
