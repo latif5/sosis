@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href=""><span class="glyphicon glyphicon-eye-open"></span> Lengkap</a></li>
                             <li class="divider"></li>
-                            <li><a href=""><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('sentitem.delete', [$sentitem->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
 
                         </ul>
                     </div>

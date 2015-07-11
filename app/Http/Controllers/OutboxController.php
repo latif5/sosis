@@ -121,6 +121,6 @@ class OutboxController extends Controller
         $outbox = Outbox::destroy($id);
 
         return redirect()->route('outbox.index')
-            ->with('infoMessage', 'Pesan telah dihapus');
+            ->with('infoMessage', 'Pesan telah dibatalkan');
     }
 }

@@ -33,6 +33,7 @@ Route::get('outbox/truncate', ['as' => 'outbox.truncate', 'uses' => 'OutboxContr
 Route::resource('outbox', 'OutboxController',
         ['only' => ['index', 'destroy']]);
 
+Route::get('sentitem/delete/{sentitem}', ['as' => 'sentitem.delete', 'uses' => 'SentItemController@delete']);
 Route::resource('sentitem', 'SentItemController',
         ['only' => ['index']]);
 
