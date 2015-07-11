@@ -39,13 +39,18 @@ class SendController extends Controller
      */
     public function store(CreateSendRequest $request)
     {
-        $send = new Outbox;
+        // Mendeteksi tujuan pengiriman pesan ke group atau personal
+        if ($request->DestinationNumber != '' and $request->group == '') {
+            $send = new Outbox;
 
-        $send->TextDecoded = $request->TextDecoded;
-        $send->DestinationNumber = $request->DestinationNumber;
-        $send->Class = $request->Class;
+            $send->TextDecoded = $request->TextDecoded;
+            $send->DestinationNumber = $request->DestinationNumber;
+            $send->Class = $request->Class;
 
-        $send->save();
+            $send->save();
+        } elseif ($request->DestinationNumber == '' and $request->group != '') {
+            
+        }
 
         return redirect()->route('send.create')
             ->with('successMessage', 'Pesan berhasil dikirim')

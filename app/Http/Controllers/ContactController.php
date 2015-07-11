@@ -10,6 +10,8 @@ use \Input;
 
 use App\Contact;
 
+use App\Http\Requests\CreateContactRequest;
+
 class ContactController extends Controller
 {
     /**
@@ -46,9 +48,18 @@ class ContactController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(CreateContactRequest $request)
     {
-        //
+        $contact = new Contact;
+
+        $contact->nama = $request->nama;
+        $contact->ponsel = $request->ponsel;
+        $contact->keterangan = $request->keterangan;
+
+        $contact->save();
+
+        return redirect()->route('contact.create')
+            ->with('successMessage', 'Kontak berhasil disimpan');
     }
 
     /**
