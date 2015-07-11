@@ -83,7 +83,8 @@
                 <th width="5%">No.</th>
                 <th width="15%">Tanggal</th>
                 <th width="10%">Tujuan</th>
-                <th width="65%">Isi Pesan</th>
+                <th width="58%">Isi Pesan</th>
+                <th width="7%">Jenis</th>
                 <th width="5%">Pilihan</th>
             </tr>
         </thead>
@@ -104,6 +105,9 @@
                 </td>
                 <td>{{ $outbox->TextDecoded }}</td>
                 <td>
+                {{ $outbox->Class == '-1' ? 'Normal' : 'Flash' }}
+                </td>
+                <td>
                     <!-- Single button -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -119,7 +123,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     <p>Tidak ada pesan yang dapat ditampilkan.</p>
                 </td>
             </tr>
