@@ -1,6 +1,6 @@
-@extends('_layouts.dashboard')
+@extends ('_layouts.dashboard')
 
-@section('content')
+@section ('content')
 <h1 class="page-header">Tulis Pesan <small>SOSIS</small></h1>
 
 <div class="row">

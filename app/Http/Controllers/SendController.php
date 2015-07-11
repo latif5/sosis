@@ -47,7 +47,9 @@ class SendController extends Controller
 
         $send->save();
 
-        return redirect()->route('outbox.index');
+        return redirect()->route('send.create')
+            ->with('successMessage', 'Pesan berhasil dikirim')
+            ->with($request->flash());
     }
 
     // /**

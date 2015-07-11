@@ -24,7 +24,7 @@ class CreateSendRequest extends Request
     public function rules()
     {
         return [
-            'DestinationNumber' => 'required',
+            'DestinationNumber' => 'required|numeric',
             'TextDecoded'       => 'required|max:160',
         ];
     }
