@@ -96,4 +96,17 @@ class OutboxController extends Controller
     {
         //
     }
+
+    /**
+     * Remove all resource from storage.
+     *
+     * @return Response
+     */
+    public function destroyAll()
+    {
+        $outbox = Outbox::truncate();
+
+        return redirect()->route('outbox.index')
+            ->with('infoMessage', 'Seluruh pengiriman pesan telah dibatalkan');
+    }
 }

@@ -27,8 +27,9 @@ Route::resource('send', 'SendController',
 Route::resource('inbox', 'InboxController',
         ['only' => ['index']]);
 
+Route::get('outbox/destroyAll', ['as' => 'outbox.destroyAll', 'uses' => 'OutboxController@destroyAll']);
 Route::resource('outbox', 'OutboxController',
-        ['only' => ['index']]);
+        ['only' => ['index', 'destroy']]);
 
 Route::resource('sentitem', 'SentItemController',
         ['only' => ['index']]);
