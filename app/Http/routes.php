@@ -22,6 +22,7 @@ Route::resource('home', 'HomeController',
         ['only' => ['index']]);
 
 Route::post('send/reply', ['as' => 'send.reply', 'uses' => 'SendController@reply']);
+Route::post('send/forward', ['as' => 'send.forward', 'uses' => 'SendController@forward']);
 Route::resource('send', 'SendController',
         ['only' => ['create', 'store']]);
 

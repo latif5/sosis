@@ -12,6 +12,7 @@ use App\Group;
 
 use App\Http\Requests\CreateSendRequest;
 use App\Http\Requests\ReplySendRequest;
+use App\Http\Requests\ForwardSendRequest;
 
 class SendController extends Controller
 {
@@ -81,6 +82,23 @@ class SendController extends Controller
             ->with('successMessage', 'Balasan telah dikirim');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function forward(ForwardSendRequest $request)
+    {
+        $send = new Outbox;
+
+        $send->DestinationNumber = $request->DestinationNumber;
+        $send->TextDecoded = $request->TextDecoded;
+
+        $send->save();
+
+        return redirect()->route('inbox.index')
+            ->with('successMessage', 'Terusan telah dikirim');
+    }
 
     /**
      * Display the specified resource.

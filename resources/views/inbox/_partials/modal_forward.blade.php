@@ -7,7 +7,7 @@
                 <h4 class="modal-title" id="myModForwardLabel{{ $inbox->ID }}">Teruskan</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open() !!}
+                {!! Form::open(['route' => 'send.forward']) !!}
                     <div class="form-group">
                         <label>Tujuan</label>
                         {!! Form::text('DestinationNumber', null, $attributes = ['class' => 'form-control', 'placeholder' => '62...']) !!}
