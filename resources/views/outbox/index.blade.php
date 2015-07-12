@@ -105,7 +105,7 @@
                 </td>
                 <td>{{ $outbox->TextDecoded }}</td>
                 <td>
-                {{ $outbox->Class == '-1' ? 'Normal' : 'Flash' }}
+                {!! $outbox->Class == '-1' ? '<span class="label label-default">biasa</span>' : '<span class="label label-primary">flash</span>' !!}
                 </td>
                 <td>
                     <!-- Single button -->
