@@ -28,7 +28,7 @@ class ContactController extends Controller
         $contact_all = Contact::
               where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
-            ->paginate(1);
+            ->paginate(7);
 
         return view('contact.index', compact('contact_all', 'sort', 'mode', 'cari'));
     }
