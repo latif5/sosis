@@ -6,7 +6,6 @@ use Faker\Factory;
 
 use App\Inbox;
 
-
 class InboxTableSeeder extends Seeder
 {
     /**

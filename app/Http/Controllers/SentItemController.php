@@ -28,7 +28,7 @@ class SentItemController extends Controller
               where('TextDecoded', 'like', "%$cari%")
             ->where('SendingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
-            ->paginate(1);
+            ->paginate(7);
 
         return view('sentitem.index', compact('sentitem_all', 'sort', 'mode', 'cari', 'cari_bulan'));
     }
