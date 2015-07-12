@@ -114,7 +114,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href=""><span class="glyphicon glyphicon-eye-open"></span> Lengkap</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#modalDetil{{ $inbox->ID }}"><span class="glyphicon glyphicon-eye-open"></span> Detail</a></li>
                             <li class="divider"></li>
                             <li><a href="#" data-toggle="modal" data-target="#modalReply{{ $inbox->ID }}"><span class="glyphicon glyphicon-share-alt"></span> Balas</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#modalForward{{ $inbox->ID }}"><span class="glyphicon glyphicon-share"></span> Teruskan</a></li>
@@ -124,6 +124,7 @@
                     </div>
                 </td>
             </tr>
+            @include('inbox._partials.modal_detil')
             @include('inbox._partials.modal_reply')
             @include('inbox._partials.modal_forward')
             @empty
