@@ -21,6 +21,7 @@ Route::post('authenticate', ['as' => 'home.login.post', 'uses' => 'HomeControlle
 Route::resource('home', 'HomeController',
         ['only' => ['index']]);
 
+Route::post('send/reply', ['as' => 'send.reply', 'uses' => 'SendController@reply']);
 Route::resource('send', 'SendController',
         ['only' => ['create', 'store']]);
 

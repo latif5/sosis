@@ -11,7 +11,7 @@
                   <p>{{ $inbox->TextDecoded }}</p>
                   <footer>{{ $inbox->SenderNumber }} <cite>Contact Name</cite></footer>
                 </blockquote>
-                {!! Form::open() !!}
+                {!! Form::open(['route' => 'send.reply']) !!}
                     <div class="form-group">
                         {!! Form::hidden('DestinationNumber', $inbox->SenderNumber, $attributes = ['class' => 'form-control']) !!}
                         {!! $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') !!}

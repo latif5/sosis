@@ -11,6 +11,7 @@ use App\Contact;
 use App\Group;
 
 use App\Http\Requests\CreateSendRequest;
+use App\Http\Requests\ReplySendRequest;
 
 class SendController extends Controller
 {
@@ -62,16 +63,24 @@ class SendController extends Controller
             ->with($request->flash());
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @return Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     $input = $request->all();
-    //     dd($input);
-    // }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function reply(ReplySendRequest $request)
+    {
+        $send = new Outbox;
+
+        $send->DestinationNumber = $request->DestinationNumber;
+        $send->TextDecoded = $request->TextDecoded;
+
+        $send->save();
+
+        return redirect()->route('inbox.index')
+            ->with('successMessage', 'Balasan telah dikirim');
+    }
+
 
     /**
      * Display the specified resource.

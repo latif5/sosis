@@ -116,8 +116,8 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href=""><span class="glyphicon glyphicon-eye-open"></span> Lengkap</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" data-toggle="modal" data-target="#modalReply{{ $inbox->ID }}"><span class="glyphicon glyphicon-comment"></span> Balas</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#modalForward{{ $inbox->ID }}"><span class="glyphicon glyphicon-comment"></span> Teruskan</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#modalReply{{ $inbox->ID }}"><span class="glyphicon glyphicon-share-alt"></span> Balas</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#modalForward{{ $inbox->ID }}"><span class="glyphicon glyphicon-share"></span> Teruskan</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('inbox.delete', [$inbox->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
