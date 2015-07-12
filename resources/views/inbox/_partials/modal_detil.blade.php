@@ -12,13 +12,13 @@
                     <footer>{{ $inbox->SenderNumber }} <cite>Contact Name</cite></footer>
                 </blockquote>
                 <div class="well well-sm">
-                <ul>
-                    <li><strong>Pengirim</strong> : {{ $inbox->SenderNumber }}</li>
-                    <li><strong>Dikirim</strong> : {{ $inbox->ReceivingDateTime }}</li>
-                    <li><strong>Diterima</strong> : {{ $inbox->UpdatedInDB }}</li>
-                    <li><strong>SMSC</strong> : {{ $inbox->SMSCNumber }}</li>
-                    <li><strong>Status Proses</strong> : {{ $inbox->Processed }}</li>
-                </ul>
+                    <ul>
+                        <li><strong>Pengirim</strong> : {{ $inbox->SenderNumber }}</li>
+                        <li><strong>Dikirim</strong> : {{ $inbox->ReceivingDateTime }}</li>
+                        <li><strong>Diterima</strong> : {{ $inbox->UpdatedInDB }}</li>
+                        <li><strong>SMSC</strong> : {{ $inbox->SMSCNumber }}</li>
+                        <li><strong>Status Proses</strong> : {{ $inbox->Processed }}</li>
+                    </ul>
                 </div>
             </div>
             <div class="modal-footer">

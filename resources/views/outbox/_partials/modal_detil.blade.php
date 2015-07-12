@@ -12,12 +12,12 @@
                     <footer>{{ $outbox->DestinationNumber }} <cite>Contact Name</cite></footer>
                 </blockquote>
                 <div class="well well-sm">
-                <ul>
-                    <li><strong>Tujuan</strong> : {{ $outbox->DestinationNumber }}</li>
-                    <li><strong>Dikirim</strong> : {{ $outbox->UpdatedInDB }}</li>
-                    <li><strong>Dijadwalkan</strong> : {{ $outbox->SendingDateTime }}</li>
-                    <li><strong>Jenis</strong> : {!! $outbox->Class == '-1' ? 'Biasa' : 'Flash' !!}</li>
-                </ul>
+                    <ul>
+                        <li><strong>Tujuan</strong> : {{ $outbox->DestinationNumber }}</li>
+                        <li><strong>Dikirim</strong> : {{ $outbox->UpdatedInDB }}</li>
+                        <li><strong>Dijadwalkan</strong> : {{ $outbox->SendingDateTime }}</li>
+                        <li><strong>Jenis</strong> : {!! $outbox->Class == '-1' ? 'Biasa' : 'Flash' !!}</li>
+                    </ul>
                 </div>
             </div>
             <div class="modal-footer">

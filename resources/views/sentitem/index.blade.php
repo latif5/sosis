@@ -112,7 +112,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href=""><span class="glyphicon glyphicon-eye-open"></span> Lengkap</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#modalDetil{{ $sentitem->ID }}"><span class="glyphicon glyphicon-eye-open"></span> Detail</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('sentitem.delete', [$sentitem->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
 
@@ -120,6 +120,7 @@
                     </div>
                 </td>
             </tr>
+            @include('sentitem._partials.modal_detil')
             @empty
             <tr>
                 <td colspan="6">
