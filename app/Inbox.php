@@ -10,7 +10,7 @@ class Inbox extends Model
 
     protected $primaryKey = 'ID';
 
-    public $timestamp = false;
+    public $timestamps = false;
 
     protected $fillable = ['Processed'];
 }

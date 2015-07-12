@@ -60,5 +60,6 @@ Route::resource('donation',  'DonationController',
 
 Route::get('fin', function (){
         $faker = Factory::create();
-        echo $faker->name;
+        // dd($faker->dateTimeThisYear);
+        return $faker->text(100);
 });
