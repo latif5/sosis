@@ -116,7 +116,7 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href=""><span class="glyphicon glyphicon-eye-open"></span> Lengkap</a></li>
                             <li class="divider"></li>
-                            <li><a href=""><span class="glyphicon glyphicon-comment"></span> Balas</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#modalBalas{{ $inbox->ID }}"><span class="glyphicon glyphicon-comment"></span> Balas</a></li>
                             <li><a href=""><span class="glyphicon glyphicon-share-alt"></span> Teruskan</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('inbox.delete', [$inbox->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
@@ -124,6 +124,39 @@
                     </div>
                 </td>
             </tr>
+<!-- Awal Modal Balas -->
+<div class="modal fade" id="modalBalas{{ $inbox->ID }}" tabindex="-1" role="dialog" aria-labelledby="myModalBalasLabel{{ $inbox->ID }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalBalasLabel{{ $inbox->ID }}">Balas</h4>
+            </div>
+            <div class="modal-body">
+                <blockquote>
+                  <p>{{ $inbox->TextDecoded }}</p>
+                  <footer>{{ $inbox->SenderNumber }} <cite>Contact Name</cite></footer>
+                </blockquote>
+                {!! Form::open() !!}
+                    <div class="form-group">
+                        {!! Form::hidden('DestinationNumber', $inbox->SenderNumber, $attributes = ['class' => 'form-control']) !!}
+                        {!! $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::textarea('TextDecoded', null, $attributes = ['class' => 'form-control', 'rows' => 4, 'placeholder' => 'Ketik balasan di sini...']) !!}
+                        {!! $errors->first('TextDecoded', '<p class="text-danger"><small>:message</small></p>') !!}
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Kirim</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Akhir Modal Balas -->
             @empty
             <tr>
                 <td colspan="6">
