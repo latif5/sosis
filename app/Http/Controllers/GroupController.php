@@ -26,7 +26,7 @@ class GroupController extends Controller
         $group_all = Group::
               where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
-            ->paginate(1);
+            ->paginate(7);
 
         return view('group.index', compact('group_all', 'sort', 'mode', 'cari'));
     }

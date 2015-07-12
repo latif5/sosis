@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InboxTableSeeder::class);
         $this->call(OutboxTableSeeder::class);
         $this->call(ContactTableSeeder::class);
+        $this->call(GroupTableSeeder::class);
 
         Model::reguard();
     }
