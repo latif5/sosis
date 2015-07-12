@@ -39,6 +39,7 @@ Route::get('sentitem/delete/{sentitem}', ['as' => 'sentitem.delete', 'uses' => '
 Route::resource('sentitem', 'SentItemController',
         ['only' => ['index']]);
 
+Route::get('contact/delete/{contact}', ['as' => 'contact.delete', 'uses' => 'ContactController@delete']);
 Route::resource('contact', 'ContactController',
         ['only' => ['index', 'create', 'store', 'show']]);
 

@@ -105,4 +105,18 @@ class ContactController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $contact = Contact::destroy($id);
+
+        return redirect()->route('contact.index')
+            ->with('infoMessage', 'Data telah dihapus');
+    }
 }
