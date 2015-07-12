@@ -12,20 +12,17 @@
             {!! Form::open(['route' => 'send.store']) !!}
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>No. Tujuan</label>
-                            {!! Form::text('DestinationNumber', null, $attributes = ['class' => 'form-control']) !!}
+                            <?php $contact_options[''] = '- pilih -'; ?>
+                            {!! Form::select('DestinationNumber', $contact_options, null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
                             {!! $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
-                            {!! Form::select('group', array(
-                                ''      => '-pilih-',
-                                '1'     => 'Asatidzah',
-                                '2'     => 'Staf',
-                                '3'     => 'Karyawan'
-                            ), null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
+                            <?php $group_options[''] = '- pilih -'; ?>
+                            {!! Form::select('group', $group_options, null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
@@ -37,7 +34,7 @@
                             {!! $errors->first('TextDecoded', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Penjadwalan</label>
                             {!! Form::text('tanggal', date('Y-m-d'), array('class' => 'form-control datepicker')) !!}

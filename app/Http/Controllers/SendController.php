@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Outbox;
+use App\Contact;
+use App\Group;
 
 use App\Http\Requests\CreateSendRequest;
 
@@ -29,7 +31,10 @@ class SendController extends Controller
      */
     public function create()
     {
-        return view('send.create');
+        $contact_options = Contact::orderBy('nama')->lists('nama', 'ponsel');
+        $group_options = Group::orderBy('nama')->lists('nama', 'id');
+
+        return view('send.create', compact('contact_options', 'group_options'));
     }
 
     /**
