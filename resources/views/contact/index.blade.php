@@ -104,9 +104,7 @@
             @forelse($contact_all as $contact)
             <tr>
                 <td>{{ $nomor++ }}.</td>
-                <td>
-                    <a href="{{ route('contact.show', [$contact->id]) }}">{{ $contact->nama }}</a>
-                </td>
+                <td>{{ $contact->nama }}</td>
                 <td>{{ $contact->ponsel }}</td>
                 <td>{{ $contact->keterangan }}</td>
                 <td>
@@ -121,7 +119,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href=""><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
+                            <li><a href="{{ route('contact.edit', [$contact->id]) }}"><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('contact.delete', [$contact->id]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>

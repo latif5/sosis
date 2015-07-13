@@ -11,6 +11,7 @@ use \Input;
 use App\Contact;
 
 use App\Http\Requests\CreateContactRequest;
+use App\Http\Requests\UpdateContactRequest;
 
 class ContactController extends Controller
 {
@@ -81,7 +82,9 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = Contact::find($id);
+
+        return view('contact.edit', compact('contact'));
     }
 
     /**
@@ -90,9 +93,18 @@ class ContactController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(UpdateContactRequest $request, $id)
     {
-        //
+        $contact = Contact::find($id);
+
+        $contact->nama = $request->nama;
+        $contact->ponsel = $request->ponsel;
+        $contact->keterangan = $request->keterangan;
+
+        $contact->save();
+
+        return redirect()->route('contact.index')
+            ->with('successMessage', 'Kontak berhasil disimpan');
     }
 
     /**

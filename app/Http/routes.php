@@ -41,7 +41,7 @@ Route::resource('sentitem', 'SentItemController',
 
 Route::get('contact/delete/{contact}', ['as' => 'contact.delete', 'uses' => 'ContactController@delete']);
 Route::resource('contact', 'ContactController',
-        ['only' => ['index', 'create', 'store', 'show']]);
+        ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
 Route::resource('group', 'GroupController',
         ['only' => ['index', 'create']]);

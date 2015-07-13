@@ -58,7 +58,7 @@
                 <div class="btn-group" role="group" aria-label="...">
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Kirim</button>
 
-                    <button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
+                    <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
                 </div> {{-- .btn-group --}}
             </div> {{-- .panel-footer --}}
             {!! Form::close() !!}
