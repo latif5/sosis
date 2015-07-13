@@ -121,8 +121,6 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href=""><span class="glyphicon glyphicon-send"></span> Kirim Pesan</a></li>
-                            <li class="divider"></li>
                             <li><a href=""><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('contact.delete', [$contact->id]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
