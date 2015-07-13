@@ -104,7 +104,7 @@ class ContactController extends Controller
         $contact->save();
 
         return redirect()->route('contact.index')
-            ->with('successMessage', 'Kontak berhasil disimpan');
+            ->with('successMessage', 'Kontak berhasil diperbaharui');
     }
 
     /**
