@@ -11,6 +11,7 @@ use \Input;
 use App\Group;
 
 use App\Http\Requests\CreateGroupRequest;
+use App\Http\Requests\UpdateGroupRequest;
 
 class GroupController extends Controller
 {
@@ -80,7 +81,9 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $group = Group::find($id);
+
+        return view('group.edit', compact('group'));
     }
 
     /**
@@ -89,9 +92,17 @@ class GroupController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(UpdateGroupRequest $request, $id)
     {
-        //
+        $group = Group::find($id);
+
+        $group->nama = $request->nama;
+        $group->keterangan = $request->keterangan;
+
+        $group->save();
+
+        return redirect()->route('group.index')
+            ->with('successMessage', 'Grup berhasil diperbaharui');
     }
 
     /**
