@@ -10,6 +10,8 @@ use \Input;
 
 use App\Group;
 
+use App\Http\Requests\CreateGroupRequest;
+
 class GroupController extends Controller
 {
     /**
@@ -46,9 +48,17 @@ class GroupController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(CreateGroupRequest $request)
     {
-        //
+        $group = new Group;
+
+        $group->nama = $request->nama;
+        $group->keterangan = $request->keterangan;
+
+        $group->save();
+
+        return redirect()->route('group.create')
+            ->with('successMessage', 'Grup berhasil disimpan');
     }
 
     /**
@@ -106,6 +116,6 @@ class GroupController extends Controller
         $group = Group::destroy($id);
 
         return redirect()->route('group.index')
-            ->with('infoMessage', 'Data telah dihapus');
+            ->with('infoMessage', 'Grup telah dihapus');
     }
 }

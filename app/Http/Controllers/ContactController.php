@@ -129,6 +129,6 @@ class ContactController extends Controller
         $contact = Contact::destroy($id);
 
         return redirect()->route('contact.index')
-            ->with('infoMessage', 'Data telah dihapus');
+            ->with('infoMessage', 'Kontak telah dihapus');
     }
 }
