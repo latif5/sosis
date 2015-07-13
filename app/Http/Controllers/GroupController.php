@@ -94,4 +94,18 @@ class GroupController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $group = Group::destroy($id);
+
+        return redirect()->route('group.index')
+            ->with('infoMessage', 'Data telah dihapus');
+    }
 }

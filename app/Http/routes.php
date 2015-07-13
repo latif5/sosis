@@ -43,6 +43,7 @@ Route::get('contact/delete/{contact}', ['as' => 'contact.delete', 'uses' => 'Con
 Route::resource('contact', 'ContactController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
+Route::get('group/delete/{group}', ['as' => 'group.delete', 'uses' => 'GroupController@delete']);
 Route::resource('group', 'GroupController',
         ['only' => ['index', 'create']]);
 
