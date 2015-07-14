@@ -92,15 +92,16 @@
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
+            {{--  --}}
                 <th width="5%">No.</th>
-                <th width="10%">Tanggal</th>
-                <th width="10%">Ponsel</th>
-                <th width="10%">Jumlah</th>
-                <th width="10%">Dikirim</th>
-                <th width="10%">Pengirim</th>
-                <th width="10%">Keperluan</th>
-                <th width="10%">Keterangan</th>
-                <th width="10%">Status</th>
+                <th width="8%">Tanggal</th>
+                <th width="8%">Ponsel</th>
+                <th width="8%">Jumlah</th>
+                <th width="12%">Dikirim</th>
+                <th width="19%">Pengirim</th>
+                <th width="15%">Keperluan</th>
+                <th width="15%">Keterangan</th>
+                <th width="5%">Status</th>
                 <th width="5%">Pilihan</th>
             </tr>
         </thead>
@@ -109,10 +110,10 @@
             @forelse($donation_all as $donation)
             <tr>
                 <td>{{ $nomor++ }}.</td>
-                <td>{{ $donation->tanggal }}</td>
-                <td>{{ $donation->ponsel }}</td>
+                <td><small>{{ $donation->tanggal }}</small></td>
+                <td><small>{{ $donation->ponsel }}</small></td>
                 <td>{{ $donation->jumlah }}</td>
-                <td>{{ $donation->tanggal_kirim }}</td>
+                <td><small>{{ $donation->tanggal_kirim }}</small></td>
                 <td>{{ $donation->pengirim }}</td>
                 <td>{{ $donation->keperluan }}</td>
                 <td>{{ $donation->Keterangan }}</td>
