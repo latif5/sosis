@@ -30,7 +30,7 @@ class DonationController extends Controller
             ->where('pengirim', 'like', "%$cari%")
             ->where('tanggal', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
-            ->paginate(1);
+            ->paginate(10);
 
         return view('donation.index', compact('donation_all', 'sort', 'mode', 'status', 'cari', 'cari_bulan'));
     }

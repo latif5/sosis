@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OutboxTableSeeder::class);
         $this->call(ContactTableSeeder::class);
         $this->call(GroupTableSeeder::class);
+        $this->call(ConfirmationTableSeeder::class);
+        $this->call(DonationTableSeeder::class);
 
         Model::reguard();
     }
