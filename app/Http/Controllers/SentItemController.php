@@ -107,7 +107,7 @@ class SentItemController extends Controller
     {
         $sentitem = SentItem::destroy($id);
 
-        return redirect()->route('sentitem.index')
+        return redirect()->back()
             ->with('infoMessage', 'Pesan telah dihapus');
     }
 }

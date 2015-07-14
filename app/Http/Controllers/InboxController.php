@@ -107,7 +107,7 @@ class InboxController extends Controller
     {
         $inbox = Inbox::destroy($id);
 
-        return redirect()->route('inbox.index')
+        return redirect()->back()
             ->with('infoMessage', 'Pesan telah dihapus');
     }
 }

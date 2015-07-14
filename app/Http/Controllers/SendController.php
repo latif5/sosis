@@ -97,7 +97,7 @@ class SendController extends Controller
         $send->save();
 
         return redirect()->back()
-            ->with('successMessage', 'Balasan telah dikirim');
+            ->with('successMessage', 'Pesan terusan telah dikirim');
     }
 
     /**

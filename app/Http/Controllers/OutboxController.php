@@ -120,7 +120,7 @@ class OutboxController extends Controller
     {
         $outbox = Outbox::destroy($id);
 
-        return redirect()->route('outbox.index')
+        return redirect()->back()
             ->with('infoMessage', 'Pesan telah dibatalkan');
     }
 }
