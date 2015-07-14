@@ -126,7 +126,7 @@ class GroupController extends Controller
     {
         $group = Group::destroy($id);
 
-        return redirect()->route('group.index')
+        return redirect()->back()
             ->with('infoMessage', 'Grup telah dihapus');
     }
 }
