@@ -116,7 +116,7 @@
                 <td><small>{{ $donation->tanggal_kirim }}</small></td>
                 <td>{{ $donation->pengirim }}</td>
                 <td>{{ $donation->keperluan }}</td>
-                <td>{{ $donation->Keterangan }}</td>
+                <td>{{ $donation->keterangan }}</td>
                 <td>
                     @if($donation->status == 'Belum')
                     <span class="label label-danger">{{ $donation->status }}</span>
