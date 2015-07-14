@@ -78,7 +78,7 @@ class SendController extends Controller
 
         $send->save();
 
-        return redirect()->route('inbox.index')
+        return redirect()->back()
             ->with('successMessage', 'Balasan telah dikirim');
     }
 
