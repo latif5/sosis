@@ -19,7 +19,7 @@
 CREATE TABLE `daemons` (
   `Start` text NOT NULL,
   `Info` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- 
 -- Dumping data for table `daemons`
@@ -34,7 +34,7 @@ CREATE TABLE `daemons` (
 
 CREATE TABLE `gammu` (
   `Version` integer NOT NULL default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- 
 -- Dumping data for table `gammu`
@@ -62,7 +62,7 @@ CREATE TABLE `inbox` (
   `RecipientID` text NOT NULL,
   `Processed` enum('false','true') NOT NULL default 'false',
   PRIMARY KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- 
 -- Dumping data for table `inbox`
@@ -95,7 +95,7 @@ CREATE TABLE `outbox` (
   `DeliveryReport` enum('default','yes','no') default 'default',
   `CreatorID` text NOT NULL,
   PRIMARY KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE INDEX outbox_date ON outbox(SendingDateTime, SendingTimeOut);
 CREATE INDEX outbox_sender ON outbox(SenderID);
@@ -120,7 +120,7 @@ CREATE TABLE `outbox_multipart` (
   `ID` integer unsigned NOT NULL default '0',
   `SequencePosition` integer NOT NULL default '1',
   PRIMARY KEY (`ID`, `SequencePosition`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- 
 -- Dumping data for table `outbox_multipart`
@@ -139,7 +139,7 @@ CREATE TABLE `pbk` (
   `Name` text NOT NULL,
   `Number` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- 
 -- Dumping data for table `pbk`
@@ -156,7 +156,7 @@ CREATE TABLE `pbk_groups` (
   `Name` text NOT NULL,
   `ID` integer NOT NULL auto_increment,
   PRIMARY KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- 
 -- Dumping data for table `pbk_groups`
@@ -183,7 +183,7 @@ CREATE TABLE `phones` (
   `Sent` int NOT NULL DEFAULT 0,
   `Received` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`IMEI`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- 
 -- Dumping data for table `phones`
@@ -216,7 +216,7 @@ CREATE TABLE `sentitems` (
   `RelativeValidity` integer NOT NULL default '-1',
   `CreatorID` text NOT NULL,
   PRIMARY KEY (`ID`, `SequencePosition`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE INDEX sentitems_date ON sentitems(DeliveryDateTime);
 CREATE INDEX sentitems_tpmr ON sentitems(TPMR);
