@@ -74,7 +74,7 @@ class ConfirmationController extends Controller
 
         }
 
-        return redirect()->route('confirmation.index')
+        return redirect()->back()
             ->with($statusAlert, $messageAlert);
     }
 
@@ -152,7 +152,7 @@ class ConfirmationController extends Controller
     {
         $confirmation = Confirmation::destroy($id);
 
-        return redirect()->route('confirmation.index')
+        return redirect()->back()
             ->with('infoMessage', 'Data telah dihapus');
     }
 }

@@ -74,7 +74,7 @@ class DonationController extends Controller
 
         }
 
-        return redirect()->route('donation.index')
+        return redirect()->back()
             ->with($statusAlert, $messageAlert);
     }
 
@@ -152,7 +152,7 @@ class DonationController extends Controller
     {
         $donation = Donation::destroy($id);
 
-        return redirect()->route('donation.index')
+        return redirect()->back()
             ->with('infoMessage', 'Data telah dihapus');
     }
 }
