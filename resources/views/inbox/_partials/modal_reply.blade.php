@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <blockquote>
                   <p>{{ $inbox->TextDecoded }}</p>
-                  <footer>{{ $inbox->SenderNumber }} <cite>Contact Name</cite></footer>
+                  <footer>{{ $inbox->SenderNumber }} <cite>{{ $inbox->nama }}</cite></footer>
                 </blockquote>
                 {!! Form::open(['route' => 'send.reply']) !!}
                     <div class="form-group">
