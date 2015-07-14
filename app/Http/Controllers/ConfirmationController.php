@@ -50,7 +50,7 @@ class ConfirmationController extends Controller
 
             $statusAlert = 'successMessage';
             $messageAlert = 'Data telah diverifikasi';
-            
+
             $confirmation->save();
         
         } else if ($status_verifikasi == 'Tunda') {
@@ -140,5 +140,19 @@ class ConfirmationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $confirmation = Confirmation::destroy($id);
+
+        return redirect()->route('confirmation.index')
+            ->with('infoMessage', 'Pesan telah dihapus');
     }
 }
