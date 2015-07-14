@@ -105,8 +105,8 @@
                 <td>{{ $group->nama }}</td>
                 <td>{{ $group->keterangan }}</td>
                 <td>
-                    <span class="label label-default">Jml Anggota</span>
-                    </td>
+                    <span class="label label-default">{{ $group->contact->count() }} orang</span>
+                </td>
                 <td>
                     <!-- Single button -->
                     <div class="btn-group">

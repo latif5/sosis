@@ -108,9 +108,9 @@
                 <td>{{ $contact->ponsel }}</td>
                 <td>{{ $contact->keterangan }}</td>
                 <td>
-                    <span class="label label-default">Group 1</span>
-                    <span class="label label-default">Group 2</span>
-                    <span class="label label-default">Group 3</span>
+                    @foreach($contact->group as $group)
+                    <span class="label label-default">{{ $group->nama }}</span>
+                    @endforeach
                 </td>
                 <td>
                     <!-- Single button -->

@@ -26,10 +26,12 @@ class ContactController extends Controller
         $mode = Input::get('mode', 'asc');
         $cari = Input::get('cari', '');
 
-        $contact_all = Contact::
-              where('nama', 'like', "%$cari%")
+        $contact_all = Contact::with('group')
+            ->where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
             ->paginate(7);
+
+        // return dd($contact_all);
 
         return view('contact.index', compact('contact_all', 'sort', 'mode', 'cari'));
     }

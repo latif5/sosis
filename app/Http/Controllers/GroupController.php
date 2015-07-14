@@ -26,8 +26,8 @@ class GroupController extends Controller
         $mode = Input::get('mode', 'asc');
         $cari = Input::get('cari', '');
 
-        $group_all = Group::
-              where('nama', 'like', "%$cari%")
+        $group_all = Group::with('contact')
+            ->where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
             ->paginate(7);
 
