@@ -56,6 +56,7 @@ Route::resource('user', 'UserController',
 Route::resource('setting',  'SettingController',
         ['only' => ['index']]);
 
+Route::get('confirmation/{confirmation}/{status}', ['as' => 'confirmation.status', 'uses' => 'ConfirmationController@status']);
 Route::resource('confirmation',  'ConfirmationController',
         ['only' => ['index']]);
 

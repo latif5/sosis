@@ -8,7 +8,7 @@ class Confirmation extends Model
 {
     protected $table = 'confirmation';
 
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'tanggal',

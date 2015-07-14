@@ -36,6 +36,49 @@ class ConfirmationController extends Controller
     }
 
     /**
+     * Change status of the resource.
+     *
+     * @return Response
+     */
+    public function status($id, $status_verifikasi)
+    {
+        $confirmation = Confirmation::find($id);
+
+        $confirmation->status = $status_verifikasi;
+
+        if ($status_verifikasi == 'Sudah') {
+
+            $statusAlert = 'successMessage';
+            $messageAlert = 'Data telah diverifikasi';
+            
+            $confirmation->save();
+        
+        } else if ($status_verifikasi == 'Tunda') {
+        
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Proses verifikasi data ditunda';
+            
+            $confirmation->save();
+        
+        } else if ($status_verifikasi == 'Belum') {
+        
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Verifikasi data dibatalkan';
+            
+            $confirmation->save();
+        
+        } else {
+        
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Data gagal diproses';
+
+        }
+
+        return redirect()->route('confirmation.index')
+            ->with($statusAlert, $messageAlert);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response

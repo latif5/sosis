@@ -136,9 +136,9 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href=""><span class="glyphicon glyphicon-send"></span> Kirim Pesan</a></li>
                             <li class="divider"></li>
-                            <li><a href="">Verifikasi</a></li>
-                            <li><a href="">Tunda</a></li>
-                            <li><a href="">Belum</a></li>
+                            <li><a href="{{ route('confirmation.status', [$confirmation->id, 'Sudah']) }}">Verifikasi</a></li>
+                            <li><a href="{{ route('confirmation.status', [$confirmation->id, 'Tunda']) }}">Tunda</a></li>
+                            <li><a href="{{ route('confirmation.status', [$confirmation->id, 'Belum']) }}">Belum</a></li>
                             <li class="divider"></li>
                             <li><a href=""><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>

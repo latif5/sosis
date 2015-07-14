@@ -8,7 +8,7 @@ class Donation extends Model
 {
     protected $table = 'donation';
 
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'tanggal',
