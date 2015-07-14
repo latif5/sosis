@@ -36,6 +36,49 @@ class DonationController extends Controller
     }
 
     /**
+     * Change status of the resource.
+     *
+     * @return Response
+     */
+    public function status($id, $status_verifikasi)
+    {
+        $donation = Donation::find($id);
+
+        $donation->status = $status_verifikasi;
+
+        if ($status_verifikasi == 'Sudah') {
+
+            $statusAlert = 'successMessage';
+            $messageAlert = 'Data telah diverifikasi';
+
+            $donation->save();
+        
+        } else if ($status_verifikasi == 'Tunda') {
+        
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Proses verifikasi data ditunda';
+            
+            $donation->save();
+        
+        } else if ($status_verifikasi == 'Belum') {
+        
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Verifikasi data dibatalkan';
+            
+            $donation->save();
+        
+        } else {
+        
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Data gagal diproses';
+
+        }
+
+        return redirect()->route('donation.index')
+            ->with($statusAlert, $messageAlert);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
