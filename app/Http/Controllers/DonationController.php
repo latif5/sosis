@@ -98,4 +98,18 @@ class DonationController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id)
+    {
+        $donation = Donation::destroy($id);
+
+        return redirect()->route('donation.index')
+            ->with('infoMessage', 'Data telah dihapus');
+    }
 }

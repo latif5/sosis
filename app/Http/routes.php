@@ -61,6 +61,8 @@ Route::get('confirmation/{confirmation}/{status}', ['as' => 'confirmation.status
 Route::resource('confirmation',  'ConfirmationController',
         ['only' => ['index']]);
 
+Route::get('donation/delete/{donation}', ['as' => 'donation.delete', 'uses' => 'DonationController@delete']);
+Route::get('donation/{donation}/{status}', ['as' => 'donation.status', 'uses' => 'DonationController@status']);
 Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
 

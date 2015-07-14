@@ -139,7 +139,7 @@
                             <li><a href="">Tunda</a></li>
                             <li><a href="">Belum</a></li>
                             <li class="divider"></li>
-                            <li><a href=""><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('donation.delete', [$donation->id]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
                     </div>
                 </td>
