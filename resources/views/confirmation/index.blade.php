@@ -93,15 +93,15 @@
         <thead>
             <tr>
                 <th width="5%">No.</th>
-                <th width="10%">Tanggal</th>
-                <th width="10%">Ponsel</th>
-                <th width="10%">Santri</th>
-                <th width="10%">Kelas</th>
-                <th width="10%">Jumlah</th>
-                <th width="10%">Dikirim</th>
-                <th width="10%">Pengirim</th>
-                <th width="10%">Keperluan</th>
-                <th width="10%">Status</th>
+                <th width="8%">Tanggal</th>
+                <th width="8%">Ponsel</th>
+                <th width="15%">Santri</th>
+                <th width="4%">Kelas</th>
+                <th width="8%">Jumlah</th>
+                <th width="12%">Dikirim</th>
+                <th width="15%">Pengirim</th>
+                <th width="15%">Keperluan</th>
+                <th width="5%">Status</th>
                 <th width="5%">Pilihan</th>
             </tr>
         </thead>
@@ -110,12 +110,12 @@
             @forelse($confirmation_all as $confirmation)
             <tr>
                 <td>{{ $nomor++ }}.</td>
-                <td>{{ $confirmation->tanggal }}</td>
-                <td>{{ $confirmation->ponsel }}</td>
+                <td><small>{{ $confirmation->tanggal }}</small></td>
+                <td><small>{{ $confirmation->ponsel }}</small></td>
                 <td>{{ $confirmation->santri }}</td>
                 <td>{{ $confirmation->kelas }}</td>
                 <td>{{ $confirmation->jumlah }}</td>
-                <td>{{ $confirmation->tanggal_kirim }}</td>
+                <td><small>{{ $confirmation->tanggal_kirim }}</small></td>
                 <td>{{ $confirmation->pengirim }}</td>
                 <td>{{ $confirmation->keperluan }}</td>
                 <td>
