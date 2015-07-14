@@ -95,9 +95,9 @@
                     </small>
                 </td>
                 <td>
-                    {{ $inbox->SenderNumber }}
+                    <small>{{ $inbox->SenderNumber }}</small>
                     <br>
-                    <small>Contact Name</small>
+                    <small>{{ $inbox->nama }}</small>
                 </td>
                 <td>{{ $inbox->TextDecoded }}</td>
                 <td>

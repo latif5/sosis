@@ -99,9 +99,9 @@
                     <small class="text-muted">{{ \Carbon\Carbon::parse($outbox->UpdatedInDB)->diffForHumans() }}</small>
                 </td>
                 <td>
-                    {{ $outbox->DestinationNumber }}
+                    <small>{{ $outbox->DestinationNumber }}</small>
                     <br>
-                    <small>Contact Name</small>
+                    <small>{{ $outbox->nama }}</small>
                 </td>
                 <td>{{ $outbox->TextDecoded }}</td>
                 <td>

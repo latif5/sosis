@@ -25,7 +25,8 @@ class InboxController extends Controller
         $cari_bulan = Input::get('cari_bulan', '');
 
         $inbox_all = Inbox::
-              where('TextDecoded', 'like', "%$cari%")
+              leftJoin('contact', 'inbox.SenderNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
             ->where('ReceivingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
             ->paginate(7);

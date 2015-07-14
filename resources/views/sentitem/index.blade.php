@@ -93,9 +93,9 @@
                     <small class="text-muted">{{ \Carbon\Carbon::parse($sentitem->SendingDateTime)->diffForHumans() }}</small>
                 </td>
                 <td>
-                    {{ $sentitem->DestinationNumber }}
+                    <small>{{ $sentitem->DestinationNumber }}</small>
                     <br>
-                    <small>Contact Name</small>
+                    <small>{{ $sentitem->nama }}</small>
                 </td>
                 <td>{{ $sentitem->TextDecoded }}</td>
                 <td>

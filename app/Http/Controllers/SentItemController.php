@@ -25,7 +25,8 @@ class SentItemController extends Controller
         $cari_bulan = Input::get('cari_bulan', '');
 
         $sentitem_all = SentItem::
-              where('TextDecoded', 'like', "%$cari%")
+              leftJoin('contact', 'sentitems.DestinationNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
             ->where('SendingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
             ->paginate(7);

@@ -25,7 +25,8 @@ class OutboxController extends Controller
         $cari_bulan = Input::get('cari_bulan', '');
 
         $outbox_all = Outbox::
-              where('TextDecoded', 'like', "%$cari%")
+              leftJoin('contact', 'outbox.DestinationNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
             ->where('UpdatedInDB', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
             ->paginate(7);
