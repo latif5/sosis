@@ -192,7 +192,7 @@
 		var $e = this.$element;
 		var o  = this.options;
 
-		return $e.attr('data-href') || (typeof o.href == 'function' ? o.href.call($e[0]) : o.href);
+		return $e.attr('href') || (typeof o.href == 'function' ? o.href.call($e[0]) : o.href);
 	}
 
 	Confirmation.prototype.getTarget = function () {
