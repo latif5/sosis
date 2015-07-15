@@ -6,17 +6,6 @@ use App\Inbox;
 use App\Outbox;
 use App\Confirmation;
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::resource('guest', 'GuestController',
         ['only' => ['index', 'login']]);
 
@@ -71,8 +60,6 @@ Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
 
 Route::get('fin', function (){
-
-
         $inbox_all = Inbox::where('Processed', 'false')->get();
 
         foreach ($inbox_all as $inbox) {
@@ -137,7 +124,5 @@ Route::get('fin', function (){
             ]);
 
         }
-
-
-
 });
+

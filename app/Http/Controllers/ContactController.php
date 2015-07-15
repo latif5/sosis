@@ -71,7 +71,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contact::find($id);
+        $contact = Contact::findOrFail($id);
 
         return view('contact.edit', compact('contact'));
     }
@@ -81,7 +81,7 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, $id)
     {
-        $contact = Contact::find($id);
+        $contact = Contact::findOrFail($id);
 
         $contact->nama = $request->nama;
         $contact->ponsel = $request->ponsel;

@@ -39,7 +39,7 @@ class DonationController extends Controller
      */
     public function status($id, $status_verifikasi)
     {
-        $donation = Donation::find($id);
+        $donation = Donation::findOrFail($id);
 
         $donation->status = $status_verifikasi;
 

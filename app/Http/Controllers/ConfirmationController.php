@@ -39,7 +39,7 @@ class ConfirmationController extends Controller
      */
     public function status($id, $status_verifikasi)
     {
-        $confirmation = Confirmation::find($id);
+        $confirmation = Confirmation::findOrFail($id);
 
         $confirmation->status = $status_verifikasi;
 

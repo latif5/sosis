@@ -70,7 +70,7 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $group = Group::find($id);
+        $group = Group::findOrFail($id);
 
         return view('group.edit', compact('group'));
     }
@@ -80,7 +80,7 @@ class GroupController extends Controller
      */
     public function update(UpdateGroupRequest $request, $id)
     {
-        $group = Group::find($id);
+        $group = Group::findOrFail($id);
 
         $group->nama = $request->nama;
         $group->keterangan = $request->keterangan;
