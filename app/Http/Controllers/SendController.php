@@ -17,22 +17,11 @@ use App\Http\Requests\ForwardSendRequest;
 class SendController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
+     * Menampilkan form pengiriman sms ke group dan ke contact.
      */
     public function create()
     {
+        // Ambil data contact dan group, lalu format menjadi list
         $contact_options = Contact::orderBy('nama')->lists('nama', 'ponsel');
         $group_options = Group::orderBy('nama')->lists('nama', 'id');
 
@@ -40,14 +29,14 @@ class SendController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * Mengirim sms ke nomor/group tujuan.
      */
     public function store(CreateSendRequest $request)
     {
         // Mendeteksi tujuan pengiriman pesan ke group atau personal
-        if ($request->DestinationNumber != '' and $request->group == '') {
+        // Mengirim pesan ke personal
+        if ($request->DestinationNumber != '' and $request->group == '')
+        {
             $send = new Outbox;
 
             $send->TextDecoded = $request->TextDecoded;
@@ -55,7 +44,10 @@ class SendController extends Controller
             $send->Class = $request->Class;
 
             $send->save();
-        } elseif ($request->DestinationNumber == '' and $request->group != '') {
+        }
+        // Mengirim pesan ke group
+        elseif ($request->DestinationNumber == '' and $request->group != '')
+        {
             
         }
 
@@ -65,9 +57,7 @@ class SendController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * Mengirim pesan balasan dari inbox.
      */
     public function reply(ReplySendRequest $request)
     {
@@ -83,9 +73,7 @@ class SendController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * Mengirim pesan balasan tanpa return value.
      */
     public function send($DestinationNumber, $TextDecoded)
     {
@@ -98,9 +86,7 @@ class SendController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * Mengirim pesan terusan dari inbox.
      */
     public function forward(ForwardSendRequest $request)
     {
@@ -113,49 +99,5 @@ class SendController extends Controller
 
         return redirect()->back()
             ->with('successMessage', 'Pesan terusan telah dikirim');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

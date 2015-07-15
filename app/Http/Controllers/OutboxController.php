@@ -13,12 +13,11 @@ use App\Outbox;
 class OutboxController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * Menampilkan daftar sms di outbox.
      */
     public function index()
     {
+        // Ambil data filter dan sorting
         $sort = Input::get('sort', 'UpdatedInDB');
         $mode = Input::get('mode', 'desc');
         $cari = Input::get('cari', '');
@@ -35,73 +34,8 @@ class OutboxController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-     * Remove all resource from storage.
-     *
-     * @return Response
+     * Menghapus seluruh data dari outbox, dengan kata lain
+     * membatalkan seluruh antrean pengiriman pesan
      */
     public function truncate()
     {
@@ -112,10 +46,7 @@ class OutboxController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
+     * Mengapus data sms terpilih dari outbox.
      */
     public function delete($id)
     {
