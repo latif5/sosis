@@ -59,6 +59,7 @@
         <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
         <script src="{{ asset('assets/js/locales/bootstrap-datepicker.id.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap-confirmation.js') }}"></script>
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{ asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
@@ -100,6 +101,10 @@
           
             $('#count_message').html('sisa ' + text_remaining + ' karakter');
         });
+
+        // Konfigurasi Bootstrap Confirmation by Tavicu
+        // https://github.com/tavicu/bs-confirmation
+        $('[data-toggle="confirmation"]').confirmation();
         </script>
     </body>
 </html>
