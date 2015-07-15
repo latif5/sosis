@@ -4,7 +4,7 @@
 <h1 class="page-header">Donasi <small>SOSIS</small></h1>
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         <!-- Split button -->
         <div class="btn-group">
             <button type="button" class="btn btn-primary btn-sm">
@@ -20,9 +20,7 @@
                 <li><a href="{{ route('donation.index') }}?sort=status&mode={{ $mode }}&status={{ $status }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}">Status</a></li>
             </ul>
         </div>
-    </div>
 
-    <div class="col-md-2">
         <!-- Split button -->
         <div class="btn-group">
             <button type="button" class="btn btn-primary btn-sm">
@@ -71,7 +69,7 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-5">
         {!! Form::open(['method' => 'get', 'class' => 'form-inline pull-right']) !!}
                 {!! Form::hidden('sort', $sort) !!}
                 {!! Form::hidden('mode', $mode) !!}
