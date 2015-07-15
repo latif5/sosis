@@ -16,12 +16,11 @@ use App\Http\Requests\UpdateGroupRequest;
 class GroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * Menampilkan data group.
      */
     public function index()
     {
+        // Ambil data filter dan sorting
         $sort = Input::get('sort', 'nama');
         $mode = Input::get('mode', 'asc');
         $cari = Input::get('cari', '');
@@ -35,9 +34,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
+     * Menampilkan form penambahan data group.
      */
     public function create()
     {
@@ -45,9 +42,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * Menyimpan data group baru ke database.
      */
     public function store(CreateGroupRequest $request)
     {
@@ -63,10 +58,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * Menampilkan detil data group terpilih.
      */
     public function show($id)
     {
@@ -74,10 +66,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * Menampilkan form ubah data group terpilih.
      */
     public function edit($id)
     {
@@ -87,10 +76,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
+     * Memperbaharui data group terpilih.
      */
     public function update(UpdateGroupRequest $request, $id)
     {
@@ -106,21 +92,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
+     * Menghapus data group terpilih.
      */
     public function delete($id)
     {

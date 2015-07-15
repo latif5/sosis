@@ -17,6 +17,7 @@ class Contact extends Model
         'user_id'
     ];
 
+    // Relasi many-to-many dengan tabel group
     public function group()
     {
         return $this->belongsToMany('App\Group', 'contact_group', 'contact_id', 'group_id');

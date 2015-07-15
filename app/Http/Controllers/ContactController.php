@@ -16,12 +16,11 @@ use App\Http\Requests\UpdateContactRequest;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * Menampilkan daftar contact.
      */
     public function index()
     {
+        // Ambil data filter dan sorting
         $sort = Input::get('sort', 'nama');
         $mode = Input::get('mode', 'asc');
         $cari = Input::get('cari', '');
@@ -31,15 +30,11 @@ class ContactController extends Controller
             ->orderBy($sort, $mode)
             ->paginate(7);
 
-        // return dd($contact_all);
-
         return view('contact.index', compact('contact_all', 'sort', 'mode', 'cari'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
+     * Menampilkan form penambahan data contact.
      */
     public function create()
     {
@@ -47,9 +42,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
+     * Menyimpan data contact baru ke database.
      */
     public function store(CreateContactRequest $request)
     {
@@ -66,10 +59,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * Menampilkan detil data contact terpilih.
      */
     public function show($id)
     {
@@ -77,10 +67,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * Menampilkan form ubah data contact terpilih.
      */
     public function edit($id)
     {
@@ -90,10 +77,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
+     * Memperbaharui data contact terpilih.
      */
     public function update(UpdateContactRequest $request, $id)
     {
@@ -110,21 +94,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
+     * Mengapus data contact terpilih.
      */
     public function delete($id)
     {
