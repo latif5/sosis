@@ -94,7 +94,7 @@
             <tr>
                 <td>{{ $nomor++ }}.</td>
                 <td>
-                    <small>{{ $outbox->UpdatedInDB }}</small>
+                    <small>{{ date('d M Y H:i:s', strtotime($outbox->UpdatedInDB)) }}</small>
                     <br>
                     <small class="text-muted">{{ \Carbon\Carbon::parse($outbox->UpdatedInDB)->diffForHumans() }}</small>
                 </td>

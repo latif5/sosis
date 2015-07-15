@@ -88,7 +88,7 @@
             <tr>
                 <td>{{ $nomor++ }}.</td>
                 <td>
-                    {{ $sentitem->SendingDateTime }}
+                    <small>{{ date('d M Y H:i:s', strtotime($sentitem->SendingDateTime)) }}</small>
                     <br>
                     <small class="text-muted">{{ \Carbon\Carbon::parse($sentitem->SendingDateTime)->diffForHumans() }}</small>
                 </td>

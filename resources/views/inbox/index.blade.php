@@ -88,7 +88,7 @@
             <tr>
                 <td>{{ $nomor++ }}.</td>
                 <td>
-                   <small>{{ $inbox->ReceivingDateTime }}</small>
+                   <small>{{ date('d M Y H:i:s', strtotime($inbox->ReceivingDateTime)) }}</small>
                     <br>
                     <small class="text-muted">
                         {{ \Carbon\Carbon::parse($inbox->ReceivingDateTime)->diffForHumans() }}
