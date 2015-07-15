@@ -87,6 +87,21 @@ class SendController extends Controller
      *
      * @return Response
      */
+    public function send($DestinationNumber, $TextDecoded)
+    {
+        $send = new Outbox;
+
+        $send->DestinationNumber = $DestinationNumber;
+        $send->TextDecoded = $TextDecoded;
+
+        $send->save();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function forward(ForwardSendRequest $request)
     {
         $send = new Outbox;

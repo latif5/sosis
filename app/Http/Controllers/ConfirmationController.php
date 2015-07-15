@@ -50,6 +50,9 @@ class ConfirmationController extends Controller
 
             $statusAlert = 'successMessage';
             $messageAlert = 'Data telah diverifikasi';
+            
+            $SendController = new SendController;
+            $SendController->send('123', $messageAlert);
 
             $confirmation->save();
         
