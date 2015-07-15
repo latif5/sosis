@@ -2,6 +2,10 @@
 
 use \Faker\Factory;
 
+use App\Inbox;
+use App\Outbox;
+use App\Confirmation;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -67,7 +71,73 @@ Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
 
 Route::get('fin', function (){
-        $faker = Factory::create();
-        // dd($faker->dateTimeThisYear);
-        return $faker->text(100);
+
+
+        $inbox_all = Inbox::where('Processed', 'false')->get();
+
+        foreach ($inbox_all as $inbox) {
+            
+            // Membaca id SMS
+            $id = $inbox->ID;
+            // Membaca pengirim SMS
+            $no_pengirim = $inbox->SenderNumber;
+            // Membaca isi SMS
+            $isi = $inbox->TextDecoded;
+
+            // Memecah isi sms
+            $pecah = explode('#', $isi);
+
+            // Pesan hanya direspon jika nomor lebih dari 3 digit
+            if (strlen($no_pengirim) >= 3) {
+                    
+                /**
+                 * Untuk keyword Konfirmasi
+                 *
+                 */
+                if (strtoupper($pecah[0]) == 'KONFIRMASI' or strtoupper($pecah[0]) == 'KONFIRMASI ' or strtoupper($pecah[0]) == ' KONFIRMASI ') {
+                    
+                        // Membaca data dari pecahan sms berdasarkan format
+                        // Konfirmasi#nama santri#kelas#jumlah#tanggal kirim#nama pengirim#keperluan kirim
+                        $nomor_pengirim_balasan = $no_pengirim;
+                        $nama_santri_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
+                        $kelas_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
+                        $jumlah_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
+                        $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                        $nama_pengirim_balasan = str_replace("'", "\'", strtoupper($pecah[5]));
+                        $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+
+                        // SMS balasan
+                        $isi_balasan = "Konfirmasi pngrman utk $nama_santri_balasan sejmlh $jumlah_balasan utk kprluan $keperluan_kirim_balasan akn sgr kmi proses.";
+
+                        $outbox = new Outbox;
+                        $outbox->DestinationNumber = $nomor_pengirim_balasan;
+                        $outbox->TextDecoded = $isi_balasan;
+                        $outbox->save();
+
+                        // Salin data 
+                        $confirmation = new Confirmation;
+                        $confirmation->tanggal = '2015-07-01 00:00:00';
+                        $confirmation->ponsel = $nomor_pengirim_balasan;
+                        $confirmation->santri = $nama_santri_balasan;
+                        $confirmation->kelas = $kelas_balasan;
+                        $confirmation->jumlah = $jumlah_balasan;
+                        $confirmation->tanggal_kirim = $tanggal_kirim_balasan;
+                        $confirmation->pengirim = $nama_pengirim_balasan;
+                        $confirmation->keperluan = $keperluan_kirim_balasan;
+                        $confirmation->save();
+
+
+                }
+
+            }
+
+            // Jadikan true
+            Inbox::find($id)->update([
+                'Processed' => 'true'
+            ]);
+
+        }
+
+
+
 });
