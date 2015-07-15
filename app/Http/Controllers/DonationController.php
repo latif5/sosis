@@ -40,30 +40,44 @@ class DonationController extends Controller
     public function status($id, $status_verifikasi)
     {
         $donation = Donation::findOrFail($id);
+        $SendController = new SendController;
 
         $donation->status = $status_verifikasi;
 
-        if ($status_verifikasi == 'Sudah') {
+        // Jika status Sudah
+        if ($donation->status == 'Sudah') {
 
             $statusAlert = 'successMessage';
             $messageAlert = 'Data telah diverifikasi';
+            $messageSms = 'Transfer untuk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' BERHASIL kami verifikasi. Trims.';
+            
+            $SendController->send($donation->ponsel, $messageSms);
 
             $donation->save();
         
-        } else if ($status_verifikasi == 'Tunda') {
+        // Jika status Tunda
+        } else if ($donation->status == 'Tunda') {
         
             $statusAlert = 'infoMessage';
             $messageAlert = 'Proses verifikasi data ditunda';
+            $messageSms = 'Maaf, verifikasi transfer untuk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' TERTUNDA. Trims.';
             
+            $SendController->send($donation->ponsel, $messageSms);
+
             $donation->save();
         
-        } else if ($status_verifikasi == 'Belum') {
+        // Jika status Belum
+        } else if ($donation->status == 'Belum') {
         
             $statusAlert = 'infoMessage';
             $messageAlert = 'Verifikasi data dibatalkan';
+            $messageSms = 'Maaf, verifikasi transfer untuk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' DIBATALKAN. Trims.';
             
+            $SendController->send($donation->ponsel, $messageSms);
+
             $donation->save();
         
+        // Jika status ubahan tidak sesuai
         } else {
         
             $statusAlert = 'dangerMessage';
