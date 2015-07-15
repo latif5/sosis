@@ -110,7 +110,7 @@
             @forelse($donation_all as $donation)
             <tr>
                 <td>{{ $nomor++ }}.</td>
-                <td><small>{{ $donation->tanggal }}</small></td>
+                <td><small>{{ date('d M Y H:i:s', strtotime($donation->tanggal)) }}</small></td>
                 <td><small>{{ $donation->ponsel }}</small></td>
                 <td>{{ $donation->jumlah }}</td>
                 <td><small>{{ $donation->tanggal_kirim }}</small></td>

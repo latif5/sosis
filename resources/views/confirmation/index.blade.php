@@ -110,7 +110,7 @@
             @forelse($confirmation_all as $confirmation)
             <tr>
                 <td>{{ $nomor++ }}.</td>
-                <td><small>{{ $confirmation->tanggal }}</small></td>
+                <td><small>{{ date('d M Y H:i:s', strtotime($confirmation->tanggal)) }}</small></td>
                 <td><small>{{ $confirmation->ponsel }}</small></td>
                 <td>{{ $confirmation->santri }}</td>
                 <td>{{ $confirmation->kelas }}</td>
