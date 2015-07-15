@@ -40,33 +40,44 @@ class ConfirmationController extends Controller
     public function status($id, $status_verifikasi)
     {
         $confirmation = Confirmation::findOrFail($id);
+        $SendController = new SendController;
 
         $confirmation->status = $status_verifikasi;
 
-        if ($status_verifikasi == 'Sudah') {
+        // Jika status Sudah
+        if ($confirmation->status == 'Sudah') {
 
             $statusAlert = 'successMessage';
             $messageAlert = 'Data telah diverifikasi';
+            $messageSms = 'Transfer untuk '.$confirmation->santri.' pd tgl '.$confirmation->tanggal_kirim.' sejmlh '.$confirmation->jumlah.' BERHASIL kami verifikasi. Trims.';
             
-            $SendController = new SendController;
-            $SendController->send('123', $messageAlert);
+            $SendController->send($confirmation->ponsel, $messageSms);
 
             $confirmation->save();
         
-        } else if ($status_verifikasi == 'Tunda') {
+        // Jika status Tunda
+        } else if ($confirmation->status == 'Tunda') {
         
             $statusAlert = 'infoMessage';
             $messageAlert = 'Proses verifikasi data ditunda';
+            $messageSms = 'Maaf, verifikasi transfer untuk '.$confirmation->santri.' pd tgl '.$confirmation->tanggal_kirim.' sejmlh '.$confirmation->jumlah.' TERTUNDA. Trims.';
             
+            $SendController->send($confirmation->ponsel, $messageSms);
+
             $confirmation->save();
         
-        } else if ($status_verifikasi == 'Belum') {
+        // Jika status Belum
+        } else if ($confirmation->status == 'Belum') {
         
             $statusAlert = 'infoMessage';
             $messageAlert = 'Verifikasi data dibatalkan';
+            $messageSms = 'Maaf, verifikasi transfer untuk '.$confirmation->santri.' pd tgl '.$confirmation->tanggal_kirim.' sejmlh '.$confirmation->jumlah.' DIBATALKAN. Trims.';
             
+            $SendController->send($confirmation->ponsel, $messageSms);
+
             $confirmation->save();
         
+        // Jika status ubahan tidak sesuai
         } else {
         
             $statusAlert = 'dangerMessage';
