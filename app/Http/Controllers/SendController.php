@@ -41,6 +41,7 @@ class SendController extends Controller
 
             $send->TextDecoded = $request->TextDecoded;
             $send->DestinationNumber = $request->DestinationNumber;
+            $send->SendingDateTime = $request->SendingDateTime;
             $send->Class = $request->Class;
 
             $send->save();

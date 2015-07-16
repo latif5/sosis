@@ -27,6 +27,7 @@ class CreateSendRequest extends Request
             'DestinationNumber' => 'required_without:group|numeric',
             'group'             => 'required_without:DestinationNumber|numeric',
             'TextDecoded'       => 'required|max:160',
+            'SendingDateTime'   => 'date'
         ];
     }
 }

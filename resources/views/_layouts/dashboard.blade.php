@@ -16,9 +16,12 @@
         <!-- CSS ubahsuaian untuk template ini -->
         <link href="{{ asset('assets/css/dashboard.css') }}" type="text/css" rel="stylesheet"/>
 
-        <!-- CSS pengaya untuk template ini -->
-        <link href="{{ asset('assets/css/bootstrap-select') }}.min.css" type="text/css" rel="stylesheet"/>
+        <!-- CSS pengaya untuk template datepicker dan select -->
+        <link href="{{ asset('assets/css/bootstrap-select.min.css') }}" type="text/css" rel="stylesheet"/>
         <link href="{{ asset('assets/css/datepicker3.css') }}" type="text/css" rel="stylesheet"/>
+
+        <!-- CSS pengaya untuk template datetime picker -->
+        <link href="{{ asset('assets/css/bootstrap-datetimepicker.css') }}" type="text/css" rel="stylesheet"/>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -60,6 +63,12 @@
         <script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
         <script src="{{ asset('assets/js/locales/bootstrap-datepicker.id.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-confirmation.js') }}"></script>
+
+        <!-- JavaScript datetime picker -->
+        <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+        <script src="{{ asset('assets/js/transition.js') }}"></script>
+        <script src="{{ asset('assets/js/collapse.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{ asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
@@ -115,6 +124,15 @@
                 'container' : 'body'
             })
         })
+
+        // Inisiasi datetimepicker
+        // https://eonasdan.github.io/bootstrap-datetimepicker
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss',
+                widgetPositioning: { horizontal: 'right', vertical: 'bottom' }
+            });
+        });
         </script>
     </body>
 </html>

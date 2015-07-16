@@ -37,9 +37,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Penjadwalan</label>
-                            {!! Form::text('tanggal', date('Y-m-d'), array('class' => 'form-control datepicker')) !!}
-                            {!! $errors->first('tanggal', '<p class="text-danger"><small>:message</small></p>') !!}
-                            <small>Ket: Pakai date time picker dari mallot.fr (bookmarked)</small>
+                            {!! Form::text('SendingDateTime', null/*date('Y-m-d H:i:s')*/, array('class' => 'form-control datetimepicker')) !!}
+                            {!! $errors->first('SendingDateTime', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                         <div class="form-group">
                             <label>Jenis</label>
