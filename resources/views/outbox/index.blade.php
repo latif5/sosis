@@ -96,7 +96,9 @@
                 <td>
                     <small>{{ date('d M Y H:i:s', strtotime($outbox->UpdatedInDB)) }}</small>
                     <br>
-                    <small class="text-muted">{{ \Carbon\Carbon::parse($outbox->UpdatedInDB)->diffForHumans() }}</small>
+                    <small class="text-muted">
+                        {{ $outbox->SendingDateTime != '0000-00-00 00:00:00' ? 'dijadwalkan '.\Carbon\Carbon::parse($outbox->SendingDateTime)->diffForHumans() : 'dikirim '.\Carbon\Carbon::parse($outbox->UpdatedInDB)->diffForHumans() }}
+                    </small>
                 </td>
                 <td>
                     <small>{{ $outbox->DestinationNumber }}</small>
