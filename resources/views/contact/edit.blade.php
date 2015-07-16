@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
-                            {!! Form::select('group', $group_options, $group_selected, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'multiple']) !!}
+                            {!! Form::select('group[]', $group_options, $group_selected, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'multiple']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>

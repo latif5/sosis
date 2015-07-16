@@ -58,6 +58,7 @@ class ContactController extends Controller
 
         $contact->save();
 
+        // Ambil data contact yang terakhir ditambahkan
         $contact_last = Contact::findOrFail($contact->id);
 
         // Merelasikan contact yang baru ditambahkan dengan group terpilih
@@ -105,6 +106,9 @@ class ContactController extends Controller
         $contact->keterangan = $request->keterangan;
 
         $contact->save();
+
+        // Memperbaharui relasi contact dengan group terpilih
+        $contact->group()->sync($request->group);
 
         return redirect()->route('contact.index')
             ->with('successMessage', 'Kontak berhasil diperbaharui');
