@@ -125,4 +125,3 @@ Route::get('fin', function (){
 
         }
 });
-
