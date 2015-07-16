@@ -16,13 +16,13 @@
                         <div class="form-group">
                             <label>No. Tujuan</label>
                             <?php $contact_options[''] = '- pilih -'; ?>
-                            {!! Form::select('DestinationNumber', $contact_options, null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
+                            {!! Form::select('DestinationNumber', $contact_options, null, $attributes = ['class' => 'form-control selectpicker show-tick', 'data-live-search' => 'true']) !!}
                             {!! $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
                             <?php $group_options[''] = '- pilih -'; ?>
-                            {!! Form::select('group', $group_options, null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
+                            {!! Form::select('group', $group_options, null, $attributes = ['class' => 'form-control selectpicker show-tick', 'data-live-search' => 'true']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>

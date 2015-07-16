@@ -75,6 +75,7 @@
 
         <!-- JavaScript Ubahsuaian -->
         <script>
+        // Bootstrap selectpicker https://silviomoreto.github.io/bootstrap-select/
         $('.selectpicker').selectpicker({
             size: 7
         });
