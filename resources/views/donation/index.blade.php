@@ -137,7 +137,7 @@
                             <li><a href="{{ route('donation.status', [$donation->id, 'Tunda']) }}">Tunda</a></li>
                             <li><a href="{{ route('donation.status', [$donation->id, 'Belum']) }}">Belum</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('donation.delete', [$donation->id]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('donation.delete', [$donation->id]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
                     </div>
                 </td>

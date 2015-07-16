@@ -119,7 +119,7 @@
                             <li><a href="#" data-toggle="modal" data-target="#modalReply{{ $inbox->ID }}"><span class="glyphicon glyphicon-share-alt"></span> Balas</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#modalForward{{ $inbox->ID }}"><span class="glyphicon glyphicon-share"></span> Teruskan</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('inbox.delete', [$inbox->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('inbox.delete', [$inbox->ID]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
                     </div>
                 </td>

@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href="#" data-toggle="modal" data-target="#modalDetil{{ $sentitem->ID }}"><span class="glyphicon glyphicon-eye-open"></span> Detail</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('sentitem.delete', [$sentitem->ID]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('sentitem.delete', [$sentitem->ID]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
 
                         </ul>
                     </div>

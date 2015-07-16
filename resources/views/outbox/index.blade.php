@@ -116,7 +116,7 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href="#" data-toggle="modal" data-target="#modalDetil{{ $outbox->ID }}"><span class="glyphicon glyphicon-eye-open"></span> Detail</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('outbox.delete', [$outbox->ID]) }}"><span class="glyphicon glyphicon-ban-circle"></span> Batalkan</a></li>
+                            <li><a href="{{ route('outbox.delete', [$outbox->ID]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-ban-circle"></span> Batalkan</a></li>
                         </ul>
                     </div>
                 </td>

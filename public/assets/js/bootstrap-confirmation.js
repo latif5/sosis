@@ -71,17 +71,19 @@
 	Confirmation.VERSION  = '1.0.2'
 
 	Confirmation.DEFAULTS = $.extend({}, $.fn.popover.Constructor.DEFAULTS, {
-		placement 		: 'right',
-		title 			: 'Are you sure?',
+		placement 		: 'left',
+		title 			: 'Anda yakin?',
 		btnOkClass 		: 'btn btn-sm btn-danger',
-		btnOkLabel 		: 'Delete',
+		btnOkLabel 		: 'Ya',
 		btnOkIcon 		: 'glyphicon glyphicon-ok',
 		btnCancelClass 	: 'btn btn-sm btn-default',
-		btnCancelLabel 	: 'Cancel',
+		btnCancelLabel 	: 'Tidak',
 		btnCancelIcon 	: 'glyphicon glyphicon-remove',
 		href 			: '#',
 		target 			: '_self',
-		singleton 		: true,
+		trigger			: 'click hover',
+		delay			: {"show": 50, "hide": 5000},
+		singleton 		: false,
 		popout 			: true,
 		onShow 			: function(event, element){},
 		onHide 			: function(event, element){},
@@ -90,8 +92,8 @@
 		template 		:   '<div class="popover"><div class="arrow"></div>'
 							+ '<h3 class="popover-title"></h3>'
 							+ '<div class="popover-content">'
-							+ '<a data-apply="confirmation">Yes</a>'
-							+ '<a data-dismiss="confirmation">No</a>'
+							+ '<a data-apply="confirmation">Yes</a> '
+							+ ' <a data-dismiss="confirmation">No</a>'
 							+ '</div>'
 							+ '</div>'
 	});

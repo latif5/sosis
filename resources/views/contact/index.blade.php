@@ -121,7 +121,7 @@
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href="{{ route('contact.edit', [$contact->id]) }}"><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('contact.delete', [$contact->id]) }}"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
+                            <li><a href="{{ route('contact.delete', [$contact->id]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
                     </div>
                 </td>
