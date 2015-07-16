@@ -7,12 +7,12 @@
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Tambah Kontak</h3>
+                <h3 class="panel-title">Ubah Kontak</h3>
             </div>
             {!! Form::model($contact, ['route' => ['contact.update', $contact->id], 'method' => 'put']) !!}
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Nama</label>
                             {!! Form::text('nama', null, $attributes = ['class' => 'form-control']) !!}
@@ -25,12 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
-                            {!! Form::select('group', array(
-                                ''      => '-pilih-',
-                                '1'     => 'Asatidzah',
-                                '2'     => 'Staf',
-                                '3'     => 'Karyawan'
-                            ), null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
+                            {!! Form::select('group', $group_options, $group_selected, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'multiple']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>

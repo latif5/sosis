@@ -12,7 +12,7 @@
             {!! Form::open(['route' => 'contact.store']) !!}
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Nama</label>
                             {!! Form::text('nama', null, $attributes = ['class' => 'form-control']) !!}
@@ -25,12 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
-                            {!! Form::select('group', array(
-                                ''      => '-pilih-',
-                                '1'     => 'Asatidzah',
-                                '2'     => 'Staf',
-                                '3'     => 'Karyawan'
-                            ), null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
+                            {!! Form::select('group[]', $group_options, null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'multiple']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>

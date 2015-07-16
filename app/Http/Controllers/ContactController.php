@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use \Input;
 
 use App\Contact;
+use App\Group;
 
 use App\Http\Requests\CreateContactRequest;
 use App\Http\Requests\UpdateContactRequest;
@@ -38,7 +39,10 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.create');
+        // Ambil data group, lalu format menjadi list
+        $group_options = Group::orderBy('nama')->lists('nama', 'id');
+
+        return view('contact.create', compact('group_options'));
     }
 
     /**
@@ -53,6 +57,11 @@ class ContactController extends Controller
         $contact->keterangan = $request->keterangan;
 
         $contact->save();
+
+        $contact_last = Contact::findOrFail($contact->id);
+
+        // Merelasikan contact yang baru ditambahkan dengan group terpilih
+        $contact_last->group()->attach($request->group);
 
         return redirect()->route('contact.create')
             ->with('successMessage', 'Kontak berhasil disimpan');
@@ -73,7 +82,15 @@ class ContactController extends Controller
     {
         $contact = Contact::findOrFail($id);
 
-        return view('contact.edit', compact('contact'));
+        // Ambil data group, lalu format menjadi list
+        $group_options = Group::orderBy('nama')->lists('nama', 'id');
+
+        // Buat array dari daftar id group yang dimiliki contact
+        foreach ($contact->group as $group) {
+            $group_selected[] = $group->id;
+        }
+
+        return view('contact.edit', compact('contact','group_options', 'group_selected'));
     }
 
     /**
