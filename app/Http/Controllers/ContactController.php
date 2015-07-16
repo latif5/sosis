@@ -91,6 +91,9 @@ class ContactController extends Controller
             $group_selected[] = $group->id;
         }
 
+        // Menambah nilai array untuk mencegah error jika contact tidak memiliki group satupun
+        $group_selected[] = '';
+
         return view('contact.edit', compact('contact','group_options', 'group_selected'));
     }
 
@@ -108,7 +111,12 @@ class ContactController extends Controller
         $contact->save();
 
         // Memperbaharui relasi contact dengan group terpilih
-        $contact->group()->sync($request->group);
+        // Jika array kosong, maka detach all relations
+        if ($request->group != null) {
+            $contact->group()->sync($request->group);
+        } else {
+            $contact->group()->detach();
+        }
 
         return redirect()->route('contact.index')
             ->with('successMessage', 'Kontak berhasil diperbaharui');
