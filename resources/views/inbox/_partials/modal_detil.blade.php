@@ -9,11 +9,12 @@
             <div class="modal-body">
                 <blockquote>
                     <p>{{ $inbox->TextDecoded }}</p>
-                    <footer>{{ $inbox->SenderNumber }} <cite>Contact Name</cite></footer>
+                    <footer>{{ $inbox->SenderNumber }} <cite>{{ $inbox->nama }}</cite></footer>
                 </blockquote>
                 <div class="well well-sm">
                     <ul>
                         <li><strong>Pengirim</strong> : {{ $inbox->SenderNumber }}</li>
+                        <li><strong>Nama</strong> : {{ $inbox->nama }}</li>
                         <li><strong>Dikirim</strong> : {{ $inbox->ReceivingDateTime }}</li>
                         <li><strong>Diterima</strong> : {{ $inbox->UpdatedInDB }}</li>
                         <li><strong>SMSC</strong> : {{ $inbox->SMSCNumber }}</li>
