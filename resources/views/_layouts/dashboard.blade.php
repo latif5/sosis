@@ -105,6 +105,16 @@
         // Konfigurasi Bootstrap Confirmation by Tavicu
         // https://github.com/tavicu/bs-confirmation
         $('[data-toggle="confirmation"]').confirmation();
+
+        // Inisiasi popover bawaan bootstrap
+        // Penggunaan: data-toggle="popover" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                'placement' : 'right',
+                'trigger' : 'hover',
+                'container' : 'body'
+            })
+        })
         </script>
     </body>
 </html>
