@@ -48,7 +48,6 @@ class SendController extends Controller
 
                 $send->save();
             }
-
         }
         // Mengirim pesan ke group
         elseif ($request->DestinationNumber == '' and $request->group != '')
@@ -58,7 +57,6 @@ class SendController extends Controller
                 $group_all = Group::findOrFail($group);
 
                 foreach ($group_all->contact as $contact) {
-                    // echo $contact->nama.'<br>';
                     $send = new Outbox([
                         'TextDecoded' => $request->TextDecoded,
                         'DestinationNumber' => $contact->ponsel,
@@ -68,9 +66,7 @@ class SendController extends Controller
 
                     $send->save();
                 }
-
             }
-
         }
 
         return redirect()->route('send.create')
