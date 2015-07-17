@@ -19,6 +19,7 @@ Route::post('send/forward', ['as' => 'send.forward', 'uses' => 'SendController@f
 Route::resource('send', 'SendController',
         ['only' => ['create', 'store']]);
 
+Route::post('inbox/deleteMultiple', ['as' => 'inbox.delete.multiple', 'uses' => 'InboxController@deleteMultiple']);
 Route::get('inbox/delete/{inbox}', ['as' => 'inbox.delete', 'uses' => 'InboxController@delete']);
 Route::resource('inbox', 'InboxController',
         ['only' => ['index']]);

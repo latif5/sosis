@@ -70,6 +70,7 @@
     </div>
 </div><br>
 
+{!! Form::open(['route' => 'inbox.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -86,7 +87,11 @@
             <?php $nomor = $inbox_all->firstItem() ?>
             @forelse($inbox_all as $inbox)
             <tr>
-                <td>{{ $nomor++ }}.</td>
+                <td>
+                    {{-- {!! Form::checkbox('check'.$inbox->ID, $inbox->ID) !!} --}}
+                    {!! Form::checkbox('check[]', $inbox->ID) !!}
+                    {{ $nomor++ }}.
+                </td>
                 <td>
                    <small>{{ date('d M Y H:i:s', strtotime($inbox->ReceivingDateTime)) }}</small>
                     <br>
@@ -142,6 +147,11 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
+<button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> 
+    Hapus item terpilih
+</button>
+{!! Form::close() !!}
 
 
 @stop

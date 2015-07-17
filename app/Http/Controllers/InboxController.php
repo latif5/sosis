@@ -10,6 +10,8 @@ use \Input;
 
 use App\Inbox;
 
+use App\Http\Requests\DeleteInboxRequest;
+
 class InboxController extends Controller
 {
     /**
@@ -42,5 +44,16 @@ class InboxController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Pesan telah dihapus');
+    }
+
+    /**
+     * Mengapus beberapa data sms terpilih dari inbox.
+     */
+    public function deleteMultiple(DeleteInboxRequest $request)
+    {
+        $inbox = Inbox::destroy($request->check);
+
+        return redirect()->back()
+            ->with('infoMessage', 'Sebanyak '.count($request->check).' pesan telah dihapus');
     }
 }
