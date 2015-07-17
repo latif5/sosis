@@ -53,7 +53,7 @@ class SendController extends Controller
         // Mengirim pesan ke group
         elseif ($request->DestinationNumber == '' and $request->group != '')
         {
-            // Mengirim pesan personal satu persatu
+            // Mengirim pesan group satu persatu
             foreach ($request->group as $group) {
                 $group_all = Group::findOrFail($group);
 
