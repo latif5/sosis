@@ -9,9 +9,11 @@ use App\Http\Controllers\Controller;
 use \Input;
 
 use App\Group;
+use App\Contact;
 
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
+use App\Http\Requests\UpdateGroupMemberRequest;
 
 class GroupController extends Controller
 {
@@ -89,6 +91,48 @@ class GroupController extends Controller
 
         return redirect()->route('group.index')
             ->with('successMessage', 'Grup berhasil diperbaharui');
+    }
+
+    /**
+     * Menampilkan form ubah member group terpilih.
+     */
+    public function memberEdit($id)
+    {
+        $group = Group::findOrFail($id);
+
+        // Ambil data contact, lalu format menjadi list
+        $contact_options = Contact::orderBy('nama')->lists('nama', 'id');
+
+        // Buat array dari daftar id contact yang dimiliki group
+        foreach ($group->contact as $contact) {
+            $contact_selected[] = $contact->id;
+        }
+
+        // Menambah nilai array untuk mencegah error jika contact tidak memiliki contact satupun
+        $contact_selected[] = '';
+
+        return view('group.memberEdit', compact('group', 'contact_options', 'contact_selected'));
+    }
+
+    /**
+     * Memperbaharui data member group terpilih.
+     */
+    public function memberUpdate(UpdateGroupMemberRequest $request, $id)
+    {
+        $group = Group::findOrFail($id);
+
+        $group->save();
+
+        // Memperbaharui relasi group dengan contact terpilih
+        // Jika nilai array adalah null, maka detach all relations
+        if ($request->contact != null) {
+            $group->contact()->sync($request->contact);
+        } else {
+            $group->contact()->detach();
+        }
+
+        return redirect()->route('group.index')
+            ->with('successMessage', 'Anggota grup berhasil diperbaharui');
     }
 
     /**

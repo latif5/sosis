@@ -111,7 +111,7 @@ class ContactController extends Controller
         $contact->save();
 
         // Memperbaharui relasi contact dengan group terpilih
-        // Jika array kosong, maka detach all relations
+        // Jika nilai array adalah null, maka detach all relations
         if ($request->group != null) {
             $contact->group()->sync($request->group);
         } else {

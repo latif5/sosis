@@ -115,7 +115,7 @@
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a href="{{ route('group.edit', [$group->id]) }}"><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-list"></span> Anggota</a></li>
+                            <li><a href="{{ route('group.member.edit', [$group->id]) }}"><span class="glyphicon glyphicon-list"></span> Anggota</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('group.delete', [$group->id]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>
