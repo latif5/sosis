@@ -88,9 +88,12 @@
             @forelse($inbox_all as $inbox)
             <tr>
                 <td>
-                    {{-- {!! Form::checkbox('check'.$inbox->ID, $inbox->ID) !!} --}}
-                    {!! Form::checkbox('check[]', $inbox->ID) !!}
-                    {{ $nomor++ }}.
+                    <div class="checkbox checkbox-circle checkbox-danger">
+                        {!! Form::checkbox('check[]', $inbox->ID, false, ['id' => 'check-'.$inbox->ID, 'class' => 'styled']) !!}
+                        <label for="check-{{ $inbox->ID }}">
+                            {{ $nomor++ }}.
+                        </label>
+                    </div>
                 </td>
                 <td>
                    <small>{{ date('d M Y H:i:s', strtotime($inbox->ReceivingDateTime)) }}</small>

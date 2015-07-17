@@ -51,9 +51,18 @@ class InboxController extends Controller
      */
     public function deleteMultiple(DeleteInboxRequest $request)
     {
-        $inbox = Inbox::destroy($request->check);
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $inbox = Inbox::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
 
         return redirect()->back()
-            ->with('infoMessage', 'Sebanyak '.count($request->check).' pesan telah dihapus');
+            ->with($statusAlert, $messageAlert);
     }
 }
