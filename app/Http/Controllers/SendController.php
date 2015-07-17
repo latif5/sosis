@@ -37,14 +37,18 @@ class SendController extends Controller
         // Mengirim pesan ke personal
         if ($request->DestinationNumber != '' and $request->group == '')
         {
-            $send = new Outbox;
+            // Mengirim pesan personal satu persatu
+            foreach ($request->DestinationNumber as $DestinationNumber) {
+                $send = new Outbox([
+                    'TextDecoded' => $request->TextDecoded,
+                    'DestinationNumber' => $DestinationNumber,
+                    'SendingDateTime' => $request->SendingDateTime,
+                    'Class' => $request->Class
+                ]);
 
-            $send->TextDecoded = $request->TextDecoded;
-            $send->DestinationNumber = $request->DestinationNumber;
-            $send->SendingDateTime = $request->SendingDateTime;
-            $send->Class = $request->Class;
+                $send->save();
+            }
 
-            $send->save();
         }
         // Mengirim pesan ke group
         elseif ($request->DestinationNumber == '' and $request->group != '')

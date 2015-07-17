@@ -24,8 +24,8 @@ class CreateSendRequest extends Request
     public function rules()
     {
         return [
-            'DestinationNumber' => 'required_without:group|numeric',
-            'group'             => 'required_without:DestinationNumber|numeric',
+            'DestinationNumber' => 'required_without:group',
+            'group'             => 'required_without:DestinationNumber',
             'TextDecoded'       => 'required|max:160',
             'SendingDateTime'   => 'date'
         ];

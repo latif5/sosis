@@ -15,8 +15,8 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>No. Tujuan</label>
-                            <?php $contact_options[''] = '- pilih -'; ?>
-                            {!! Form::select('DestinationNumber', $contact_options, null, $attributes = ['class' => 'form-control selectpicker show-tick', 'data-live-search' => 'true']) !!}
+                            <?php // $contact_options[''] = '- pilih -'; ?>
+                            {!! Form::select('DestinationNumber[]', $contact_options, null, $attributes = ['class' => 'form-control selectpicker show-tick', 'data-live-search' => 'true', 'multiple', 'data-selected-text-format' => 'count']) !!}
                             {!! $errors->first('DestinationNumber', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                         <div class="form-group">

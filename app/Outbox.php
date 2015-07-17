@@ -15,6 +15,7 @@ class Outbox extends Model
     protected $fillable = [
         'SendBefore',
         'SendAfter',
+        'SendingDateTime',
         'DestinationNumber',
         'Class',
         'TextDecoded',
