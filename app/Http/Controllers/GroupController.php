@@ -121,8 +121,6 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
 
-        $group->save();
-
         // Memperbaharui relasi group dengan contact terpilih
         // Jika nilai array adalah null, maka detach all relations
         if ($request->contact != null) {
@@ -131,7 +129,7 @@ class GroupController extends Controller
             $group->contact()->detach();
         }
 
-        return redirect()->route('group.index')
+        return redirect()->route('group.member.edit', $group->id)
             ->with('successMessage', 'Anggota grup berhasil diperbaharui');
     }
 

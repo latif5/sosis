@@ -45,4 +45,35 @@
         </div> {{-- .panel --}}
     </div>
 </div>
+
+<h1 class="page-header"><small>Daftar Anggota</small></h1>
+<div class="table">
+    <table class="table table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th width="5%">No.</th>
+                <th width="35%">Nama</th>
+                <th width="25%">Nomor</th>
+                <th width="35%">Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $nomor = 1; ?>
+            @forelse($group->contact()->orderBy('nama')->get() as $contact)
+            <tr>
+                <td>{{ $nomor++ }}.</td>
+                <td>{{ $contact->nama }}</td>
+                <td>{{ $contact->ponsel }}</td>
+                <td>{{ $contact->keterangan }}</td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="6">
+                    <p>Tidak ada data yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 @stop
