@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label>Anggota</label>
-                            {!! Form::select('contact[]', $contact_options, $contact_selected, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'multiple']) !!}
+                            {!! Form::select('contact[]', $contact_options, $contact_selected, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'multiple', 'data-selected-text-format' => 'count']) !!}
                             {!! $errors->first('contact', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
