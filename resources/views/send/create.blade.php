@@ -21,8 +21,8 @@
                         </div>
                         <div class="form-group">
                             <label>Grup</label>
-                            <?php $group_options[''] = '- pilih -'; ?>
-                            {!! Form::select('group', $group_options, null, $attributes = ['class' => 'form-control selectpicker show-tick', 'data-live-search' => 'true']) !!}
+                            <?php // $group_options[''] = '- pilih -'; ?>
+                            {!! Form::select('group[]', $group_options, null, $attributes = ['class' => 'form-control selectpicker show-tick', 'data-live-search' => 'true', 'multiple', 'data-selected-text-format' => 'count']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
                     </div>
