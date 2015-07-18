@@ -36,6 +36,27 @@ class InboxController extends Controller
     }
 
     /**
+     * Menampilkan daftar sms di inbox dalam bentuk plain.
+     */
+    public function plain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'ReceivingDateTime');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $inbox_all = Inbox::
+              leftJoin('contact', 'inbox.SenderNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
+            ->where('ReceivingDateTime', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('inbox.plain', compact('inbox_all', 'sort', 'mode', 'cari', 'cari_bulan'));
+    }
+
+    /**
      * Mengapus data sms terpilih dari inbox.
      */
     public function delete($id)

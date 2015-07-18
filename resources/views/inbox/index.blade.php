@@ -50,6 +50,7 @@
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#" target="_blank">PDF</a></li>
+                <li><a href="{{ route('inbox.plain') }}?sort={{ $sort }}&mode={{ $mode }}&cari={{ $cari }}&cari_bulan={{ $cari_bulan }}" target="_blank">Plain</a></li>
             </ul>
         </div>
     </div>
