@@ -14,6 +14,7 @@ use App\Contact;
 use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
 use App\Http\Requests\UpdateGroupMemberRequest;
+use App\Http\Requests\DeleteGroupRequest;
 
 class GroupController extends Controller
 {
@@ -142,5 +143,25 @@ class GroupController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Grup telah dihapus');
+    }
+
+    /**
+     * Mengapus beberapa data terpilih dari group.
+     */
+    public function deleteMultiple(DeleteGroupRequest $request)
+    {
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $group = Group::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
+
+        return redirect()->back()
+            ->with($statusAlert, $messageAlert);
     }
 }

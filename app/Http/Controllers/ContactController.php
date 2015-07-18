@@ -135,7 +135,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Mengapus beberapa data sms terpilih dari contact.
+     * Mengapus beberapa data terpilih dari contact.
      */
     public function deleteMultiple(DeleteContactRequest $request)
     {

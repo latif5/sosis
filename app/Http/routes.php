@@ -64,6 +64,7 @@ Route::resource('contact', 'ContactController',
 /**
  * Group Routes.
  */
+Route::post('group/deleteMultiple', ['as' => 'group.delete.multiple', 'uses' => 'GroupController@deleteMultiple']);
 Route::get('group/member/{group}', ['as' => 'group.member.edit', 'uses' => 'GroupController@memberEdit']);
 Route::put('group/member/{group}', ['as' => 'group.member.update', 'uses' => 'GroupController@memberUpdate']);
 Route::get('group/delete/{group}', ['as' => 'group.delete', 'uses' => 'GroupController@delete']);

@@ -86,6 +86,8 @@
     </div>
 </div><br>
 
+{{-- Awal form multiple delete --}}
+{!! Form::open(['route' => 'group.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -101,7 +103,13 @@
             <?php $nomor = $group_all->firstItem() ?>
             @forelse($group_all as $group)
             <tr>
-                <td>{{ $nomor++ }}.</td>
+                <td>
+                    {{-- Tombol checkbox multiple delete --}}
+                    <div class="checkbox checkbox-circle checkbox-danger">
+                        {!! Form::checkbox('check[]', $group->id, false, ['id' => 'check-'.$group->id, 'class' => 'styled']) !!}
+                        {!! Form::label('check-'.$group->id, $nomor++) !!}
+                    </div>
+                </td>
                 <td>{{ $group->nama }}</td>
                 <td>{{ $group->keterangan }}</td>
                 <td>
@@ -137,6 +145,12 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
-
+{{-- Tombol multiple delete --}}
+<button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> 
+    Hapus item terpilih
+</button>
+{!! Form::close() !!}
+{{-- Akhir form multiple delete --}}
 
 @stop
