@@ -103,7 +103,7 @@ class ConfirmationController extends Controller
     }
 
     /**
-     * Mengapus beberapa data terpilih dari contact.
+     * Mengapus beberapa data terpilih dari confirmation.
      */
     public function deleteMultiple(DeleteConfirmationRequest $request)
     {

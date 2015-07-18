@@ -83,6 +83,7 @@ Route::resource('confirmation',  'ConfirmationController',
 /**
  * Donation Routes.
  */
+Route::post('donation/deleteMultiple', ['as' => 'donation.delete.multiple', 'uses' => 'DonationController@deleteMultiple']);
 Route::get('donation/delete/{donation}', ['as' => 'donation.delete', 'uses' => 'DonationController@delete']);
 Route::get('donation/{donation}/{status}', ['as' => 'donation.status', 'uses' => 'DonationController@status']);
 Route::resource('donation',  'DonationController',

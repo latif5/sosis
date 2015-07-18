@@ -10,6 +10,8 @@ use \Input;
 
 use App\Donation;
 
+use App\Http\Requests\DeleteDonationRequest;
+
 class DonationController extends Controller
 {
     /**
@@ -98,5 +100,25 @@ class DonationController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Data telah dihapus');
+    }
+
+    /**
+     * Mengapus beberapa data terpilih dari donation.
+     */
+    public function deleteMultiple(DeleteDonationRequest $request)
+    {
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $donation = Donation::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
+
+        return redirect()->back()
+            ->with($statusAlert, $messageAlert);
     }
 }

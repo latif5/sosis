@@ -86,6 +86,8 @@
     </div>
 </div><br>
 
+{{-- Awal form multiple delete --}}
+{!! Form::open(['route' => 'donation.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -107,7 +109,11 @@
             <?php $nomor = $donation_all->firstItem() ?>
             @forelse($donation_all as $donation)
             <tr>
-                <td>{{ $nomor++ }}.</td>
+                <td>
+                    {{-- Tombol checkbox multiple delete --}}
+                    {!! Form::checkbox('check[]', $donation->id) !!}
+                    {{ $nomor++ }}.
+                </td>
                 <td><small>{{ date('d M Y H:i:s', strtotime($donation->tanggal)) }}</small></td>
                 <td><small>{{ $donation->ponsel }}</small></td>
                 <td>{{ $donation->jumlah }}</td>
@@ -157,6 +163,12 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>
     </p>
 </div>
-
+{{-- Tombol multiple delete --}}
+<button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> 
+    Hapus item terpilih
+</button>
+{!! Form::close() !!}
+{{-- Akhir form multiple delete --}}
 
 @stop
