@@ -10,6 +10,8 @@ use \Input;
 
 use App\Outbox;
 
+use App\Http\Requests\DeleteOutboxRequest;
+
 class OutboxController extends Controller
 {
     /**
@@ -54,5 +56,25 @@ class OutboxController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Pesan telah dibatalkan');
+    }
+
+    /**
+     * Mengapus beberapa data sms terpilih dari inbox.
+     */
+    public function deleteMultiple(DeleteOutboxRequest $request)
+    {
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $outbox = Outbox::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
+
+        return redirect()->back()
+            ->with($statusAlert, $messageAlert);
     }
 }

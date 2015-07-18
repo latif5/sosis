@@ -76,6 +76,8 @@
     </div>
 </div><br>
 
+{{-- Awal form multiple delete --}}
+{!! Form::open(['route' => 'outbox.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -92,7 +94,13 @@
             <?php $nomor = $outbox_all->firstItem() ?>
             @forelse($outbox_all as $outbox)
             <tr>
-                <td>{{ $nomor++ }}.</td>
+                <td>
+                    {{-- Tombol checkbox multiple delete --}}
+                    <div class="checkbox checkbox-circle checkbox-danger">
+                        {!! Form::checkbox('check[]', $outbox->ID, false, ['id' => 'check-'.$outbox->ID, 'class' => 'styled']) !!}
+                        {!! Form::label('check-'.$outbox->ID, $nomor++) !!}
+                    </div>
+                </td>
                 <td>
                     <small>{{ date('d M Y H:i:s', strtotime($outbox->UpdatedInDB)) }}</small>
                     <br>
@@ -139,6 +147,12 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
-
+{{-- Tombol multiple delete --}}
+<button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> 
+    Hapus item terpilih
+</button>
+{!! Form::close() !!}
+{{-- Akhir form multiple delete --}}
 
 @stop

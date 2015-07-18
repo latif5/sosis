@@ -70,6 +70,7 @@
     </div>
 </div><br>
 
+{{-- Awal form multiple delete --}}
 {!! Form::open(['route' => 'inbox.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
@@ -88,11 +89,10 @@
             @forelse($inbox_all as $inbox)
             <tr>
                 <td>
+                    {{-- Tombol checkbox multiple delete --}}
                     <div class="checkbox checkbox-circle checkbox-danger">
                         {!! Form::checkbox('check[]', $inbox->ID, false, ['id' => 'check-'.$inbox->ID, 'class' => 'styled']) !!}
-                        <label for="check-{{ $inbox->ID }}">
-                            {{ $nomor++ }}.
-                        </label>
+                        {!! Form::label('check-'.$inbox->ID, $nomor++) !!}
                     </div>
                 </td>
                 <td>
@@ -150,11 +150,12 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
+{{-- Tombol multiple delete --}}
 <button type="submit" class="btn btn-danger">
     <span class="glyphicon glyphicon-trash"></span> 
     Hapus item terpilih
 </button>
 {!! Form::close() !!}
-
+{{-- Akhir form multiple delete --}}
 
 @stop
