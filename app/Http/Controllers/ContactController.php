@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
+use \Excel;
 
 use App\Contact;
 use App\Group;
@@ -14,6 +15,7 @@ use App\Group;
 use App\Http\Requests\CreateContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Http\Requests\DeleteContactRequest;
+use App\Http\Requests\ImportContactRequest;
 
 class ContactController extends Controller
 {
@@ -67,6 +69,49 @@ class ContactController extends Controller
 
         return redirect()->route('contact.create')
             ->with('successMessage', 'Kontak berhasil disimpan');
+    }
+
+    /**
+     * Menampilkan form import data contact.
+     */
+    public function import()
+    {
+        // Ambil data group, lalu format menjadi list
+        $group_options = Group::orderBy('nama')->lists('nama', 'id');
+
+        return view('contact.import', compact('group_options'));
+    }
+
+    /**
+     * Memasukkan data import ke tabel contact.
+     */
+    public function importPost(ImportContactRequest $request)
+    {
+        $excel = Excel::load($request->file('data'), function($reader) {
+            // Agar tidak menganggap bahwa baris pertama adalah header
+            // Serta agar mengubah offset array menjadi numeric, bukan string header
+            $reader->noHeading();
+        })->get();
+
+        foreach ($excel as $excel_row) {
+            // Memasukkan contact ke database
+            $contact = new Contact;
+
+            $contact->nama = $excel_row[0];
+            $contact->keterangan = $excel_row[1];
+            $contact->ponsel = $excel_row[2];
+
+            $contact->save();
+
+            // Ambil data contact yang terakhir ditambahkan
+            $contact_last = Contact::findOrFail($contact->id);
+
+            // Merelasikan contact yang baru ditambahkan dengan group terpilih
+            $contact_last->group()->attach($request->group);
+        }
+
+        return redirect()->route('contact.index')
+            ->with('successMessage', 'Sebanyak '.count($excel).' data telah diimpor');
     }
 
     /**
