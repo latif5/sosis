@@ -10,6 +10,8 @@ use \Input;
 
 use App\SentItem;
 
+use App\Http\Requests\DeleteSentItemRequest;
+
 class SentItemController extends Controller
 {
     /**
@@ -42,5 +44,25 @@ class SentItemController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Pesan telah dihapus');
+    }
+
+    /**
+     * Mengapus beberapa data sms terpilih dari inbox.
+     */
+    public function deleteMultiple(DeleteSentItemRequest $request)
+    {
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $sentitem = SentItem::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
+
+        return redirect()->back()
+            ->with($statusAlert, $messageAlert);
     }
 }

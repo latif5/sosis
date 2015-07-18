@@ -70,6 +70,8 @@
     </div>
 </div><br>
 
+{{-- Awal form multiple delete --}}
+{!! Form::open(['route' => 'sentitem.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -86,7 +88,13 @@
             <?php $nomor = $sentitem_all->firstItem() ?>
             @forelse($sentitem_all as $sentitem)
             <tr>
-                <td>{{ $nomor++ }}.</td>
+                <td>
+                    {{-- Tombol checkbox multiple delete --}}
+                    <div class="checkbox checkbox-circle checkbox-danger">
+                        {!! Form::checkbox('check[]', $sentitem->ID, false, ['id' => 'check-'.$sentitem->ID, 'class' => 'styled']) !!}
+                        {!! Form::label('check-'.$sentitem->ID, $nomor++) !!}
+                    </div>
+                </td>
                 <td>
                     <small>{{ date('d M Y H:i:s', strtotime($sentitem->SendingDateTime)) }}</small>
                     <br>
@@ -136,6 +144,12 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
-
+{{-- Tombol multiple delete --}}
+<button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> 
+    Hapus item terpilih
+</button>
+{!! Form::close() !!}
+{{-- Akhir form multiple delete --}}
 
 @stop
