@@ -6,64 +6,106 @@ use App\Inbox;
 use App\Outbox;
 use App\Confirmation;
 
+/**
+ * Guest Routes.
+ */
 Route::resource('guest', 'GuestController',
         ['only' => ['index', 'login']]);
 
+/**
+ * Home Routes.
+ */
 Route::get('login', ['as' => 'home.login', 'uses' => 'HomeController@login']);
 Route::post('authenticate', ['as' => 'home.login.post', 'uses' => 'HomeController@index']);
 Route::resource('home', 'HomeController',
         ['only' => ['index']]);
 
+/**
+ * Send Routes.
+ */
 Route::post('send/reply', ['as' => 'send.reply', 'uses' => 'SendController@reply']);
 Route::post('send/forward', ['as' => 'send.forward', 'uses' => 'SendController@forward']);
 Route::resource('send', 'SendController',
         ['only' => ['create', 'store']]);
 
+/**
+ * Inbox Routes.
+ */
 Route::post('inbox/deleteMultiple', ['as' => 'inbox.delete.multiple', 'uses' => 'InboxController@deleteMultiple']);
 Route::get('inbox/delete/{inbox}', ['as' => 'inbox.delete', 'uses' => 'InboxController@delete']);
 Route::resource('inbox', 'InboxController',
         ['only' => ['index']]);
 
+/**
+ * Outbox Routes.
+ */
 Route::post('outbox/deleteMultiple', ['as' => 'outbox.delete.multiple', 'uses' => 'OutboxController@deleteMultiple']);
 Route::get('outbox/delete/{outbox}', ['as' => 'outbox.delete', 'uses' => 'OutboxController@delete']);
 Route::get('outbox/truncate', ['as' => 'outbox.truncate', 'uses' => 'OutboxController@truncate']);
 Route::resource('outbox', 'OutboxController',
         ['only' => ['index', 'destroy']]);
 
+/**
+ * SentItem Routes.
+ */
 Route::post('sentitem/deleteMultiple', ['as' => 'sentitem.delete.multiple', 'uses' => 'SentItemController@deleteMultiple']);
 Route::get('sentitem/delete/{sentitem}', ['as' => 'sentitem.delete', 'uses' => 'SentItemController@delete']);
 Route::resource('sentitem', 'SentItemController',
         ['only' => ['index']]);
 
+/**
+ * Contact Routes.
+ */
 Route::get('contact/delete/{contact}', ['as' => 'contact.delete', 'uses' => 'ContactController@delete']);
 Route::resource('contact', 'ContactController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
+/**
+ * Group Routes.
+ */
 Route::get('group/member/{group}', ['as' => 'group.member.edit', 'uses' => 'GroupController@memberEdit']);
 Route::put('group/member/{group}', ['as' => 'group.member.update', 'uses' => 'GroupController@memberUpdate']);
 Route::get('group/delete/{group}', ['as' => 'group.delete', 'uses' => 'GroupController@delete']);
 Route::resource('group', 'GroupController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
-Route::resource('balance',  'BalanceController',
-        ['only' => ['index']]);
-
-Route::resource('user', 'UserController',
-        ['only' => ['index', 'create']]);
-
-Route::resource('setting',  'SettingController',
-        ['only' => ['index']]);
-
+/**
+ * Confirmation Routes.
+ */
 Route::get('confirmation/delete/{confirmation}', ['as' => 'confirmation.delete', 'uses' => 'ConfirmationController@delete']);
 Route::get('confirmation/{confirmation}/{status}', ['as' => 'confirmation.status', 'uses' => 'ConfirmationController@status']);
 Route::resource('confirmation',  'ConfirmationController',
         ['only' => ['index']]);
 
+/**
+ * Donation Routes.
+ */
 Route::get('donation/delete/{donation}', ['as' => 'donation.delete', 'uses' => 'DonationController@delete']);
 Route::get('donation/{donation}/{status}', ['as' => 'donation.status', 'uses' => 'DonationController@status']);
 Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
 
+/**
+ * Balance Routes.
+ */
+Route::resource('balance',  'BalanceController',
+        ['only' => ['index']]);
+
+/**
+ * User Routes.
+ */
+Route::resource('user', 'UserController',
+        ['only' => ['index', 'create']]);
+
+/**
+ * Setting Routes.
+ */
+Route::resource('setting',  'SettingController',
+        ['only' => ['index']]);
+
+/**
+ * Testing Routes.
+ */
 Route::get('fin', function (){
         $inbox_all = Inbox::where('Processed', 'false')->get();
 
