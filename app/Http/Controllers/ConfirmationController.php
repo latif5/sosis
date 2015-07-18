@@ -112,7 +112,7 @@ class ConfirmationController extends Controller
             $confirmation = Confirmation::destroy($request->check);
 
             $statusAlert = 'infoMessage';
-            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+            $messageAlert = 'Sebanyak '.count($request->check).' data telah dihapus';
         } else {
             $statusAlert = 'dangerMessage';
             $messageAlert = 'Tidak ada data terpilih';
