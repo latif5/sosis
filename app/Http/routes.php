@@ -56,6 +56,7 @@ Route::resource('sentitem', 'SentItemController',
 /**
  * Contact Routes.
  */
+Route::post('contact/deleteMultiple', ['as' => 'contact.delete.multiple', 'uses' => 'ContactController@deleteMultiple']);
 Route::get('contact/delete/{contact}', ['as' => 'contact.delete', 'uses' => 'ContactController@delete']);
 Route::resource('contact', 'ContactController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);

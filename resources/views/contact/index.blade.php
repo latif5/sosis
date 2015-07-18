@@ -87,6 +87,8 @@
     </div>
 </div><br>
 
+{{-- Awal form multiple delete --}}
+{!! Form::open(['route' => 'contact.delete.multiple']) !!}
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -103,7 +105,13 @@
             <?php $nomor = $contact_all->firstItem() ?>
             @forelse($contact_all as $contact)
             <tr>
-                <td>{{ $nomor++ }}.</td>
+                <td>
+                    {{-- Tombol checkbox multiple delete --}}
+                    <div class="checkbox checkbox-circle checkbox-danger">
+                        {!! Form::checkbox('check[]', $contact->id, false, ['id' => 'check-'.$contact->id, 'class' => 'styled']) !!}
+                        {!! Form::label('check-'.$contact->id, $nomor++) !!}
+                    </div>
+                </td>
                 <td>{{ $contact->nama }}</td>
                 <td>{{ $contact->ponsel }}</td>
                 <td>{{ $contact->keterangan }}</td>
@@ -141,6 +149,12 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
     </p>
 </div>
-
+{{-- Tombol multiple delete --}}
+<button type="submit" class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span> 
+    Hapus item terpilih
+</button>
+{!! Form::close() !!}
+{{-- Akhir form multiple delete --}}
 
 @stop

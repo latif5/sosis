@@ -13,6 +13,7 @@ use App\Group;
 
 use App\Http\Requests\CreateContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use App\Http\Requests\DeleteContactRequest;
 
 class ContactController extends Controller
 {
@@ -131,5 +132,25 @@ class ContactController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Kontak telah dihapus');
+    }
+
+    /**
+     * Mengapus beberapa data sms terpilih dari contact.
+     */
+    public function deleteMultiple(DeleteContactRequest $request)
+    {
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $contact = Contact::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
+
+        return redirect()->back()
+            ->with($statusAlert, $messageAlert);
     }
 }
