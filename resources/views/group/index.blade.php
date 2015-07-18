@@ -106,7 +106,7 @@
                 <td>
                     {{-- Tombol checkbox multiple delete --}}
                     {!! Form::checkbox('check[]', $group->id) !!}
-                    {{ $nomor++ }}
+                    {{ $nomor++ }}.
                 </td>
                 <td>{{ $group->nama }}</td>
                 <td>{{ $group->keterangan }}</td>

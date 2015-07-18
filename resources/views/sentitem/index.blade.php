@@ -91,7 +91,7 @@
                 <td>
                     {{-- Tombol checkbox multiple delete --}}
                         {!! Form::checkbox('check[]', $sentitem->ID) !!}
-                        {{ $nomor++ }}
+                        {{ $nomor++ }}.
                 </td>
                 <td>
                     <small>{{ date('d M Y H:i:s', strtotime($sentitem->SendingDateTime)) }}</small>

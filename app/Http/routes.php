@@ -74,6 +74,7 @@ Route::resource('group', 'GroupController',
 /**
  * Confirmation Routes.
  */
+Route::post('confirmation/deleteMultiple', ['as' => 'confirmation.delete.multiple', 'uses' => 'ConfirmationController@deleteMultiple']);
 Route::get('confirmation/delete/{confirmation}', ['as' => 'confirmation.delete', 'uses' => 'ConfirmationController@delete']);
 Route::get('confirmation/{confirmation}/{status}', ['as' => 'confirmation.status', 'uses' => 'ConfirmationController@status']);
 Route::resource('confirmation',  'ConfirmationController',

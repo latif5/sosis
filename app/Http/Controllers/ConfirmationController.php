@@ -10,6 +10,8 @@ use \Input;
 
 use App\Confirmation;
 
+use App\Http\Requests\DeleteConfirmationRequest;
+
 class ConfirmationController extends Controller
 {
     /**
@@ -98,5 +100,25 @@ class ConfirmationController extends Controller
 
         return redirect()->back()
             ->with('infoMessage', 'Data telah dihapus');
+    }
+
+    /**
+     * Mengapus beberapa data terpilih dari contact.
+     */
+    public function deleteMultiple(DeleteConfirmationRequest $request)
+    {
+        // Cek jika ceklist terisi
+        if ($request->check != null) {
+            $confirmation = Confirmation::destroy($request->check);
+
+            $statusAlert = 'infoMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' pesan telah dihapus';
+        } else {
+            $statusAlert = 'dangerMessage';
+            $messageAlert = 'Tidak ada data terpilih';
+        }
+
+        return redirect()->back()
+            ->with($statusAlert, $messageAlert);
     }
 }

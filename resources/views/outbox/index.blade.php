@@ -97,7 +97,7 @@
                 <td>
                     {{-- Tombol checkbox multiple delete --}}
                         {!! Form::checkbox('check[]', $outbox->ID) !!}
-                        {{ $nomor++ }}
+                        {{ $nomor++ }}.
                 </td>
                 <td>
                     <small>{{ date('d M Y H:i:s', strtotime($outbox->UpdatedInDB)) }}</small>
