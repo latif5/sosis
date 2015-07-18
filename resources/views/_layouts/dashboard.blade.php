@@ -25,7 +25,8 @@
 
         <!-- CSS pengaya untuk template awesome bootstrap checkbox -->
         {{-- dari https://github.com/flatlogic/awesome-bootstrap-checkbox --}}
-        <link href="{{ asset('assets/css/awesome-bootstrap-checkbox.css') }}" type="text/css" rel="stylesheet"/>
+        {{-- <link href="{{ asset('assets/css/awesome-bootstrap-checkbox.css') }}" type="text/css" rel="stylesheet"/> --}}
+        {{-- di disabled --}}
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>

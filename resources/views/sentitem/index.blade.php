@@ -90,10 +90,8 @@
             <tr>
                 <td>
                     {{-- Tombol checkbox multiple delete --}}
-                    <div class="checkbox checkbox-circle checkbox-danger">
-                        {!! Form::checkbox('check[]', $sentitem->ID, false, ['id' => 'check-'.$sentitem->ID, 'class' => 'styled']) !!}
-                        {!! Form::label('check-'.$sentitem->ID, $nomor++) !!}
-                    </div>
+                        {!! Form::checkbox('check[]', $sentitem->ID) !!}
+                        {{ $nomor++ }}
                 </td>
                 <td>
                     <small>{{ date('d M Y H:i:s', strtotime($sentitem->SendingDateTime)) }}</small>

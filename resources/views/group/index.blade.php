@@ -105,10 +105,8 @@
             <tr>
                 <td>
                     {{-- Tombol checkbox multiple delete --}}
-                    <div class="checkbox checkbox-circle checkbox-danger">
-                        {!! Form::checkbox('check[]', $group->id, false, ['id' => 'check-'.$group->id, 'class' => 'styled']) !!}
-                        {!! Form::label('check-'.$group->id, $nomor++) !!}
-                    </div>
+                    {!! Form::checkbox('check[]', $group->id) !!}
+                    {{ $nomor++ }}
                 </td>
                 <td>{{ $group->nama }}</td>
                 <td>{{ $group->keterangan }}</td>

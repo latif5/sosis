@@ -90,10 +90,8 @@
             <tr>
                 <td>
                     {{-- Tombol checkbox multiple delete --}}
-                    <div class="checkbox checkbox-circle checkbox-danger">
-                        {!! Form::checkbox('check[]', $inbox->ID, false, ['id' => 'check-'.$inbox->ID, 'class' => 'styled']) !!}
-                        {!! Form::label('check-'.$inbox->ID, $nomor++) !!}
-                    </div>
+                        {!! Form::checkbox('check[]', $inbox->ID) !!}
+                        {{ $nomor++ }}
                 </td>
                 <td>
                    <small>{{ date('d M Y H:i:s', strtotime($inbox->ReceivingDateTime)) }}</small>
