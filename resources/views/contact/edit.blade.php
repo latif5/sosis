@@ -50,4 +50,33 @@
         </div> {{-- .panel --}}
     </div>
 </div>
+
+<h1 class="page-header"><small>Daftar Group</small></h1>
+<div class="table">
+    <table class="table table-striped table-hover table-condensed">
+        <thead>
+            <tr>
+                <th width="5%">No.</th>
+                <th width="45%">Nama</th>
+                <th width="50%">Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $nomor = 1; ?>
+            @forelse($contact->group()->orderBy('nama')->get() as $group)
+            <tr>
+                <td>{{ $nomor++ }}.</td>
+                <td>{{ $group->nama }}</td>
+                <td>{{ $group->keterangan }}</td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="6">
+                    <p>Tidak ada data yang dapat ditampilkan.</p>
+                </td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 @stop

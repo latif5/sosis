@@ -119,7 +119,7 @@ class ContactController extends Controller
             $contact->group()->detach();
         }
 
-        return redirect()->route('contact.index')
+        return redirect()->back()
             ->with('successMessage', 'Kontak berhasil diperbaharui');
     }
 
