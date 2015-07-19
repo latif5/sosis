@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Input;
+
+use App\User;
+
+use App\Http\Requests\CreateUserRequest;
 
 class UserController extends Controller
 {
@@ -16,7 +21,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $user_all = User::
+              where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->paginate(7);
+
+        return view('user.index', compact('user_all', 'sort', 'mode', 'cari'));
     }
 
     /**
@@ -34,9 +49,21 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(CreateUserRequest $request)
     {
-        //
+        $user = new User;
+
+        $user->nama = $request->nama;   
+        $user->username = $request->username;   
+        $user->group = $request->group;
+        $user->keterangan = $request->keterangan;   
+        $user->email = $request->email;   
+        $user->password = $request->password;
+
+        $user->save();
+
+        return redirect()->route('user.create')
+            ->with('successMessage', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -73,13 +100,13 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
+     * Mengapus data terpilih dari user.
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $user = User::destroy($id);
+
+        return redirect()->back()
+            ->with('infoMessage', 'Pesan telah dihapus');
     }
 }

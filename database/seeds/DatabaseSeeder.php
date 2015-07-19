@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfirmationTableSeeder::class);
         $this->call(DonationTableSeeder::class);
         $this->call(ContactGroupTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
 
         Model::reguard();
     }
