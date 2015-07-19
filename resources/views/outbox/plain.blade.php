@@ -14,14 +14,14 @@
     </thead>
     <tbody>
         <?php $nomor = 1 ?>
-        @forelse($sentitem_all as $sentitem)
+        @forelse($outbox_all as $outbox)
         <tr>
             <td align="center">{{ $nomor++ }}</td>
-            <td align="center">{{ date('d/m/Y H:i:s', strtotime($sentitem->SendingDateTime)) }}</td>
-            <td align="center">{{ $sentitem->DestinationNumber }}</td>
-            <td align="center">{{ $sentitem->nama }}</td>
-            <td>{{ $sentitem->TextDecoded }}</td>
-            <td align="center">{{ $sentitem->Status }}</td>
+            <td align="center">{{ date('d/m/Y H:i:s', strtotime($outbox->UpdatedInDB)) }}</td>
+            <td align="center">{{ $outbox->DestinationNumber }}</td>
+            <td align="center">{{ $outbox->nama }}</td>
+            <td>{{ $outbox->TextDecoded }}</td>
+            <td align="center">{{ $outbox->Status }}</td>
         </tr>
         @empty
         <tr>
@@ -33,7 +33,7 @@
     </tbody>
 </table>
 <p>
-    Menampilkan {{ $sentitem_all->count() }} pesan <br>
+    Menampilkan {{ $outbox_all->count() }} pesan <br>
     <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
 </p>
 @stop

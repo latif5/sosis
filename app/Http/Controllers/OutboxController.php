@@ -36,6 +36,55 @@ class OutboxController extends Controller
     }
 
     /**
+     * Menampilkan daftar sms di outbox dalam bentuk plain.
+     */
+    public function exportPlain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'UpdatedInDB');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $outbox_all = Outbox::
+              leftJoin('contact', 'outbox.DestinationNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
+            ->where('UpdatedInDB', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('outbox.plain', compact('outbox_all', 'sort', 'mode', 'cari', 'cari_bulan'));
+    }
+
+    /**
+     * Menampilkan daftar sms di outbox dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'UpdatedInDB');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $outbox_all = Outbox::
+              leftJoin('contact', 'outbox.DestinationNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
+            ->where('UpdatedInDB', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Sent Item', function($excel) use ($sort, $mode, $cari, $cari_bulan, $outbox_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $cari, $cari_bulan, $outbox_all){
+                $sheet->loadView('outbox.plain', compact('sort', 'mode', 'cari', 'cari_bulan', 'outbox_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
+    }
+
+    /**
      * Menghapus seluruh data dari outbox, dengan kata lain
      * membatalkan seluruh antrean pengiriman pesan
      */
