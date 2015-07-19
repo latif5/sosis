@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
+use \Excel;
 
 use App\Group;
 use App\Contact;
@@ -58,14 +59,6 @@ class GroupController extends Controller
 
         return redirect()->route('group.create')
             ->with('successMessage', 'Grup berhasil disimpan');
-    }
-
-    /**
-     * Menampilkan detil data group terpilih.
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -132,6 +125,49 @@ class GroupController extends Controller
 
         return redirect()->route('group.member.edit', $group->id)
             ->with('successMessage', 'Anggota grup berhasil diperbaharui');
+    }
+
+    /**
+     * Menampilkan data contact dalam bentuk plain.
+     */
+    public function exportPlain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $group_all = Group::with('contact')
+            ->where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('group.plain', compact('group_all', 'sort', 'mode', 'cari'));
+    }
+
+    /**
+     * Menampilkan data contact dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $group_all = Group::with('contact')
+            ->where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Grup', function($excel) use ($sort, $mode, $cari, $group_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $cari, $group_all){
+                $sheet->loadView('group.plain', compact('sort', 'mode', 'cari', 'group_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
     }
 
     /**
