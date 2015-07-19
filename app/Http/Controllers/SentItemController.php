@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
+use \Excel;
 
 use App\SentItem;
 
@@ -36,6 +37,55 @@ class SentItemController extends Controller
     }
 
     /**
+     * Menampilkan daftar sms di outbox dalam bentuk plain.
+     */
+    public function exportPlain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'SendingDateTime');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $sentitem_all = SentItem::
+              leftJoin('contact', 'sentitems.DestinationNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
+            ->where('SendingDateTime', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('sentitem.plain', compact('sentitem_all', 'sort', 'mode', 'cari', 'cari_bulan'));
+    }
+
+    /**
+     * Menampilkan daftar sms di outbox dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'SendingDateTime');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $sentitem_all = SentItem::
+              leftJoin('contact', 'sentitems.DestinationNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
+            ->where('SendingDateTime', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Sent Item', function($excel) use ($sort, $mode, $cari, $cari_bulan, $sentitem_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $cari, $cari_bulan, $sentitem_all){
+                $sheet->loadView('sentitem.plain', compact('sort', 'mode', 'cari', 'cari_bulan', 'sentitem_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
+    }
+
+    /**
      * Mengapus data sms terpilih dari sentitem.
      */
     public function delete($id)
@@ -47,7 +97,7 @@ class SentItemController extends Controller
     }
 
     /**
-     * Mengapus beberapa data sms terpilih dari inbox.
+     * Mengapus beberapa data sms terpilih dari sent item.
      */
     public function deleteMultiple(DeleteSentItemRequest $request)
     {

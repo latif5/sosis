@@ -67,7 +67,10 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#" target="_blank">PDF</a></li>
+                <li><a href="{{ route('contact.export', ['xlsx']) }}?sort={{ $sort }}&mode={{ $mode }}&cari={{ $cari }}" target="_blank">Excel</a></li>
+                <li><a href="{{ route('contact.export', ['csv']) }}?sort={{ $sort }}&mode={{ $mode }}&cari={{ $cari }}" target="_blank">CSV</a></li>
+                <li><a href="{{ route('contact.export', ['pdf']) }}?sort={{ $sort }}&mode={{ $mode }}&cari={{ $cari }}" target="_blank">PDF</a></li>
+                <li><a href="{{ route('contact.export.plain') }}?sort={{ $sort }}&mode={{ $mode }}&cari={{ $cari }}" target="_blank">Plain</a></li>
             </ul>
         </div>
     </div>

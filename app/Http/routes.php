@@ -41,6 +41,8 @@ Route::resource('inbox', 'InboxController',
 /**
  * Outbox Routes.
  */
+Route::get('outbox/export/plain', ['as' => 'outbox.export.plain', 'uses' => 'OutboxController@exportPlain']);
+Route::get('outbox/export/{format}', ['as' => 'outbox.export', 'uses' => 'OutboxController@export']);
 Route::post('outbox/deleteMultiple', ['as' => 'outbox.delete.multiple', 'uses' => 'OutboxController@deleteMultiple']);
 Route::get('outbox/delete/{outbox}', ['as' => 'outbox.delete', 'uses' => 'OutboxController@delete']);
 Route::get('outbox/truncate', ['as' => 'outbox.truncate', 'uses' => 'OutboxController@truncate']);
@@ -50,6 +52,8 @@ Route::resource('outbox', 'OutboxController',
 /**
  * SentItem Routes.
  */
+Route::get('sentitem/export/plain', ['as' => 'sentitem.export.plain', 'uses' => 'SentItemController@exportPlain']);
+Route::get('sentitem/export/{format}', ['as' => 'sentitem.export', 'uses' => 'SentItemController@export']);
 Route::post('sentitem/deleteMultiple', ['as' => 'sentitem.delete.multiple', 'uses' => 'SentItemController@deleteMultiple']);
 Route::get('sentitem/delete/{sentitem}', ['as' => 'sentitem.delete', 'uses' => 'SentItemController@delete']);
 Route::resource('sentitem', 'SentItemController',
@@ -58,6 +62,8 @@ Route::resource('sentitem', 'SentItemController',
 /**
  * Contact Routes.
  */
+Route::get('contact/export/plain', ['as' => 'contact.export.plain', 'uses' => 'ContactController@exportPlain']);
+Route::get('contact/export/{format}', ['as' => 'contact.export', 'uses' => 'ContactController@export']);
 Route::get('contact/import', ['as' => 'contact.import', 'uses' => 'ContactController@import']);
 Route::post('contact/import', ['as' => 'contact.import.post', 'uses' => 'ContactController@importPost']);
 Route::post('contact/deleteMultiple', ['as' => 'contact.delete.multiple', 'uses' => 'ContactController@deleteMultiple']);
@@ -68,6 +74,8 @@ Route::resource('contact', 'ContactController',
 /**
  * Group Routes.
  */
+Route::get('group/export/plain', ['as' => 'group.export.plain', 'uses' => 'GroupController@exportPlain']);
+Route::get('group/export/{format}', ['as' => 'group.export', 'uses' => 'GroupController@export']);
 Route::post('group/deleteMultiple', ['as' => 'group.delete.multiple', 'uses' => 'GroupController@deleteMultiple']);
 Route::get('group/member/{group}', ['as' => 'group.member.edit', 'uses' => 'GroupController@memberEdit']);
 Route::put('group/member/{group}', ['as' => 'group.member.update', 'uses' => 'GroupController@memberUpdate']);
@@ -78,6 +86,8 @@ Route::resource('group', 'GroupController',
 /**
  * Confirmation Routes.
  */
+Route::get('confirmation/export/plain', ['as' => 'confirmation.export.plain', 'uses' => 'ConfirmationController@exportPlain']);
+Route::get('confirmation/export/{format}', ['as' => 'confirmation.export', 'uses' => 'ConfirmationController@export']);
 Route::post('confirmation/deleteMultiple', ['as' => 'confirmation.delete.multiple', 'uses' => 'ConfirmationController@deleteMultiple']);
 Route::get('confirmation/delete/{confirmation}', ['as' => 'confirmation.delete', 'uses' => 'ConfirmationController@delete']);
 Route::get('confirmation/{confirmation}/{status}', ['as' => 'confirmation.status', 'uses' => 'ConfirmationController@status']);
@@ -87,6 +97,8 @@ Route::resource('confirmation',  'ConfirmationController',
 /**
  * Donation Routes.
  */
+Route::get('donation/export/plain', ['as' => 'donation.export.plain', 'uses' => 'DonationController@exportPlain']);
+Route::get('donation/export/{format}', ['as' => 'donation.export', 'uses' => 'DonationController@export']);
 Route::post('donation/deleteMultiple', ['as' => 'donation.delete.multiple', 'uses' => 'DonationController@deleteMultiple']);
 Route::get('donation/delete/{donation}', ['as' => 'donation.delete', 'uses' => 'DonationController@delete']);
 Route::get('donation/{donation}/{status}', ['as' => 'donation.status', 'uses' => 'DonationController@status']);
