@@ -24,7 +24,7 @@ class InboxTableSeeder extends Seeder
             $inbox = new Inbox;
 
             $inbox->ReceivingDateTime = $faker->dateTimeThisYear;
-            $inbox->SenderNumber = $faker_generator->cellphone(false);
+            $inbox->SenderNumber = $faker_generator->cellphone(false).$faker_generator->cellphone(false);
             $inbox->TextDecoded = $faker->text(100);
             $inbox->Processed = 'false';
 

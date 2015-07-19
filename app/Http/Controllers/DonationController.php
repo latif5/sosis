@@ -52,7 +52,7 @@ class DonationController extends Controller
 
             $statusAlert = 'successMessage';
             $messageAlert = 'Data telah diverifikasi';
-            $messageSms = 'Transfer untuk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' BERHASIL kami verifikasi. Trims.';
+            $messageSms = 'Transfer utk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' BERHASIL kami verifikasi. Trims.';
             
             $SendController->send($donation->ponsel, $messageSms);
 
@@ -63,7 +63,7 @@ class DonationController extends Controller
         
             $statusAlert = 'infoMessage';
             $messageAlert = 'Proses verifikasi data ditunda';
-            $messageSms = 'Maaf, verifikasi transfer untuk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' TERTUNDA. Trims.';
+            $messageSms = 'Maaf, verifikasi transfer utk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' TERTUNDA. Trims.';
             
             $SendController->send($donation->ponsel, $messageSms);
 
@@ -74,7 +74,7 @@ class DonationController extends Controller
         
             $statusAlert = 'infoMessage';
             $messageAlert = 'Verifikasi data dibatalkan';
-            $messageSms = 'Maaf, verifikasi transfer untuk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' DIBATALKAN. Trims.';
+            $messageSms = 'Maaf, verifikasi transfer utk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' DIBATALKAN. Trims.';
             
             $SendController->send($donation->ponsel, $messageSms);
 
