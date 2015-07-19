@@ -24,7 +24,7 @@ class ImportContactRequest extends Request
     public function rules()
     {
         return [
-            'data'  => 'required|mimes:xls,xlsx',
+            'data'  => 'required',
             'group' => 'required'
         ];
     }
