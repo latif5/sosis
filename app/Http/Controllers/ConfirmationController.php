@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
+use \Excel;
 
 use App\Confirmation;
 
@@ -89,6 +90,57 @@ class ConfirmationController extends Controller
 
         return redirect()->back()
             ->with($statusAlert, $messageAlert);
+    }
+
+    /**
+     * Menampilkan daftar sms di inbox dalam bentuk plain.
+     */
+    public function exportPlain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'tanggal');
+        $mode = Input::get('mode', 'desc');
+        $status = Input::get('status', '');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $confirmation_all = Confirmation::
+              where('status', 'like', "%$status%")
+            ->where('santri', 'like', "%$cari%")
+            ->where('tanggal', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('confirmation.plain', compact('confirmation_all', 'sort', 'mode', 'status', 'cari', 'cari_bulan'));
+    }
+
+    /**
+     * Menampilkan daftar sms di inbox dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'tanggal');
+        $mode = Input::get('mode', 'desc');
+        $status = Input::get('status', '');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $confirmation_all = Confirmation::
+              where('status', 'like', "%$status%")
+            ->where('santri', 'like', "%$cari%")
+            ->where('tanggal', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Inbox', function($excel) use ($sort, $mode, $status, $cari, $cari_bulan, $confirmation_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $status, $cari, $cari_bulan, $confirmation_all){
+                $sheet->loadView('confirmation.plain', compact('sort', 'mode', 'status', 'cari', 'cari_bulan', 'confirmation_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
     }
 
     /**
