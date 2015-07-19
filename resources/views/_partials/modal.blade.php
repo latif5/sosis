@@ -20,8 +20,8 @@
                     <li><strong>Languages:</strong> HTML, CSS, PHP, Javascript</li>
                     <li><strong>Database:</strong> MySQL</li>
                     <li><strong>Email Service:</strong> Mailgun</li>
-                    <li><strong>Frameworks:</strong> Laravel, Bootstrap</li>
-                    <li><strong>Packages:</strong> Laravel Generators, Faker, Laravel DOM-PDF, Guzzle, Laravel Debugbar, Nesbot Carbon, and many other packages.</li>
+                    <li><strong>Frameworks:</strong> Laravel, Bootstrap, jQuery</li>
+                    <li><strong>Packages:</strong> filp/whoops, laravelcollective/html, fzaninotto/faker, barryvdh/laravel-debugbar, maatwebsite/excel, dompdf/dompdf, carbon/carbon, etc.</li>
                     <li><strong>Version Control:</strong> Git</Debugbar>
                 </ul>
             </div>
