@@ -31,7 +31,8 @@ Route::resource('send', 'SendController',
 /**
  * Inbox Routes.
  */
-Route::get('inbox/plain', ['as' => 'inbox.plain', 'uses' => 'InboxController@plain']);
+Route::get('inbox/export/plain', ['as' => 'inbox.export.plain', 'uses' => 'InboxController@exportPlain']);
+Route::get('inbox/export/{format}', ['as' => 'inbox.export', 'uses' => 'InboxController@export']);
 Route::post('inbox/deleteMultiple', ['as' => 'inbox.delete.multiple', 'uses' => 'InboxController@deleteMultiple']);
 Route::get('inbox/delete/{inbox}', ['as' => 'inbox.delete', 'uses' => 'InboxController@delete']);
 Route::resource('inbox', 'InboxController',

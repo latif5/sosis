@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
+use \Excel;
 
 use App\Inbox;
 
@@ -38,7 +39,7 @@ class InboxController extends Controller
     /**
      * Menampilkan daftar sms di inbox dalam bentuk plain.
      */
-    public function plain()
+    public function exportPlain()
     {
         // Ambil data filter dan sorting
         $sort = Input::get('sort', 'ReceivingDateTime');
@@ -54,6 +55,34 @@ class InboxController extends Controller
             ->get();
 
         return view('inbox.plain', compact('inbox_all', 'sort', 'mode', 'cari', 'cari_bulan'));
+    }
+
+    /**
+     * Menampilkan daftar sms di inbox dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'ReceivingDateTime');
+        $mode = Input::get('mode', 'desc');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $inbox_all = Inbox::
+              leftJoin('contact', 'inbox.SenderNumber', 'like', 'contact.ponsel')
+            ->where('TextDecoded', 'like', "%$cari%")
+            ->where('ReceivingDateTime', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Inbox', function($excel) use ($sort, $mode, $cari, $cari_bulan, $inbox_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $cari, $cari_bulan, $inbox_all){
+                $sheet->loadView('inbox.plain', compact('sort', 'mode', 'cari', 'cari_bulan', 'inbox_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
     }
 
     /**
