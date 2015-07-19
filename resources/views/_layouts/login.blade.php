@@ -11,10 +11,10 @@
 		<title>OPH Javanet</title>
 
 		<!-- CSS inti bootstrap -->
-		<link href="assets/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+		<link href="{{ asset('assets/css/bootstrap.css') }}" type="text/css" rel="stylesheet"/>
 
 		<!-- CSS ubahsuaian untuk template ini -->
-		<link href="assets/css/signin.css" type="text/css" rel="stylesheet"/>
+		<link href="{{ asset('assets/css/signin.css') }}" type="text/css" rel="stylesheet"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -32,11 +32,11 @@
 		</div> <!-- /container -->
 
 		<!-- Inti JavaScript Bootstrap -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+		<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+		<script src="{{ asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
 
 		<!-- JavaScript Ubahsuaian -->
 		<script type="text/javascript">
