@@ -115,14 +115,6 @@ class ContactController extends Controller
     }
 
     /**
-     * Menampilkan detil data contact terpilih.
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Menampilkan form ubah data contact terpilih.
      */
     public function edit($id)
@@ -166,6 +158,49 @@ class ContactController extends Controller
 
         return redirect()->back()
             ->with('successMessage', 'Kontak berhasil diperbaharui');
+    }
+
+    /**
+     * Menampilkan data contact dalam bentuk plain.
+     */
+    public function exportPlain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $contact_all = Contact::with('group')
+            ->where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('contact.plain', compact('contact_all', 'sort', 'mode', 'cari'));
+    }
+
+    /**
+     * Menampilkan data contact dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'nama');
+        $mode = Input::get('mode', 'asc');
+        $cari = Input::get('cari', '');
+
+        $contact_all = Contact::with('group')
+            ->where('nama', 'like', "%$cari%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Kontak', function($excel) use ($sort, $mode, $cari, $contact_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $cari, $contact_all){
+                $sheet->loadView('contact.plain', compact('sort', 'mode', 'cari', 'contact_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
     }
 
     /**
