@@ -14,8 +14,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>File</label>
-                            {!! Form::file('data') !!}
+                            <label>Data</label>
+                            <div class="well well-sm">
+                                {!! Form::file('data') !!}
+                            </div>
                             {!! $errors->first('data', '<p class="text-danger"><small>:message</small></p>') !!}
                             <small class="text-muted">Format file harus berupa <strong>nama - keterangan - no.  ponsel</strong> tanpa tabel heading, dengan ekstensi xls atau xlsx</small>
                         </div>
