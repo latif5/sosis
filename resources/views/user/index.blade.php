@@ -90,7 +90,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href=""><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
+                            <li><a href="{{ route('user.edit', [$user->id]) }}"><span class="glyphicon glyphicon-edit"></span> Ubah</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('user.delete', [$user->id]) }}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash"></span> Hapus</a></li>
                         </ul>

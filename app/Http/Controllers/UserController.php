@@ -11,6 +11,7 @@ use \Input;
 use App\User;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -85,7 +86,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -94,9 +97,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->nama = $request->nama;   
+        $user->username = $request->username;
+        $user->group = $request->group;
+        $user->keterangan = $request->keterangan;   
+        $user->email = $request->email;   
+        $user->password = $request->password;
+
+        $user->save();
+
+        return redirect()->route('user.index')
+            ->with('successMessage', 'Data berhasil diperbaharui');
     }
 
     /**

@@ -116,7 +116,7 @@ Route::resource('balance',  'BalanceController',
  */
 Route::get('user/delete/{user}', ['as' => 'user.delete', 'uses' => 'UserController@delete']);
 Route::resource('user', 'UserController',
-        ['only' => ['index', 'create', 'store']]);
+        ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
 /**
  * Setting Routes.
