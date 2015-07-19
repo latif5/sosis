@@ -96,10 +96,10 @@
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th width="5%">No.</th>
+                <th width="7%">No.</th>
                 <th width="15%">Nama</th>
                 <th width="15%">Nomor</th>
-                <th width="35%">Keterangan</th>
+                <th width="33%">Keterangan</th>
                 <th width="25%">Group</th>
                 <th width="5%">Pilihan</th>
             </tr>

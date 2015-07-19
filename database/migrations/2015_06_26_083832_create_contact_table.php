@@ -17,7 +17,8 @@ class CreateContactTable extends Migration
             
             $table->string('nama');
             $table->string('ponsel', 20);
-            $table->text('keterangan');
+            $table->text('keterangan')
+                ->nullable();
             $table->integer('user_id')
                 ->default(1);
 
