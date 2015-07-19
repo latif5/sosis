@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
+use \Excel;
 
 use App\Donation;
 
@@ -89,6 +90,57 @@ class DonationController extends Controller
 
         return redirect()->back()
             ->with($statusAlert, $messageAlert);
+    }
+
+    /**
+     * Menampilkan daftar sms di inbox dalam bentuk plain.
+     */
+    public function exportPlain()
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'tanggal');
+        $mode = Input::get('mode', 'desc');
+        $status = Input::get('status', '');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $donation_all = Donation::
+              where('status', 'like', "%$status%")
+            ->where('pengirim', 'like', "%$cari%")
+            ->where('tanggal', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        return view('donation.plain', compact('donation_all', 'sort', 'mode', 'status', 'cari', 'cari_bulan'));
+    }
+
+    /**
+     * Menampilkan daftar sms di inbox dalam bentuk format file.
+     */
+    public function export($format)
+    {
+        // Ambil data filter dan sorting
+        $sort = Input::get('sort', 'tanggal');
+        $mode = Input::get('mode', 'desc');
+        $status = Input::get('status', '');
+        $cari = Input::get('cari', '');
+        $cari_bulan = Input::get('cari_bulan', '');
+
+        $donation_all = Donation::
+              where('status', 'like', "%$status%")
+            ->where('pengirim', 'like', "%$cari%")
+            ->where('tanggal', 'like', "$cari_bulan%")
+            ->orderBy($sort, $mode)
+            ->get();
+
+        Excel::create('Data Inbox', function($excel) use ($sort, $mode, $status, $cari, $cari_bulan, $donation_all){
+            $excel->sheet('New sheet', function($sheet) use ($sort, $mode, $status, $cari, $cari_bulan, $donation_all){
+                $sheet->loadView('donation.plain', compact('sort', 'mode', 'status', 'cari', 'cari_bulan', 'donation_all'));
+                
+                $sheet->setOrientation('landscape');
+                
+            });
+        })->export($format);
     }
 
     /**
