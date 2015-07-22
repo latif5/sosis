@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-use Faker\Factory;
-
 use App\User;
 
 class UsersTableSeeder extends Seeder
@@ -15,21 +13,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        $user = new User;
 
-        $faker_generator = new Faker\Generator();
+        $user->nama = 'Miftah Afina';
+        $user->username = 'miftahafina';
+        $user->email = 'surat@miftahafina.com';
+        $user->password = Hash::make('123');
+        $user->group = 'admin';
+        $user->keterangan = 'Founder SOSIS';
 
-        for ($i=0; $i < 10 ; $i++) { 
-            $user = new User;
-
-            $user->nama = $faker->name;
-            $user->username = strtolower($faker->username);
-            $user->email = strtolower($faker->email);
-            $user->password = Hash::make('123');
-            $user->group = 'admin';
-            $user->keterangan = $faker->text(20);
-
-            $user->save();
-        }
+        $user->save();
     }
 }

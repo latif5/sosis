@@ -20,11 +20,11 @@ class ContactTableSeeder extends Seeder
         $faker_generator = new Faker\Generator();
         $faker_generator->addProvider(new Faker\Provider\pt_BR\PhoneNumber($faker_generator));
 
-        for ($i=0; $i < 25 ; $i++) { 
+        for ($i=0; $i < 50 ; $i++) { 
             $contact = new Contact;
 
             $contact->nama = $faker->name;
-            $contact->ponsel = $faker_generator->cellphone(false);
+            $contact->ponsel = $faker_generator->cellphone(false).$faker_generator->cellphone(false);
             $contact->keterangan = $faker->text(25);
             $contact->user_id = 1;
 

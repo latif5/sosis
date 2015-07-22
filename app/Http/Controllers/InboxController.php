@@ -20,6 +20,7 @@ class InboxController extends Controller
      */
     public function __construct()
     {
+        \Carbon\Carbon::setLocale('id');
         $this->middleware('auth');
     }
 

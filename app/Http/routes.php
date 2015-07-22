@@ -125,3 +125,12 @@ Route::resource('user', 'UserController',
  */
 Route::resource('setting',  'SettingController',
         ['only' => ['index']]);
+
+/**
+ * Testing Routes.
+ */
+Route::get('tes', function (){
+            // Ambil data contact untuk data random
+        dd($contact_ponsel = \App\Contact::orderByRaw("RAND()")->first()->ponsel);
+
+});

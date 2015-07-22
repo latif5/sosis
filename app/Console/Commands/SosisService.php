@@ -162,11 +162,6 @@ class SosisService extends Command
                 }
             }
 
-            // // Jadikan true pesan yang telah dicek
-            // Inbox::find($id)->update([
-            //     'Processed' => 'true'
-            // ]);
-
         }
     }
 }
