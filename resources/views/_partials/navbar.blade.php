@@ -11,8 +11,30 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">Dasbor</a></li>
+                <li class="active"><a href="{{ route('home.index') }}">Dasbor</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#modalTentang">Tentang</a></li>
+                {{-- Awal navigasi untuk ponsel --}}
+                <li class="nav-divider"></li>
+                <li class="visible-xs-block"><a href="{{ route('send.create') }}">Tulis Pesan</a></li>
+                <li class="visible-xs-block"><a href="{{ route('inbox.index') }}">Kotak Masuk</a></li>
+                <li class="visible-xs-block"><a href="{{ route('outbox.index') }}">Kotak Keluar</a></li>
+                <li class="visible-xs-block"><a href="{{ route('sentitem.index') }}">Pesan Terkirim</a></li>
+
+                <li class="nav-divider"></li>
+                <li class="visible-xs-block"><a href="{{ route('contact.index') }}">Kontak</a></li>
+                <li class="visible-xs-block"><a href="{{ route('group.index') }}">Grup</a></li>
+
+                <li class="nav-divider"></li>
+                <li class="visible-xs-block"><a href="{{ route('confirmation.index') }}">Pembayaran</a></li>
+                <li class="visible-xs-block"><a href="{{ route('donation.index') }}">Donasi</a></li>
+
+                <li class="nav-divider"></li>
+                <li class="visible-xs-block"><a href="{{ route('donation.index') }}">Cek Pulsa</a></li>
+                <li class="visible-xs-block"><a href="{{ route('user.index') }}">Pengguna</a></li>
+                <li class="visible-xs-block"><a href="{{ route('setting.index') }}">Pengaturan</a></li>
+
+                <li class="nav-divider"></li>
+                {{-- Akhir navigasi untuk ponsel --}}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
