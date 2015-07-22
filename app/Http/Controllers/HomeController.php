@@ -18,14 +18,6 @@ class HomeController extends Controller
     }
 
     /**
-     * Menampilkan form login.
-     */
-    public function login()
-    {
-        return view('guest.login');
-    }
-
-    /**
      * Menampilkan beranda aplikasi.
      */
     public function index()

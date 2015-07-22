@@ -15,16 +15,10 @@ Route::post('auth/login', ['as' => 'auth.login.post.', 'uses' => 'AuthController
 Route::get('auth/logout', ['as' => 'auth.logout', 'uses' => 'AuthController@getLogout']);
 
 /**
- * Guest Routes.
- */
-Route::resource('guest', 'GuestController',
-        ['only' => ['index', 'login']]);
-
-/**
  * Home Routes.
  */
-Route::get('login', ['as' => 'home.login', 'uses' => 'HomeController@login']);
-Route::post('authenticate', ['as' => 'home.login.post', 'uses' => 'HomeController@index']);
+
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::resource('home', 'HomeController',
         ['only' => ['index']]);
 
