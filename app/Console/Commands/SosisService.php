@@ -98,6 +98,9 @@ class SosisService extends Command
                     $confirmation->keperluan = $keperluan_kirim_balasan;
                     $confirmation->save();
 
+                    // Hapus jika sudah dicek
+                    Inbox::destroy($id);
+
                 }
 
                 /**
@@ -132,6 +135,9 @@ class SosisService extends Command
                     $confirmation->keterangan = $keterangan_balasan;
                     $confirmation->save();
 
+                    // Hapus jika sudah dicek
+                    Inbox::destroy($id);
+
                 }
 
                 /**
@@ -148,13 +154,18 @@ class SosisService extends Command
                     $send = new SendController;
                     $send->send($nomor_pengirim_balasan, $isi_balasan);
 
+                    // Jadikan true untuk yang tidak sesuai format
+                    Inbox::find($id)->update([
+                        'Processed' => 'true'
+                    ]);
+
                 }
             }
 
-            // Jadikan true pesan yang telah dicek
-            Inbox::find($id)->update([
-                'Processed' => 'true'
-            ]);
+            // // Jadikan true pesan yang telah dicek
+            // Inbox::find($id)->update([
+            //     'Processed' => 'true'
+            // ]);
 
         }
     }
