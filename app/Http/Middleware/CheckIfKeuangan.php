@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckIfAdmin
+class CheckIfKeuangan
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class CheckIfAdmin
      */
     public function handle($request, Closure $next)
     {
-        // Hanya admin yang boleh melanjutkan
-        if (Auth::user()->group != 'admin') {
+        // Hanya keuangan dan admin yang boleh melanjutkan
+        if (Auth::user()->group != 'admin' and Auth::user()->group != 'keuangan') {
             return redirect()->back()->with('dangerMessage', 'Anda tidak memiliki akses');
         }
 
