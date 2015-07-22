@@ -116,6 +116,8 @@ Route::resource('balance',  'BalanceController',
 /**
  * User Routes.
  */
+Route::get('user/password', ['as' => 'user.password.edit', 'uses' => 'UserController@passwordEdit']);
+Route::post('user/password', ['as' => 'user.password.update', 'uses' => 'UserController@passwordUpdate']);
 Route::get('user/delete/{user}', ['as' => 'user.delete', 'uses' => 'UserController@delete']);
 Route::resource('user', 'UserController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);
