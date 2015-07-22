@@ -17,6 +17,14 @@ use App\Http\Requests\ForwardSendRequest;
 class SendController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan form pengiriman sms ke group dan ke contact.
      */
     public function create()

@@ -16,6 +16,14 @@ use App\Http\Requests\UpdateUserRequest;
 class UserController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -59,7 +67,7 @@ class UserController extends Controller
         $user->group = $request->group;
         $user->keterangan = $request->keterangan;   
         $user->email = $request->email;   
-        $user->password = $request->password;
+        $user->password = \Hash::make($request->password);
 
         $user->save();
 

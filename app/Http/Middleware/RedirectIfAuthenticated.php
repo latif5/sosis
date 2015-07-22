@@ -34,6 +34,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
+        // Cek jika user telah login
         if ($this->auth->check()) {
             return redirect('/home');
         }

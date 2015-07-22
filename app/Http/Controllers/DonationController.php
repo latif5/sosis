@@ -16,6 +16,14 @@ use App\Http\Requests\DeleteDonationRequest;
 class DonationController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan daftar data donation.
      */
     public function index()

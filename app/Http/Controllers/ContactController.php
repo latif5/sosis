@@ -20,6 +20,14 @@ use App\Http\Requests\ImportContactRequest;
 class ContactController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan daftar contact.
      */
     public function index()

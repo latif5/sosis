@@ -20,6 +20,14 @@ use App\Http\Requests\DeleteGroupRequest;
 class GroupController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan data group.
      */
     public function index()

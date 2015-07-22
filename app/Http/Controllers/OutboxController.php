@@ -16,6 +16,14 @@ use App\Http\Requests\DeleteOutboxRequest;
 class OutboxController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan daftar sms di outbox.
      */
     public function index()

@@ -10,6 +10,14 @@ use App\Http\Requests;
 class HomeController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan form login.
      */
     public function login()

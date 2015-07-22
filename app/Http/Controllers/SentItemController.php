@@ -16,6 +16,14 @@ use App\Http\Requests\DeleteSentItemRequest;
 class SentItemController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan daftar sms di sentitem.
      */
     public function index()

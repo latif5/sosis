@@ -16,6 +16,14 @@ use App\Http\Requests\DeleteInboxRequest;
 class InboxController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan daftar sms di inbox.
      */
     public function index()

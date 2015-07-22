@@ -16,6 +16,14 @@ use App\Http\Requests\DeleteConfirmationRequest;
 class ConfirmationController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Menampilkan daftar data confirmation.
      */
     public function index()

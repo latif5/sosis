@@ -10,6 +10,14 @@ use App\Http\Controllers\Controller;
 class SettingController extends Controller
 {
     /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
