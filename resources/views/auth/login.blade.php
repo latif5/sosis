@@ -3,7 +3,7 @@
 @section('content')
             <div class="row">
                 <div class="col-md-12" align="center">
-                    <img src="{{ asset('assets/img/oph-logo-dark.png') }}" class="img-responsive">
+                    <img src="{{ asset('assets/img/logo-sosis-large3.png') }}" class="img-responsive" width="300">
                 </div>
             </div>
 

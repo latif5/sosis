@@ -1,4 +1,4 @@
-@inject('badge', '\App\BadgeService');
+@inject('badge', '\App\BadgeService')
 
 <div class="col-sm-3 col-md-2 sidebar">
     {{-- Bagian Pengaturan --}}

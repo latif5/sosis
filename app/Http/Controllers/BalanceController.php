@@ -27,7 +27,7 @@ class BalanceController extends Controller
         $balance = [
             'stop'      => exec("sudo /etc/init.d/gammu-smsd stop"),
             'ussd1'     => exec("sudo /usr/bin/gammu getussd *555#"),
-            // 'ussd2'     => exec("sudo /usr/bin/gammu getussd *555*1#"),
+            'ussd2'     => exec("sudo /usr/bin/gammu getussd *555*1#"),
             // 'ussd3'     => exec("sudo /usr/bin/gammu getussd *555*2#"),
             'start'     => exec("sudo /etc/init.d/gammu-smsd start"),
             'status'    => exec("sudo /etc/init.d/gammu-smsd status")

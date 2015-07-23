@@ -15,10 +15,10 @@
                         <div class="well">
                             <strong>*555#</strong> &raquo; {{ $balance['ussd1'] }}
                         </div>
-{{-- 
                         <div class="well">
-                            <strong>*555*1#</strong> &raquo; {{ $balance['ussd1'] }}
+                            <strong>*555*1#</strong> &raquo; {{ $balance['ussd2'] }}
                         </div>
+{{-- 
                         <div class="well">
                             <strong>*555*2#</strong> &raquo; {{ $balance['ussd2'] }}
                         </div>

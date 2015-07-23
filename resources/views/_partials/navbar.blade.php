@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=""><img src="{{ asset('assets/img/oph-logo-dark-small.png') }}" alt="OPH Javanet" style="max-width:78px; margin-top: -7px"></a>
+            <a class="navbar-brand" href=""><img src="{{ asset('assets/img/logo-sosis-small-dark.png') }}" alt="OPH Javanet" style="max-width:78px; margin-top: -7px"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
