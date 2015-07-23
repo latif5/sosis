@@ -94,6 +94,17 @@ class SentItemController extends Controller
     }
 
     /**
+     * Menghapus seluruh data dari sentitem
+     */
+    public function truncate()
+    {
+        $sentitem = SentItem::truncate();
+
+        return redirect()->route('sentitem.index')
+            ->with('infoMessage', 'Seluruh pesan terkirim dihapus');
+    }
+
+    /**
      * Mengapus data sms terpilih dari sentitem.
      */
     public function delete($id)

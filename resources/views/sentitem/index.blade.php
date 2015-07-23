@@ -57,7 +57,14 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-1">
+        <a href="{{ route('sentitem.truncate') }}" class="btn btn-danger btn-sm" data-toggle="confirmation" data-placement="left">
+            <span class="glyphicon glyphicon-ban-circle"></span> 
+            Batalkan
+        </a>
+    </div>
+
+    <div class="col-md-5">
         {!! Form::open(['method' => 'get', 'class' => 'form-inline pull-right']) !!}
                 {!! Form::hidden('sort', $sort) !!}
                 {!! Form::hidden('mode', $mode) !!}

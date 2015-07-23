@@ -58,6 +58,7 @@ Route::get('sentitem/export/plain', ['as' => 'sentitem.export.plain', 'uses' => 
 Route::get('sentitem/export/{format}', ['as' => 'sentitem.export', 'uses' => 'SentItemController@export']);
 Route::post('sentitem/deleteMultiple', ['as' => 'sentitem.delete.multiple', 'uses' => 'SentItemController@deleteMultiple']);
 Route::get('sentitem/delete/{sentitem}', ['as' => 'sentitem.delete', 'uses' => 'SentItemController@delete']);
+Route::get('sentitem/truncate', ['as' => 'sentitem.truncate', 'uses' => 'SentItemController@truncate']);
 Route::resource('sentitem', 'SentItemController',
         ['only' => ['index']]);
 
