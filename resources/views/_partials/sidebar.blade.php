@@ -1,3 +1,5 @@
+@inject('badge', '\App\BadgeService');
+
 <div class="col-sm-3 col-md-2 sidebar">
     {{-- Bagian Pengaturan --}}
     <ul class="nav nav-sidebar">
@@ -23,9 +25,9 @@
             <a href="{{ route('inbox.index') }}">
                 <span class="glyphicon glyphicon-envelope"></span>
                 Kotak Masuk 
-                @if(\App\Inbox::where('Processed', '=', 'false')->count() != 0)
+                @if($badge->inbox() != 0)
                 <span class="badge">
-                    {{ \App\Inbox::where('Processed', '=', 'false')->count() }}
+                    {{ $badge->inbox() }}
                 </span>
                 @endif
             </a>
@@ -40,9 +42,9 @@
             <a href="{{ route('outbox.index') }}">
                 <span class="glyphicon glyphicon-inbox"></span>
                 Kotak Keluar
-                @if(\App\Outbox::count() != 0)
+                @if($badge->outbox() != 0)
                 <span class="badge">
-                    {{ \App\Outbox::count() }}
+                    {{ $badge->outbox() }}
                 </span>
                 @endif
             </a>
@@ -51,9 +53,9 @@
             <a href="{{ route('sentitem.index') }}">
                 <span class="glyphicon glyphicon-saved"></span>
                 Pesan Terkirim
-                @if(\App\SentItem::where('Status', '=', 'SendingError')->count() != 0)
+                @if($badge->sentitem() != 0)
                 <span class="badge">
-                    {{ \App\SentItem::where('Status', '=', 'SendingError')->count() }}
+                    {{ $badge->sentitem() }}
                 </span>
                 @endif
             </a>
@@ -86,9 +88,9 @@
             <a href="{{ route('confirmation.index') }}">
                 <span class="glyphicon glyphicon-transfer"></span>
                 Pembayaran
-                @if(\App\Confirmation::where('status', '!=', 'Sudah')->count() != 0)
+                @if($badge->confirmation() != 0)
                 <span class="badge">
-                    {{ \App\Confirmation::where('status', '!=', 'Sudah')->count() }}
+                    {{ $badge->confirmation() }}
                 </span>
                 @endif
             </a>
@@ -97,9 +99,9 @@
             <a href="{{ route('donation.index') }}">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                 Donasi
-                @if(\App\Donation::where('status', '!=', 'Sudah')->count() != 0)
+                @if($badge->donation() != 0)
                 <span class="badge">
-                    {{ \App\Donation::where('status', '!=', 'Sudah')->count() }}
+                    {{ $badge->donation() }}
                 </span>
                 @endif
             </a>
