@@ -118,7 +118,7 @@ Route::resource('balance',  'BalanceController',
  * User Routes.
  */
 Route::get('user/password', ['as' => 'user.password.edit', 'uses' => 'UserController@passwordEdit']);
-Route::post('user/password', ['as' => 'user.password.update', 'uses' => 'UserController@passwordUpdate']);
+Route::put('user/password', ['as' => 'user.password.update', 'uses' => 'UserController@passwordUpdate']);
 Route::get('user/delete/{user}', ['as' => 'user.delete', 'uses' => 'UserController@delete']);
 Route::resource('user', 'UserController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);
@@ -134,6 +134,6 @@ Route::resource('setting',  'SettingController',
  */
 Route::get('tes', function (){
             // Ambil data contact untuk data random
-        dd($contact_ponsel = \App\Contact::orderByRaw("RAND()")->first()->ponsel);
+        echo \Hash::make('123');
 
 });

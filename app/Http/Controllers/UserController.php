@@ -12,6 +12,7 @@ use App\User;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateUserPasswordRequest;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar user.
      *
      * @return Response
      */
@@ -45,7 +46,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form penambahan data user.
      *
      * @return Response
      */
@@ -55,7 +56,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data user baru ke database.
      *
      * @return Response
      */
@@ -77,18 +78,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form ubah data user terpilih.
      *
      * @param  int  $id
      * @return Response
@@ -101,7 +91,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbaharui data user terpilih.
      *
      * @param  int  $id
      * @return Response
@@ -115,12 +105,42 @@ class UserController extends Controller
         $user->group = $request->group;
         $user->keterangan = $request->keterangan;   
         $user->email = $request->email;   
-        $user->password = $request->password;
 
         $user->save();
 
         return redirect()->route('user.index')
             ->with('successMessage', 'Data berhasil diperbaharui');
+    }
+
+    /**
+     * Menampilkan form ubah data password user saat ini.
+     *
+     * @return Response
+     */
+    public function passwordEdit()
+    {
+        return view('user.passwordEdit');
+    }
+
+    /**
+     * Memperbaharui password data user saat ini.
+     */
+    public function passwordUpdate(UpdateUserPasswordRequest $request)
+    {
+        $id = \Auth::user()->id;
+
+        $user = User::findOrFail($id);
+
+        if (\Hash::check($request->passwordLama, $user->password)) {
+            $user->password = \Hash::make($request->password);
+            $user->save();
+
+            return redirect()->route('home.index')
+                ->with('successMessage', 'Kata sandi berhasil diubah.');
+        } else {
+            return redirect()->back()
+                ->with('dangerMessage', ' Password lama tidak cocok. Kata sandi gagal diubah.');
+        }
     }
 
     /**

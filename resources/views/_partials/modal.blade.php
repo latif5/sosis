@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <center>
-                    <img src="{{ asset('assets/img/oph-logo.png') }}" class="img-responsive" alt="OPH Javanet">
+                    <img src="{{ asset('assets/img/logo-sosis-large.png') }}" class="img-responsive" alt="OPH Javanet">
                 </center>
                 <br><br>
                 <div class="well well-sm text-center">
