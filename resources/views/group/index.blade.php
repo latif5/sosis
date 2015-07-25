@@ -140,7 +140,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $group_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
+    {!! $group_all->setPath('')->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $group_all->count() }} dari total {{ $group_all->total() }} data <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>

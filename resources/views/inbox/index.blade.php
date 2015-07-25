@@ -145,7 +145,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $inbox_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
+    {!! $inbox_all->setPath('')->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $inbox_all->count() }} dari total {{ $inbox_all->total() }} pesan <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>

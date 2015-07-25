@@ -161,7 +161,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $confirmation_all->appends(compact('sort', 'mode', 'status', 'cari', 'cari_bulan'))->render() !!}
+    {!! $confirmation_all->setPath('')->setPath('')->appends(compact('sort', 'mode', 'status', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $confirmation_all->count() }} dari total {{ $confirmation_all->total() }} pesan <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>

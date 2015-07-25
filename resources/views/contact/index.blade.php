@@ -144,7 +144,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $contact_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
+    {!! $contact_all->setPath('')->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $contact_all->count() }} dari total {{ $contact_all->total() }} data <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>

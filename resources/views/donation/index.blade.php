@@ -160,7 +160,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $donation_all->appends(compact('sort', 'mode', 'status', 'cari', 'cari_bulan'))->render() !!}
+    {!! $donation_all->setPath('')->appends(compact('sort', 'mode', 'status', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $donation_all->count() }} dari total {{ $donation_all->total() }} pesan <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>

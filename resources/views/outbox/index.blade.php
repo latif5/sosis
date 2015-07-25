@@ -142,7 +142,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $outbox_all->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
+    {!! $outbox_all->setPath('')->appends(compact('sort', 'mode', 'cari', 'cari_bulan'))->render() !!}
     <p>
         Menampilkan {{ $outbox_all->count() }} dari total {{ $outbox_all->total() }} pesan <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>

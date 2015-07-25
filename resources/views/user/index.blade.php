@@ -106,7 +106,7 @@
             @endforelse
         </tbody>
     </table>
-    {!! $user_all->appends(compact('sort', 'mode', 'cari'))->render() !!}
+    {!! $user_all->setPath('')->appends(compact('sort', 'mode', 'cari'))->render() !!}
     <p>
         Menampilkan {{ $user_all->count() }} dari total {{ $user_all->total() }} data <br>
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}'</small>
