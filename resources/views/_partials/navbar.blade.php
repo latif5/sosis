@@ -41,10 +41,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>{{ \Auth::user()->nama }} ({{  \Auth::user()->group }}{{--  | {{ \Auth::user()->id }} --}})
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="">Ubah Profil</a></li>
                         <li><a href="{{ route('user.password.edit') }}">Ubah Kata Sandi</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('auth.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Keluar</a></li>
+                        <li><a href="{{ route('auth.logout') }}" id="auth.logout"><span class="glyphicon glyphicon-log-out"></span> Keluar</a></li>
                     </ul>
                 </li>
             </ul>

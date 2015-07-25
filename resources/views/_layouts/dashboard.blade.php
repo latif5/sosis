@@ -74,6 +74,9 @@
         <script src="{{ asset('assets/js/transition.js') }}"></script>
         <script src="{{ asset('assets/js/collapse.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+        <!-- JavaScript datetime picker -->
+        <script src="{{ asset('assets/js/mousetrap.min.js') }}"></script>
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{ asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
@@ -138,6 +141,69 @@
                 format: 'YYYY-MM-DD HH:mm:ss',
                 widgetPositioning: { horizontal: 'right', vertical: 'bottom' }
             });
+        });
+        </script>
+
+        <script type="text/javascript">
+        // Fungsi untuk mengunjungi url
+        // Didapat dari https://stackoverflow.com/questions/17571571/making-mousetrap-click-a-link
+        function GoToLocation(url)
+          {
+            //window.location = "http://www.stackoverflow.com";
+            window.location = url;
+          }
+
+        // Pencegatan menggunakan tombol
+        Mousetrap.bind("b e", function() {
+            GoToLocation(document.getElementById("home.index").href);
+        });
+
+        Mousetrap.bind("t p", function() {
+            GoToLocation(document.getElementById("send.create").href);
+        });
+
+        Mousetrap.bind("k m", function() {
+            GoToLocation(document.getElementById("inbox.index").href);
+        });
+
+        Mousetrap.bind("k k", function() {
+            GoToLocation(document.getElementById("outbox.index").href);
+        });
+
+        Mousetrap.bind("p t", function() {
+            GoToLocation(document.getElementById("sentitem.index").href);
+        });
+
+        Mousetrap.bind("k o", function() {
+            GoToLocation(document.getElementById("contact.index").href);
+        });
+
+        Mousetrap.bind("g r", function() {
+            GoToLocation(document.getElementById("group.index").href);
+        });
+
+        Mousetrap.bind("p e", function() {
+            GoToLocation(document.getElementById("confirmation.index").href);
+        });
+
+        Mousetrap.bind("d o", function() {
+            GoToLocation(document.getElementById("donation.index").href);
+        });
+
+        Mousetrap.bind("c p", function() {
+            GoToLocation(document.getElementById("balance.index").href);
+        });
+
+        Mousetrap.bind("p n", function() {
+            GoToLocation(document.getElementById("user.index").href);
+        });
+
+        Mousetrap.bind("p g", function() {
+            GoToLocation(document.getElementById("setting.index").href);
+        });
+
+        Mousetrap.bind("k e", function() {
+            GoToLocation(document.getElementById("auth.logout").href);
         });
         </script>
     </body>

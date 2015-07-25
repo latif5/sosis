@@ -4,9 +4,9 @@
     {{-- Bagian Pengaturan --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('home*') || Request::is('authenticate*') ? 'active' : '' }}">
-            <a href="{{ route('home.index') }}">
+            <a href="{{ route('home.index') }}" id="home.index">
                 <span class="glyphicon glyphicon-home"></span>
-                Beranda
+                <u>Be</u>randa
             </a>
         </li>
     </ul>
@@ -16,15 +16,15 @@
     {{-- Bagian Perpesanan --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('send*') ? 'active' : '' }}">
-            <a href="{{ route('send.create') }}">
+            <a href="{{ route('send.create') }}" id="send.create">
                 <span class="glyphicon glyphicon-file"></span>
-                Tulis Pesan
+                <u>T</u>ulis <u>P</u>esan
             </a>
         </li>
         <li class="{{ Request::is('inbox*') ? 'active' : '' }}">
-            <a href="{{ route('inbox.index') }}">
+            <a href="{{ route('inbox.index') }}" id="inbox.index">
                 <span class="glyphicon glyphicon-envelope"></span>
-                Kotak Masuk 
+                <u>K</u>otak <u>M</u>asuk 
                 @if($badge->inbox() != 0)
                 <span class="badge">
                     {{ $badge->inbox() }}
@@ -39,9 +39,9 @@
             </a>
         </li> --}}
         <li class="{{ Request::is('outbox*') ? 'active' : '' }}">
-            <a href="{{ route('outbox.index') }}">
+            <a href="{{ route('outbox.index') }}" id="outbox.index">
                 <span class="glyphicon glyphicon-inbox"></span>
-                Kotak Keluar
+                <u>K</u>otak <u>K</u>eluar
                 @if($badge->outbox() != 0)
                 <span class="badge">
                     {{ $badge->outbox() }}
@@ -50,9 +50,9 @@
             </a>
         </li>
         <li class="{{ Request::is('sentitem*') ? 'active' : '' }}">
-            <a href="{{ route('sentitem.index') }}">
+            <a href="{{ route('sentitem.index') }}" id="sentitem.index">
                 <span class="glyphicon glyphicon-saved"></span>
-                Pesan Terkirim
+                <u>P</u>esan <u>T</u>erkirim
                 @if($badge->sentitem() != 0)
                 <span class="badge">
                     {{ $badge->sentitem() }}
@@ -67,15 +67,15 @@
     {{-- Bagian Kontak --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('contact*') ? 'active' : '' }}">
-            <a href="{{ route('contact.index') }}">
+            <a href="{{ route('contact.index') }}"  id="contact.index">
                 <span class="glyphicon glyphicon-book"></span>
-                Kontak
+                <u>Ko</u>ntak
             </a>
         </li>
         <li class="{{ Request::is('group*') ? 'active' : '' }}">
-            <a href="{{ route('group.index') }}">
+            <a href="{{ route('group.index') }}" id="group.index">
                 <span class="glyphicon glyphicon-tags"></span>
-                Grup
+                <u>Gr</u>up
             </a>
         </li>
     </ul>
@@ -85,9 +85,9 @@
     {{-- Bagian Konfirmasi --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('confirmation*') ? 'active' : '' }}">
-            <a href="{{ route('confirmation.index') }}">
+            <a href="{{ route('confirmation.index') }}" id="confirmation.index">
                 <span class="glyphicon glyphicon-transfer"></span>
-                Pembayaran
+                <u>Pe</u>mbayaran
                 @if($badge->confirmation() != 0)
                 <span class="badge">
                     {{ $badge->confirmation() }}
@@ -96,9 +96,9 @@
             </a>
         </li>
         <li class="{{ Request::is('donation*') ? 'active' : '' }}">
-            <a href="{{ route('donation.index') }}">
+            <a href="{{ route('donation.index') }}" id="donation.index">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                Donasi
+                <u>Do</u>nasi
                 @if($badge->donation() != 0)
                 <span class="badge">
                     {{ $badge->donation() }}
@@ -113,21 +113,21 @@
     {{-- Bagian Pengaturan --}}
     <ul class="nav nav-sidebar">
         <li class="{{ Request::is('balance*') ? 'active' : '' }}">
-            <a href="{{ route('balance.index') }}">
+            <a href="{{ route('balance.index') }}" id="balance.index">
                 <span class="glyphicon glyphicon-stats"></span>
-                Cek Pulsa
+                <u>C</u>ek <u>P</u>ulsa
             </a>
         </li>
         <li class="{{ Request::is('user*') ? 'active' : '' }}">
-            <a href="{{ route('user.index') }}">
+            <a href="{{ route('user.index') }}" id="user.index">
                 <span class="glyphicon glyphicon-user"></span>
-                Pengguna
+                <u>P</u>e<u>n</u>gguna
             </a>
         </li>
         <li class="{{ Request::is('setting*') ? 'active' : '' }}">
-            <a href="{{ route('setting.index') }}">
+            <a href="{{ route('setting.index') }}" id="setting.index">
                 <span class="glyphicon glyphicon-wrench"></span>
-                Pengaturan
+                <u>P</u>en<u>g</u>aturan
             </a>
         </li>
     </ul>
