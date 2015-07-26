@@ -205,6 +205,10 @@
         Mousetrap.bind("k e", function() {
             GoToLocation(document.getElementById("auth.logout").href);
         });
+
+        Mousetrap.bind("ctrl+shift+f", function() {
+            document.getElementById("search").focus();
+        });
         </script>
     </body>
 </html>
