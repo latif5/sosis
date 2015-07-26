@@ -76,6 +76,13 @@ class SendController extends Controller
                 }
             }
         }
+        // Mengirim pesan ke keduanya
+        else
+        {
+            return redirect()->back()
+                ->with('dangerMessage', 'Pilih salah satu, grup atau personal')
+                ->with($request->flash());
+        }
 
         return redirect()->route('send.create')
             ->with('successMessage', 'Pesan berhasil dikirim')
