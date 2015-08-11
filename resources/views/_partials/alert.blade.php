@@ -4,7 +4,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <p>
-            <span class="glyphicon glyphicon-ok"></span> 
+            <span class="glyphicon glyphicon-ok-sign"></span> 
             {{ session()->get('successMessage') }}
         </p>
     </div>
@@ -14,7 +14,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <p>
-            <span class="glyphicon glyphicon-remove"></span> 
+            <span class="glyphicon glyphicon-info-sign"></span> 
             {{ session()->get('infoMessage') }}
         </p>
     </div>
@@ -24,7 +24,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <p>
-            <span class="glyphicon glyphicon-remove"></span> 
+            <span class="glyphicon glyphicon-warning-sign"></span> 
             {{ session()->get('warningMessage') }}
         </p>
     </div>
@@ -34,7 +34,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <p>
-            <span class="glyphicon glyphicon-remove"></span> 
+            <span class="glyphicon glyphicon-remove-sign"></span> 
             {{ session()->get('dangerMessage') }}
         </p>
     </div>

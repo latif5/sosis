@@ -4,21 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Outbox extends Model
+class Archive extends Model
 {
-    protected $table = 'outbox';
+    protected $table = 'archives';
 
     protected $primaryKey = 'ID';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'SendBefore',
-        'SendAfter',
         'SendingDateTime',
         'DestinationNumber',
         'Class',
         'TextDecoded',
         'CreatorID'
     ];
+
 }

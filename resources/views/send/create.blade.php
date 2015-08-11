@@ -56,8 +56,8 @@
             <div class="panel-footer">
                 <div class="btn-group" role="group" aria-label="...">
                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Kirim</button>
-
-                    <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Simpan</button>
+                    
+                    <a href="{{ route('home.index') }}" class="btn btn-success pull-right"><span class="glyphicon glyphicon-remove-sign"></span> Batal</a>
                 </div> {{-- .btn-group --}}
             </div> {{-- .panel-footer --}}
             {!! Form::close() !!}
