@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class DeleteConfirmationRequest extends Request
+class ActionConfirmationRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class DeleteConfirmationRequest extends Request
     public function rules()
     {
         return [
-            //
+            'aksi' => 'required'
         ];
     }
 }

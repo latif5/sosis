@@ -11,7 +11,7 @@ use \Excel;
 
 use App\Confirmation;
 
-use App\Http\Requests\DeleteConfirmationRequest;
+use App\Http\Requests\ActionConfirmationRequest;
 
 class ConfirmationController extends Controller
 {
@@ -164,16 +164,40 @@ class ConfirmationController extends Controller
     }
 
     /**
-     * Mengapus beberapa data terpilih dari confirmation.
+     * Melakukan aksi ke beberapa data terpilih dari confirmation.
      */
-    public function deleteMultiple(DeleteConfirmationRequest $request)
+    public function actionMultiple(ActionConfirmationRequest $request)
     {
-        // Cek jika ceklist terisi
-        if ($request->check != null) {
+        switch ($request->aksi) {
+            case 'Sudah':
+                $status_aksi = 'diverifikasi';
+                break;
+            case 'Tunda':
+                $status_aksi = 'ditunda';
+                break;
+            case 'Belum':
+                $status_aksi = 'dikembalikan';
+                break;
+            case 'Hapus':
+                $status_aksi = 'dihapus';
+                break;
+        }
+
+        // Cek jika ceklist terisi, aksi terisi, dan aksi bukan hapus
+        if ($request->check != null and $request->aksi != '' and $request->aksi != 'Hapus') {
+            Confirmation::whereIn('id', $request->check)->update(['status' => $request->aksi]);
+
+            $statusAlert = 'successMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' data telah '.$status_aksi;
+
+        // Cek jika ceklist terisi, aksi terisi, dan aksi adalah hapus
+        } else if ($request->check != null and $request->aksi != '' and $request->aksi == 'Hapus') {
             $confirmation = Confirmation::destroy($request->check);
 
             $statusAlert = 'infoMessage';
-            $messageAlert = 'Sebanyak '.count($request->check).' data telah dihapus';
+            $messageAlert = 'Sebanyak '.count($request->check).' data telah '.$status_aksi;
+
+        // Cek jika ceklist tidak terisi, dan aksi tidak terisi
         } else {
             $statusAlert = 'dangerMessage';
             $messageAlert = 'Tidak ada data terpilih';

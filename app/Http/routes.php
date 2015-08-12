@@ -91,7 +91,7 @@ Route::resource('group', 'GroupController',
  */
 Route::get('confirmation/export/plain', ['as' => 'confirmation.export.plain', 'uses' => 'ConfirmationController@exportPlain']);
 Route::get('confirmation/export/{format}', ['as' => 'confirmation.export', 'uses' => 'ConfirmationController@export']);
-Route::post('confirmation/deleteMultiple', ['as' => 'confirmation.delete.multiple', 'uses' => 'ConfirmationController@deleteMultiple']);
+Route::post('confirmation/actionMultiple', ['as' => 'confirmation.action.multiple', 'uses' => 'ConfirmationController@actionMultiple']);
 Route::get('confirmation/delete/{confirmation}', ['as' => 'confirmation.delete', 'uses' => 'ConfirmationController@delete']);
 Route::get('confirmation/{confirmation}/{status}', ['as' => 'confirmation.status', 'uses' => 'ConfirmationController@status']);
 Route::resource('confirmation',  'ConfirmationController',

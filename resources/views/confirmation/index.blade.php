@@ -6,7 +6,9 @@
 @include('confirmation._partials.filter')
 
 {{-- Awal form multiple delete --}}
-{!! Form::open(['route' => 'confirmation.delete.multiple']) !!}
+{!! Form::open(['route' => 'confirmation.action.multiple']) !!}
+@include('confirmation._partials.action')
+
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
@@ -83,11 +85,7 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>
     </p>
 </div>
-{{-- Tombol multiple delete --}}
-<button type="submit" class="btn btn-danger">
-    <span class="glyphicon glyphicon-trash"></span> 
-    Hapus item terpilih
-</button>
+
 {!! Form::close() !!}
 {{-- Akhir form multiple delete --}}
 
