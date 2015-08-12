@@ -8,7 +8,7 @@
 		<meta name="author" content="Miftah Afina - www.miftahafina.com">
 		<link rel="icon" href="assets/ico/favicon.ico">
 
-		<title>OPH Javanet</title>
+		<title>SOSIS</title>
 
 		<!-- CSS inti bootstrap -->
 		<link href="{{ asset('assets/css/bootstrap.css') }}" type="text/css" rel="stylesheet"/>
