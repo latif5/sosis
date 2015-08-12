@@ -11,7 +11,7 @@ use \Excel;
 
 use App\Donation;
 
-use App\Http\Requests\DeleteDonationRequest;
+use App\Http\Requests\ActionDonationRequest;
 
 class DonationController extends Controller
 {
@@ -164,16 +164,65 @@ class DonationController extends Controller
     }
 
     /**
-     * Mengapus beberapa data terpilih dari donation.
+     * Melakukan aksi ke beberapa data terpilih dari donation.
      */
-    public function deleteMultiple(DeleteDonationRequest $request)
+    public function actionMultiple(ActionDonationRequest $request)
     {
-        // Cek jika ceklist terisi
-        if ($request->check != null) {
+        switch ($request->aksi) {
+            case 'Sudah':
+                $status_aksi = 'diverifikasi';
+                break;
+            case 'Tunda':
+                $status_aksi = 'ditunda';
+                break;
+            case 'Belum':
+                $status_aksi = 'dibatalkan';
+                break;
+            case 'Hapus':
+                $status_aksi = 'dihapus';
+                break;
+        }
+
+        // Cek jika ceklist terisi, aksi terisi, dan aksi bukan hapus
+        if ($request->check != null and $request->aksi != '' and $request->aksi != 'Hapus') {
+            // Update status donation
+            Donation::whereIn('id', $request->check)->update(['status' => $request->aksi]);
+
+            // Kirim SMS
+            $donation_selected = Donation::whereIn('id', $request->check)->get();
+
+            foreach ($donation_selected as $donation) {
+                $SendController = new SendController;
+            
+                // Menentukan isi balasan berdasarkan aksi
+                switch ($request->aksi) {
+                    case 'Sudah':
+                        $messageSms = 'Transfer utk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' BERHASIL kami verifikasi. Trims.';
+                        break;
+                    case 'Tunda':
+                        $messageSms = 'Maaf, verifikasi transfer utk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' TERTUNDA. Trims.';
+                        break;
+                    case 'Belum':
+                        $messageSms = 'Maaf, verifikasi transfer utk keperluan '.$donation->keperluan.' pd tgl '.$donation->tanggal_kirim.' sejmlh '.$donation->jumlah.' DIBATALKAN. Trims.';
+                        break;
+                }
+
+                // Mengirim pesan SMS
+                $SendController->send($donation->ponsel, $messageSms);
+            }
+
+            $statusAlert = 'successMessage';
+            $messageAlert = 'Sebanyak '.count($request->check).' data telah '.$status_aksi;
+
+        // Cek jika ceklist terisi, aksi terisi, dan aksi adalah hapus
+        } else if ($request->check != null and $request->aksi != '' and $request->aksi == 'Hapus') {
+            // Hapus data donation
             $donation = Donation::destroy($request->check);
 
             $statusAlert = 'infoMessage';
-            $messageAlert = 'Sebanyak '.count($request->check).' data telah dihapus';
+            $messageAlert = 'Sebanyak '.count($request->check).' data telah '.$status_aksi;
+
+        // Cek jika ceklist tidak terisi, dan aksi tidak terisi
         } else {
             $statusAlert = 'dangerMessage';
             $messageAlert = 'Tidak ada data terpilih';

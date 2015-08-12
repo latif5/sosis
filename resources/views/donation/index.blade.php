@@ -6,12 +6,13 @@
 @include('donation._partials.filter')
 
 {{-- Awal form multiple delete --}}
-{!! Form::open(['route' => 'donation.delete.multiple']) !!}
+{!! Form::open(['route' => 'donation.action.multiple']) !!}
+@include('donation._partials.action')
+
 <div class="table">
     <table class="table table-striped table-hover table-condensed">
         <thead>
             <tr>
-            {{--  --}}
                 <th width="5%">No.</th>
                 <th width="8%">Tanggal</th>
                 <th width="8%">Ponsel</th>
@@ -82,11 +83,7 @@
         <small class="text-muted">dengan urutan berdasarkan {{ $sort }} ({{ $mode }}) untuk kata kunci '{{{ $cari }}}' dengan status '{{ $status }}'</small>
     </p>
 </div>
-{{-- Tombol multiple delete --}}
-<button type="submit" class="btn btn-danger">
-    <span class="glyphicon glyphicon-trash"></span> 
-    Hapus item terpilih
-</button>
+
 {!! Form::close() !!}
 {{-- Akhir form multiple delete --}}
 

@@ -102,7 +102,7 @@ Route::resource('confirmation',  'ConfirmationController',
  */
 Route::get('donation/export/plain', ['as' => 'donation.export.plain', 'uses' => 'DonationController@exportPlain']);
 Route::get('donation/export/{format}', ['as' => 'donation.export', 'uses' => 'DonationController@export']);
-Route::post('donation/deleteMultiple', ['as' => 'donation.delete.multiple', 'uses' => 'DonationController@deleteMultiple']);
+Route::post('donation/actionMultiple', ['as' => 'donation.action.multiple', 'uses' => 'DonationController@actionMultiple']);
 Route::get('donation/delete/{donation}', ['as' => 'donation.delete', 'uses' => 'DonationController@delete']);
 Route::get('donation/{donation}/{status}', ['as' => 'donation.status', 'uses' => 'DonationController@status']);
 Route::resource('donation',  'DonationController',

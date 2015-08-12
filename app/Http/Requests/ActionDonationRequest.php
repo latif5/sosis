@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class DeleteDonationRequest extends Request
+class ActionDonationRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
