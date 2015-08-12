@@ -176,7 +176,7 @@ class ConfirmationController extends Controller
                 $status_aksi = 'ditunda';
                 break;
             case 'Belum':
-                $status_aksi = 'dikembalikan';
+                $status_aksi = 'dibatalkan';
                 break;
             case 'Hapus':
                 $status_aksi = 'dihapus';
@@ -185,13 +185,38 @@ class ConfirmationController extends Controller
 
         // Cek jika ceklist terisi, aksi terisi, dan aksi bukan hapus
         if ($request->check != null and $request->aksi != '' and $request->aksi != 'Hapus') {
+            // Update status confirmation
             Confirmation::whereIn('id', $request->check)->update(['status' => $request->aksi]);
+
+            // Kirim SMS
+            $confirmation_selected = Confirmation::whereIn('id', $request->check)->get();
+
+            foreach ($confirmation_selected as $confirmation) {
+                $SendController = new SendController;
+            
+                // Menentukan isi balasan berdasarkan aksi
+                switch ($request->aksi) {
+                    case 'Sudah':
+                        $messageSms = 'Transfer untuk '.$confirmation->santri.' pd tgl '.$confirmation->tanggal_kirim.' sejmlh '.$confirmation->jumlah.' BERHASIL kami verifikasi. Trims.';
+                        break;
+                    case 'Tunda':
+                        $messageSms = 'Maaf, verifikasi transfer untuk '.$confirmation->santri.' pd tgl '.$confirmation->tanggal_kirim.' sejmlh '.$confirmation->jumlah.' TERTUNDA. Trims.';
+                        break;
+                    case 'Belum':
+                        $messageSms = 'Maaf, verifikasi transfer untuk '.$confirmation->santri.' pd tgl '.$confirmation->tanggal_kirim.' sejmlh '.$confirmation->jumlah.' DIBATALKAN. Trims.';
+                        break;
+                }
+
+                // Mengirim pesan SMS
+                $SendController->send($confirmation->ponsel, $messageSms);
+            }
 
             $statusAlert = 'successMessage';
             $messageAlert = 'Sebanyak '.count($request->check).' data telah '.$status_aksi;
 
         // Cek jika ceklist terisi, aksi terisi, dan aksi adalah hapus
         } else if ($request->check != null and $request->aksi != '' and $request->aksi == 'Hapus') {
+            // Hapus data confirmation
             $confirmation = Confirmation::destroy($request->check);
 
             $statusAlert = 'infoMessage';
