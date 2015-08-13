@@ -18,6 +18,7 @@ class CreatePsbTable extends Migration
             $table->datetime('tanggal');
             $table->string('ponsel');
             $table->string('santri');
+            $table->enum('jenjang', ['A', 'B', 'C', 'D', 'E']);
             $table->string('no_pendaftaran');
             $table->string('jumlah');
             $table->string('tanggal_kirim');
