@@ -26,6 +26,10 @@ class InboxTableSeeder extends Seeder
         $kelas_angka = range(7, 12);
         $kelas_alfabet = ['A', 'B', 'C', 'D'];
 
+        // Generate kelas untuk data no. pendaftaran random
+        $no_pendaftaran_angka = range(160001, 162000);
+        $no_pendaftaran_alfabet = ['A', 'B', 'C', 'D', 'E'];
+
         // Dummy data tidak valid
         for ($i=0; $i < 20 ; $i++) { 
             $inbox = new Inbox;
@@ -75,6 +79,25 @@ class InboxTableSeeder extends Seeder
             // $inbox->SenderNumber = $faker_generator->cellphone(false).$faker_generator->cellphone(false);
             $inbox->SenderNumber = $contact_ponsel;
             $inbox->TextDecoded = 'masjid # '.rand(1, 9).' juta # '.$faker_generator->date($format = 'd m Y', $max = 'now').' # '.$faker->name.' # '.$faker->text(10);
+            $inbox->Processed = 'false';
+
+            $inbox->save();
+        }
+
+        // Dummy data psb
+        for ($i=0; $i < 20 ; $i++) { 
+            $inbox = new Inbox;
+
+            shuffle($no_pendaftaran_angka);
+            shuffle($no_pendaftaran_alfabet);
+
+            // Ambil data contact untuk data random
+            $contact_ponsel = \App\Contact::orderByRaw("RAND()")->first()->ponsel;
+            
+            $inbox->ReceivingDateTime = $faker->dateTimeThisYear;
+            // $inbox->SenderNumber = $faker_generator->cellphone(false).$faker_generator->cellphone(false);
+            $inbox->SenderNumber = $contact_ponsel;
+            $inbox->TextDecoded = 'psb # '.$faker->name().' # '.$no_pendaftaran_angka[0].$no_pendaftaran_alfabet[0].' # '.rand(1, 9).' juta # '.$faker_generator->date($format = 'd m Y', $max = 'now').' # '.$faker->name.' # '.$faker->text(10);
             $inbox->Processed = 'false';
 
             $inbox->save();

@@ -4,8 +4,7 @@
 <ul class="nav nav-sidebar">
     <li class="{{ Request::is('home*') || Request::is('authenticate*') ? 'active' : '' }}">
         <a href="{{ route('home.index') }}" id="home.index">
-            <span class="glyphicon glyphicon-home"></span>
-            <u>Be</u>randa
+            <span class="glyphicon glyphicon-lg glyphicon-home"></span>
         </a>
     </li>
 </ul>
@@ -16,14 +15,12 @@
 <ul class="nav nav-sidebar">
     <li class="{{ Request::is('send*') ? 'active' : '' }}">
         <a href="{{ route('send.create') }}" id="send.create">
-            <span class="glyphicon glyphicon-file"></span>
-            <u>T</u>ulis <u>P</u>esan
+            <span class="glyphicon glyphicon-lg glyphicon-file"></span>
         </a>
     </li>
     <li class="{{ Request::is('inbox*') ? 'active' : '' }}">
         <a href="{{ route('inbox.index') }}" id="inbox.index">
-            <span class="glyphicon glyphicon-envelope"></span>
-            <u>K</u>otak <u>M</u>asuk 
+            <span class="glyphicon glyphicon-lg glyphicon-envelope"></span>
             @if($badge->inbox() != 0)
             <span class="badge">
                 {{ $badge->inbox() }}
@@ -33,14 +30,13 @@
     </li>
 {{--         <li class="{{ Request::is('draft*') ? 'active' : '' }}">
         <a href="">
-            <span class="glyphicon glyphicon-floppy-disk"></span>
+            <span class="glyphicon glyphicon-lg glyphicon-floppy-disk"></span>
             Draft
         </a>
     </li> --}}
     <li class="{{ Request::is('outbox*') ? 'active' : '' }}">
         <a href="{{ route('outbox.index') }}" id="outbox.index">
-            <span class="glyphicon glyphicon-inbox"></span>
-            <u>K</u>otak <u>K</u>eluar
+            <span class="glyphicon glyphicon-lg glyphicon-inbox"></span>
             @if($badge->outbox() != 0)
             <span class="badge">
                 {{ $badge->outbox() }}
@@ -50,8 +46,7 @@
     </li>
     <li class="{{ Request::is('sentitem*') ? 'active' : '' }}">
         <a href="{{ route('sentitem.index') }}" id="sentitem.index">
-            <span class="glyphicon glyphicon-saved"></span>
-            <u>P</u>esan <u>T</u>erkirim
+            <span class="glyphicon glyphicon-lg glyphicon-saved"></span>
             @if($badge->sentitem() != 0)
             <span class="badge">
                 {{ $badge->sentitem() }}
@@ -67,14 +62,12 @@
 <ul class="nav nav-sidebar">
     <li class="{{ Request::is('contact*') ? 'active' : '' }}">
         <a href="{{ route('contact.index') }}"  id="contact.index">
-            <span class="glyphicon glyphicon-book"></span>
-            <u>Ko</u>ntak
+            <span class="glyphicon glyphicon-lg glyphicon-book"></span>
         </a>
     </li>
     <li class="{{ Request::is('group*') ? 'active' : '' }}">
         <a href="{{ route('group.index') }}" id="group.index">
-            <span class="glyphicon glyphicon-tags"></span>
-            <u>Gr</u>up
+            <span class="glyphicon glyphicon-lg glyphicon-tags"></span>
         </a>
     </li>
 </ul>
@@ -85,8 +78,7 @@
 <ul class="nav nav-sidebar">
     <li class="{{ Request::is('confirmation*') ? 'active' : '' }}">
         <a href="{{ route('confirmation.index') }}" id="confirmation.index">
-            <span class="glyphicon glyphicon-transfer"></span>
-            <u>Pe</u>mbayaran
+            <span class="glyphicon glyphicon-lg glyphicon-transfer"></span>
             @if($badge->confirmation() != 0)
             <span class="badge">
                 {{ $badge->confirmation() }}
@@ -96,8 +88,7 @@
     </li>
     <li class="{{ Request::is('donation*') ? 'active' : '' }}">
         <a href="{{ route('donation.index') }}" id="donation.index">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-            <u>Do</u>nasi
+            <span class="glyphicon glyphicon-lg glyphicon-thumbs-up"></span>
             @if($badge->donation() != 0)
             <span class="badge">
                 {{ $badge->donation() }}
@@ -107,8 +98,7 @@
     </li>
     <li class="{{ Request::is('psb*') ? 'active' : '' }}">
         <a href="{{ route('psb.index') }}" id="psb.index">
-            <span class="glyphicon glyphicon glyphicon-grain"></span>
-            <u>PS</u>B
+            <span class="glyphicon glyphicon-lg glyphicon glyphicon-grain"></span>
             @if($badge->psb() != 0)
             <span class="badge">
                 {{ $badge->psb() }}
@@ -124,20 +114,17 @@
 <ul class="nav nav-sidebar">
     <li class="{{ Request::is('balance*') ? 'active' : '' }}">
         <a href="{{ route('balance.index') }}" id="balance.index">
-            <span class="glyphicon glyphicon-stats"></span>
-            <u>C</u>ek <u>P</u>ulsa
+            <span class="glyphicon glyphicon-lg glyphicon-stats"></span>
         </a>
     </li>
     <li class="{{ Request::is('user*') ? 'active' : '' }}">
         <a href="{{ route('user.index') }}" id="user.index">
-            <span class="glyphicon glyphicon-user"></span>
-            <u>P</u>e<u>n</u>gguna
+            <span class="glyphicon glyphicon-lg glyphicon-user"></span>
         </a>
     </li>
     <li class="{{ Request::is('setting*') ? 'active' : '' }}">
         <a href="{{ route('setting.index') }}" id="setting.index">
-            <span class="glyphicon glyphicon-wrench"></span>
-            <u>P</u>en<u>g</u>aturan
+            <span class="glyphicon glyphicon-lg glyphicon-wrench"></span>
         </a>
     </li>
 </ul>

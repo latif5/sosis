@@ -282,6 +282,9 @@ th {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.glyphicon-lg {
+  font-size: 1.2em;
+}
 .glyphicon-asterisk:before {
   content: "\2a";
 }

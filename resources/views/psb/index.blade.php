@@ -17,9 +17,10 @@
                 <th width="8%">Tanggal</th>
                 <th width="8%">Ponsel</th>
                 <th width="15%">Santri</th>
+                <th width="1%">Jenjang</th>
                 <th width="4%">No. Pendf.</th>
                 <th width="8%">Jumlah</th>
-                <th width="12%">Dikirim</th>
+                <th width="11%">Dikirim</th>
                 <th width="15%">Pengirim</th>
                 <th width="15%">Keperluan</th>
                 <th width="5%">Status</th>
@@ -38,6 +39,7 @@
                 <td><small>{{ date('d M Y H:i:s', strtotime($psb->tanggal)) }}</small></td>
                 <td><small>{{ $psb->ponsel }}</small></td>
                 <td>{{ $psb->santri }}</td>
+                <td>{{ $psb->jenjang }}</td>
                 <td>{{ $psb->no_pendaftaran }}</td>
                 <td>{{ $psb->jumlah }}</td>
                 <td><small>{{ $psb->tanggal_kirim }}</small></td>

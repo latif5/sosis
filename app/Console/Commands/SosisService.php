@@ -10,6 +10,7 @@ use App\Inbox;
 use App\Outbox;
 use App\Confirmation;
 use App\Donation;
+use App\Psb;
 
 class SosisService extends Command
 {
@@ -134,6 +135,46 @@ class SosisService extends Command
                     $confirmation->keperluan = $keperluan_kirim_balasan;
                     $confirmation->keterangan = $keterangan_balasan;
                     $confirmation->save();
+
+                    // Hapus jika sudah dicek
+                    Inbox::destroy($id);
+
+                }
+
+                /**
+                 * Untuk keyword PSB
+                 */
+                else if (strtoupper($pecah[0]) == 'PSB' or strtoupper($pecah[0]) == 'PSB ' or strtoupper($pecah[0]) == ' PSB ')
+                {
+
+                    // Membaca data dari pecahan sms berdasarkan format
+                    // psb # nama santri # no. pendaftaran # jumlah # tanggal kirim # nama pengirim # keperluan kirim
+                    $nomor_pengirim_balasan = $no_pengirim;
+                    $nama_santri_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
+                    $no_pendaftaran_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
+                    $jumlah_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
+                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    $nama_pengirim_balasan = str_replace("'", "\'", strtoupper($pecah[5]));
+                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+
+                    // SMS balasan
+                    $isi_balasan = "Konfirmasi pngrman utk $nama_santri_balasan sejmlh $jumlah_balasan utk kprluan $keperluan_kirim_balasan akn sgr kmi proses.";
+
+                    $send = new SendController;
+                    $send->send($nomor_pengirim_balasan, $isi_balasan);
+
+                    // Salin data 
+                    $psb = new Psb;
+                    $psb->tanggal = $waktu_konfirmasi;
+                    $psb->ponsel = $nomor_pengirim_balasan;
+                    $psb->santri = $nama_santri_balasan;
+                    $psb->jenjang = 'D';
+                    $psb->no_pendaftaran = $no_pendaftaran_balasan;
+                    $psb->jumlah = $jumlah_balasan;
+                    $psb->tanggal_kirim = $tanggal_kirim_balasan;
+                    $psb->pengirim = $nama_pengirim_balasan;
+                    $psb->keperluan = $keperluan_kirim_balasan;
+                    $psb->save();
 
                     // Hapus jika sudah dicek
                     Inbox::destroy($id);
