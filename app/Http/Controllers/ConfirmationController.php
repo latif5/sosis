@@ -41,7 +41,7 @@ class ConfirmationController extends Controller
             ->where('santri', 'like', "%$cari%")
             ->where('tanggal', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
-            ->paginate(10);
+            ->paginate(50);
 
         return view('confirmation.index', compact('confirmation_all', 'sort', 'mode', 'status', 'cari', 'cari_bulan'));
     }
