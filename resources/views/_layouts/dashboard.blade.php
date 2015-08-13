@@ -210,5 +210,16 @@
             document.getElementById("search").focus();
         });
         </script>
+
+        <script type="text/javascript">
+        // Script agar ketika klik row, maka otomatis checkbox tercentang
+        $(document).ready(function() {
+            $('.table tr').click(function(event) {
+                if (event.target.type !== 'checkbox') {
+                    $(':checkbox', this).trigger('click');
+                }
+            });
+        });
+        </script>
     </body>
 </html>
