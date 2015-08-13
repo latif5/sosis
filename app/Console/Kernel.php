@@ -25,6 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Masukkan kode di bawah ini pada cron
+        // * * * * * php /opt/lampp/htdocs/sosis/artisan schedule:run 1>> /dev/null 2>&1
+
+        // Menjalankan perintah sosis:start setiap 1 menit
         $schedule->command('sosis:start')
                  ->everyMinute();
     }

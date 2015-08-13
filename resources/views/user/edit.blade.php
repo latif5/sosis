@@ -29,6 +29,7 @@
                                 ''          => '-pilih-',
                                 'admin'     => 'Admin',
                                 'reguler'   => 'Reguler',
+                                'keuangan'  => 'Keuangan',
                             ), null, $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true']) !!}
                             {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
                         </div>
