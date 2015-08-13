@@ -109,6 +109,17 @@ Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
 
 /**
+ * Confirmation Routes.
+ */
+Route::get('psb/export/plain', ['as' => 'psb.export.plain', 'uses' => 'PsbController@exportPlain']);
+Route::get('psb/export/{format}', ['as' => 'psb.export', 'uses' => 'PsbController@export']);
+Route::post('psb/actionMultiple', ['as' => 'psb.action.multiple', 'uses' => 'PsbController@actionMultiple']);
+Route::get('psb/delete/{psb}', ['as' => 'psb.delete', 'uses' => 'PsbController@delete']);
+Route::get('psb/{psb}/{status}', ['as' => 'psb.status', 'uses' => 'PsbController@status']);
+Route::resource('psb',  'PsbController',
+        ['only' => ['index']]);
+
+/**
  * Balance Routes.
  */
 Route::resource('balance',  'BalanceController',

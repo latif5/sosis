@@ -7,6 +7,7 @@ use App\Outbox;
 use App\SentItem;
 use App\Confirmation;
 use App\Donation;
+use App\Psb;
 
 class BadgeService
 {
@@ -48,5 +49,13 @@ class BadgeService
     public function donation()
     {
         return Donation::where('status', '!=', 'Sudah')->count();
+    }
+
+    /**
+     * Menghitung jumlah psb belum verifikasi
+     */
+    public function psb()
+    {
+        return Psb::where('status', '!=', 'Sudah')->count();
     }
 }

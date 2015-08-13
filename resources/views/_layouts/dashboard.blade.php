@@ -190,6 +190,10 @@
             GoToLocation(document.getElementById("donation.index").href);
         });
 
+        Mousetrap.bind("p s", function() {
+            GoToLocation(document.getElementById("psb.index").href);
+        });
+
         Mousetrap.bind("c p", function() {
             GoToLocation(document.getElementById("balance.index").href);
         });

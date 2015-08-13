@@ -106,6 +106,17 @@
                 @endif
             </a>
         </li>
+        <li class="{{ Request::is('psb*') ? 'active' : '' }}">
+            <a href="{{ route('psb.index') }}" id="psb.index">
+                <span class="glyphicon glyphicon glyphicon-grain"></span>
+                <u>PS</u>B
+                @if($badge->psb() != 0)
+                <span class="badge">
+                    {{ $badge->psb() }}
+                </span>
+                @endif
+            </a>
+        </li>
     </ul>
 
     <hr class="hr-nav">
