@@ -43,10 +43,12 @@ class HomeController extends Controller
         // Hitung data confirmation
         $confirmation = \App\Confirmation::count();
         $confirmation_belum = \App\Confirmation::where('status', 'Belum')->count();
+        $confirmation_tunda = \App\Confirmation::where('status', 'Tunda')->count();
 
         // Hitung data donation
         $donation = \App\Donation::count();
         $donation_belum = \App\Donation::where('status', 'Belum')->count();
+        $donation_tunda = \App\Donation::where('status', 'Tunda')->count();
 
         return view('home.index', compact(
             'inbox',
@@ -64,9 +66,11 @@ class HomeController extends Controller
 
             'confirmation',
             'confirmation_belum',
+            'confirmation_tunda',
 
             'donation',
-            'donation_belum'
+            'donation_belum',
+            'donation_tunda'
         ));
     }
 }

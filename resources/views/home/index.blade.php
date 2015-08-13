@@ -55,7 +55,7 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <h3>Data Pembayaran</h3>
-                <p>Terdapat {{ $confirmation_belum }} konfirmasi yang belum diverifikasi, dari total {{ $confirmation }} data konfirmasi pembayaran</p>
+                <p>Terdapat {{ $confirmation_belum }} konfirmasi yang belum diverifikasi, dan {{ $confirmation_tunda }} konfirmasi yang tertunda, dari total {{ $confirmation }} data konfirmasi pembayaran</p>
             </div>
             <div class="panel-footer">
                 <a href="{{ route('confirmation.index') }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-transfer"></span> Detil &raquo;</a>
@@ -66,7 +66,7 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <h3>Data Donasi</h3>
-                <p>Terdapat {{ $donation_belum }} konfirmasi yang belum diverifikasi, dari total {{ $donation }} data konfirmasi donasi</p>
+                <p>Terdapat {{ $donation_belum }} konfirmasi yang belum diverifikasi, dan {{ $donation_tunda }} konfirmasi yang tertunda, dari total {{ $donation }} data konfirmasi donasi</p>
             </div>
             <div class="panel-footer">
                 <a href="{{ route('donation.index') }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-thumbs-up"></span> Detil &raquo;</a>
