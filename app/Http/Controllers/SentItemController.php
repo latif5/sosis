@@ -105,6 +105,22 @@ class SentItemController extends Controller
     }
 
     /**
+     * Mengirim ulang sms terpilih dari sentitem.
+     */
+    public function resend($id)
+    {
+        // Ambil data sentitem terpilih
+        $sentitem = SentItem::findOrFail($id);
+
+        // Kirim sms dengan memanggil class SendController
+        $SendController = new SendController;
+        $SendController->send($sentitem->DestinationNumber, $sentitem->TextDecoded);
+
+        return redirect()->back()
+            ->with('successMessage', 'Pesan telah dikirim ulang');
+    }
+
+    /**
      * Mengapus data sms terpilih dari sentitem.
      */
     public function delete($id)
