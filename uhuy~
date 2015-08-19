@@ -1,0 +1,58 @@
+## Ide
+*** SUXES ***
+Tambahkan bootstrap confirmation pada saat melakukan penghapusan data
+https://github.com/tavicu/bs-confirmation
+>> agar posisi popup over di sebelah kiri
+
+*** SUXES ***
+Untuk inbox agar muncul nama orang pakai left join
+
+*** SUXES ***
+Sementara untuk contact.ponsel diganti utf8_general_ci agar bisa join dengan inbox
+>> semua kolom pada gammu telah diubah menjadi utf8_unicode_ci
+
+*** SUXES ***
+Tambahkan datetimepicker pada send.create
+https://github.com/Eonasdan/bootstrap-datetimepicker
+
+*** SUXES ***
+Buat destination number dan group pada send.create agar multiple
+
+*** SUXES ***
+Buat ubah daftar anggota group
+
+Masih ada duplikat entry relasi contact_group
+>> duplikat terjadi hanya jika menggunakan seeder dan rand()
+
+Cek susunan/sorting contact dan group saat pengiriman sms
+
+*** SUXES ***
+Buat agar pesan yang sudah di cek sesuai format agar dihapus
+
+*** SUXES ***
+Buat blade service injection untuk setiap badge pada sidebar
+
+*** SUXES ***
+Buat tombol batal
+
+*** SUXES ***
+Laravel pagination belum bisa berjalan jika tanpa menggunakan php artisan serve
+>> sudah bisa
+
+Buat fitur arsip pengiriman
+
+Tidak bisa menampilkan nama contact pada inbox.index karena ada tambahan karakter plus (+) pada SenderNumber
+
+Buat agar data nama pada confirmation dan donation menjadi kapital semua 
+
+*** SUXES ***
+Dibuat agar bisa multiple verification pada halaman konfirmasi
+
+Buat summary PSB pada dashboard
+
+Buat multiple reply, pada perpesanan
+
+Ditambahkan fitur resend
+
+cek on delete cascade
+diganti on delete no action

@@ -40,7 +40,7 @@ class GroupController extends Controller
         $group_all = Group::with('contact')
             ->where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
-            ->paginate(7);
+            ->paginate(25);
 
         return view('group.index', compact('group_all', 'sort', 'mode', 'cari'));
     }

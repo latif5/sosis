@@ -40,7 +40,7 @@ class InboxController extends Controller
             ->where('TextDecoded', 'like', "%$cari%")
             ->where('ReceivingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
-            ->paginate(7);
+            ->paginate(25);
 
         return view('inbox.index', compact('inbox_all', 'sort', 'mode', 'cari', 'cari_bulan'));
     }

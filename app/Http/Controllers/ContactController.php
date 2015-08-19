@@ -40,7 +40,7 @@ class ContactController extends Controller
         $contact_all = Contact::with('group')
             ->where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
-            ->paginate(7);
+            ->paginate(25);
 
         return view('contact.index', compact('contact_all', 'sort', 'mode', 'cari'));
     }

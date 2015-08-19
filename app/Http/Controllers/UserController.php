@@ -40,7 +40,7 @@ class UserController extends Controller
         $user_all = User::
               where('nama', 'like', "%$cari%")
             ->orderBy($sort, $mode)
-            ->paginate(7);
+            ->paginate(25);
 
         return view('user.index', compact('user_all', 'sort', 'mode', 'cari'));
     }
