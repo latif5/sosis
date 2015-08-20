@@ -182,6 +182,43 @@ class SosisService extends Command
                 }
 
                 /**
+                 * Untuk keyword QURBAN
+                 */
+                else if (strtoupper($pecah[0]) == 'QURBAN' or strtoupper($pecah[0]) == 'QURBAN ' or strtoupper($pecah[0]) == ' QURBAN ')
+                {
+
+                    // Membaca data dari pecahan sms berdasarkan format
+                    // Qurban # nominal qurban # tanggal pengiriman # nama pemilik rekening pengirim # keterangan (jumlah dan hewan)
+                    $nomor_pengirim_balasan = $no_pengirim;
+                    $nominal_donasi_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
+                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
+                    $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
+                    $keperluan_kirim_balasan = 'QURBAN';
+                    $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+
+                    // SMS balasan
+                    $isi_balasan = "Konfirmasi u/ qurban $nominal_donasi_balasan oleh $nama_pemilik_rekening_balasan sudah kami terima. Terima kasih.";
+
+                    $send = new SendController;
+                    $send->send($nomor_pengirim_balasan, $isi_balasan);
+
+                    // Salin data 
+                    $confirmation = new Donation;
+                    $confirmation->tanggal = $waktu_konfirmasi;
+                    $confirmation->ponsel = $nomor_pengirim_balasan;
+                    $confirmation->jumlah = $nominal_donasi_balasan;
+                    $confirmation->tanggal_kirim = $tanggal_kirim_balasan;
+                    $confirmation->pengirim = $nama_pemilik_rekening_balasan;
+                    $confirmation->keperluan = $keperluan_kirim_balasan;
+                    $confirmation->keterangan = $keterangan_balasan;
+                    $confirmation->save();
+
+                    // Hapus jika sudah dicek
+                    Inbox::destroy($id);
+
+                }
+
+                /**
                  * Untuk keyword yang TIDAK SESUAI
                  */
                 else
