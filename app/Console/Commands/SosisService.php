@@ -79,7 +79,14 @@ class SosisService extends Command
                     $jumlah_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
                     $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
                     $nama_pengirim_balasan = str_replace("'", "\'", strtoupper($pecah[5]));
-                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+                    // $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+
+                    // Pencegahan error jika offset tidak terpenuhi/format sms kurang
+                    if (!empty($pecah[6])) {
+                        $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+                    } else {
+                        $keperluan_kirim_balasan = '-';
+                    }
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi pngrman utk $nama_santri_balasan sejmlh $jumlah_balasan utk kprluan $keperluan_kirim_balasan akn sgr kmi proses.";
@@ -117,7 +124,14 @@ class SosisService extends Command
                     $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
                     $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
                     $keperluan_kirim_balasan = 'PEMBANGUNAN MASJID';
-                    $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    // $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+
+                    // Pencegahan error jika offset tidak terpenuhi/format sms kurang
+                    if (!empty($pecah[4])) {
+                        $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    } else {
+                        $keterangan_balasan = '-';
+                    }
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi u/ jariyah masjid senilai $nominal_donasi_balasan oleh $nama_pemilik_rekening_balasan sudah kami terima. Terima kasih.";
@@ -155,7 +169,14 @@ class SosisService extends Command
                     $jumlah_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
                     $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
                     $nama_pengirim_balasan = str_replace("'", "\'", strtoupper($pecah[5]));
-                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+                    // $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+
+                    // Pencegahan error jika offset tidak terpenuhi/format sms kurang
+                    if (!empty($pecah[6])) {
+                        $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+                    } else {
+                        $keperluan_kirim_balasan = '-';
+                    }
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi pngrman utk $nama_santri_balasan sejmlh $jumlah_balasan utk kprluan $keperluan_kirim_balasan akn sgr kmi proses.";
@@ -194,7 +215,14 @@ class SosisService extends Command
                     $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
                     $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
                     $keperluan_kirim_balasan = 'QURBAN';
-                    $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    // $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+
+                    // Pencegahan error jika offset tidak terpenuhi/format sms kurang
+                    if (!empty($pecah[4])) {
+                        $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    } else {
+                        $keterangan_balasan = '-';
+                    }
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi u/ qurban $nominal_donasi_balasan oleh $nama_pemilik_rekening_balasan sudah kami terima. Terima kasih.";
