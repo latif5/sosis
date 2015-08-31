@@ -256,7 +256,7 @@ class SosisService extends Command
 
                     // SMS balasan
                     // $isi_balasan = "Format SMS utk konfirmasi transfer: KONFIRMASI#nama santri#kelas#jumlah#tanggal kirim#nama pengirim#keperluan kirim. | Info lengkap, klik http://j.mp/frmtsms";
-                    $isi_balasan = "Format SMS utk konfirmasi transfer: KONFIRMASI#nama santri#kelas#jumlah#tanggal kirim#nama pengirim#keperluan kirim. | Info lengkap, klik http://j.mp/frmtsms";
+                    $isi_balasan = "Format SMS utk konfirmasi transfer: KONFIRMASI#nama santri#kelas#jumlah#tanggal kirim#nama pengirim#keperluan kirim. | Format lain, klik http://j.mp/frmtsms";
 
                     $send = new SendController;
                     $send->send($nomor_pengirim_balasan, $isi_balasan);
