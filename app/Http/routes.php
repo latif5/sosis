@@ -146,7 +146,5 @@ Route::resource('setting',  'SettingController',
  * Testing Routes.
  */
 Route::get('tes', function (){
-            // Ambil data contact untuk data random
-        echo \Hash::make('123');
 
 });
