@@ -71,7 +71,7 @@ class SosisService extends Command
                 /**
                  * Untuk keyword KONFIRMASI
                  */
-                if (strtoupper($pecah[0]) == 'KONFIRMASI' or strtoupper($pecah[0]) == 'KONFIRMASI ' or strtoupper($pecah[0]) == ' KONFIRMASI ' and $jumlah_pecah == 7)
+                if ($jumlah_pecah == 7 and strtoupper($pecah[0]) == 'KONFIRMASI' or strtoupper($pecah[0]) == 'KONFIRMASI ' or strtoupper($pecah[0]) == ' KONFIRMASI ')
                 {
                     
                     // Membaca data dari pecahan sms berdasarkan format
@@ -110,7 +110,7 @@ class SosisService extends Command
                 /**
                  * Untuk keyword MASJID
                  */
-                else if (strtoupper($pecah[0]) == 'MASJID' or strtoupper($pecah[0]) == 'MASJID ' or strtoupper($pecah[0]) == ' MASJID ' and $jumlah_pecah == 5)
+                else if ($jumlah_pecah == 5 and strtoupper($pecah[0]) == 'MASJID' or strtoupper($pecah[0]) == 'MASJID ' or strtoupper($pecah[0]) == ' MASJID ')
                 {
 
                     // Membaca data dari pecahan sms berdasarkan format
@@ -120,8 +120,15 @@ class SosisService extends Command
                     $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
                     $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
                     $keperluan_kirim_balasan = 'PEMBANGUNAN MASJID';
-                    $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    // $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
 
+                    // Pencegahan error jika offset tidak terpenuhi/format sms kurang
+                    if (!empty($pecah[4])) {
+                        $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    } else {
+                        $keterangan_balasan = '-';
+                    }
+                    
                     // SMS balasan
                     $isi_balasan = "Konfirmasi u/ jariyah masjid senilai $nominal_donasi_balasan oleh $nama_pemilik_rekening_balasan sudah kami terima. Terima kasih.";
 
@@ -147,7 +154,7 @@ class SosisService extends Command
                 /**
                  * Untuk keyword PSB
                  */
-                else if (strtoupper($pecah[0]) == 'PSB' or strtoupper($pecah[0]) == 'PSB ' or strtoupper($pecah[0]) == ' PSB ' and $jumlah_pecah == 7)
+                else if ($jumlah_pecah == 7 and strtoupper($pecah[0]) == 'PSB' or strtoupper($pecah[0]) == 'PSB ' or strtoupper($pecah[0]) == ' PSB ')
                 {
 
                     // Membaca data dari pecahan sms berdasarkan format
@@ -187,7 +194,7 @@ class SosisService extends Command
                 /**
                  * Untuk keyword QURBAN
                  */
-                else if (strtoupper($pecah[0]) == 'QURBAN' or strtoupper($pecah[0]) == 'QURBAN ' or strtoupper($pecah[0]) == ' QURBAN ' and $jumlah_pecah == 5)
+                else if ($jumlah_pecah == 5 and strtoupper($pecah[0]) == 'QURBAN' or strtoupper($pecah[0]) == 'QURBAN ' or strtoupper($pecah[0]) == ' QURBAN ')
                 {
 
                     // Membaca data dari pecahan sms berdasarkan format
