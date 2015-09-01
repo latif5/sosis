@@ -24,7 +24,7 @@ class ImportContactRequest extends Request
     public function rules()
     {
         return [
-            'data'  => 'required',
+            // 'data'  => 'required',
             'group' => 'required'
         ];
     }

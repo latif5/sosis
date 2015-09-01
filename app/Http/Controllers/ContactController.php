@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
 use \Excel;
+use \Session;
 
 use App\Contact;
 use App\Group;
@@ -91,15 +92,35 @@ class ContactController extends Controller
     }
 
     /**
-     * Memasukkan data import ke tabel contact.
+     * Menampilkan preview data import contact.
      */
-    public function importPost(ImportContactRequest $request)
+    public function importPut(ImportContactRequest $request)
     {
+        // Ambil data group, lalu format menjadi list
+        $group_options = Group::orderBy('nama')->lists('nama', 'id');
+
+        // Ambil data group yang telah dipilih sebelumnya
+        $group_selected = $request->group;
+
         $excel = Excel::load($request->file('data'), function($reader) {
             // Agar tidak menganggap bahwa baris pertama adalah header
             // Serta agar mengubah offset array menjadi numeric, bukan string header
             $reader->noHeading();
         })->get();
+
+        // Session kan data excel
+        Session::put('data_excel', $excel);
+
+        return view('contact.preview', compact('excel', 'group_options', 'group_selected'))
+            ->with('successMessage', 'Sebanyak '.count($excel).' data akan diimpor');
+    }
+
+    /**
+     * Memasukkan data import ke tabel contact.
+     */
+    public function importPost(ImportContactRequest $request)
+    {
+        $excel = Session::pull('data_excel');
 
         foreach ($excel as $excel_row) {
             // Memasukkan contact ke database

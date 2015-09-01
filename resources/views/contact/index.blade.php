@@ -13,9 +13,9 @@
         <thead>
             <tr>
                 <th width="7%">No.</th>
-                <th width="15%">Nama</th>
+                <th width="22%">Nama</th>
                 <th width="15%">Nomor</th>
-                <th width="33%">Keterangan</th>
+                <th width="26%">Keterangan</th>
                 <th width="25%">Group</th>
                 <th width="5%">Pilihan</th>
             </tr>

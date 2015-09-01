@@ -9,7 +9,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Import Kontak</h3>
             </div>
-            {!! Form::open(['route' => 'contact.import.post', 'files' => true]) !!}
+            {!! Form::open(['route' => 'contact.import.put', 'files' => true, 'method' => 'put']) !!}
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4">
