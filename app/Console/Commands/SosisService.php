@@ -61,9 +61,6 @@ class SosisService extends Command
 
             // Memecah isi sms
             $pecah = explode('#', $isi);
-
-            // Jumlah pecahan
-            $jumlah_pecah = count($pecah);
                     
             // Pesan akan direspon jika nomor pengirim lebih dari 8 digit
             if (strlen($no_pengirim) >= 9)
@@ -71,18 +68,18 @@ class SosisService extends Command
                 /**
                  * Untuk keyword KONFIRMASI
                  */
-                if ($jumlah_pecah == 7 and strtoupper($pecah[0]) == 'KONFIRMASI' or strtoupper($pecah[0]) == 'KONFIRMASI ' or strtoupper($pecah[0]) == ' KONFIRMASI ')
+                if (strtoupper(@$pecah[0]) == 'KONFIRMASI' or strtoupper(@$pecah[0]) == 'KONFIRMASI ' or strtoupper(@$pecah[0]) == ' KONFIRMASI ')
                 {
                     
                     // Membaca data dari pecahan sms berdasarkan format
                     // konfirmasi # nama santri # kelas # jumlah#tanggal kirim # nama pengirim # keperluan kirim
                     $nomor_pengirim_balasan = $no_pengirim;
-                    $nama_santri_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
-                    $kelas_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
-                    $jumlah_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
-                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
-                    $nama_pengirim_balasan = str_replace("'", "\'", strtoupper($pecah[5]));
-                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+                    $nama_santri_balasan = str_replace("'", "\'", strtoupper(@$pecah[1]));
+                    $kelas_balasan = str_replace("'", "\'", strtoupper(@$pecah[2]));
+                    $jumlah_balasan = str_replace("'", "\'", strtoupper(@$pecah[3]));
+                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[4]));
+                    $nama_pengirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[5]));
+                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[6]));
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi pngrman utk $nama_santri_balasan sejmlh $jumlah_balasan utk kprluan $keperluan_kirim_balasan akn sgr kmi proses.";
@@ -110,24 +107,17 @@ class SosisService extends Command
                 /**
                  * Untuk keyword MASJID
                  */
-                else if ($jumlah_pecah == 5 and strtoupper($pecah[0]) == 'MASJID' or strtoupper($pecah[0]) == 'MASJID ' or strtoupper($pecah[0]) == ' MASJID ')
+                else if (strtoupper(@$pecah[0]) == 'MASJID' or strtoupper(@$pecah[0]) == 'MASJID ' or strtoupper(@$pecah[0]) == ' MASJID ')
                 {
 
                     // Membaca data dari pecahan sms berdasarkan format
                     // masjid # nominal donasi # tanggal pengiriman # nama pemilik rekening pengirim # keterangan (jika ada)
                     $nomor_pengirim_balasan = $no_pengirim;
-                    $nominal_donasi_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
-                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
-                    $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
+                    $nominal_donasi_balasan = str_replace("'", "\'", strtoupper(@$pecah[1]));
+                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[2]));
+                    $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper(@$pecah[3]));
                     $keperluan_kirim_balasan = 'PEMBANGUNAN MASJID';
-                    // $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
-
-                    // Pencegahan error jika offset tidak terpenuhi/format sms kurang
-                    if (!empty($pecah[4])) {
-                        $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
-                    } else {
-                        $keterangan_balasan = '-';
-                    }
+                    $keterangan_balasan = str_replace("'", "\'", strtoupper(@$pecah[4]));
                     
                     // SMS balasan
                     $isi_balasan = "Konfirmasi u/ jariyah masjid senilai $nominal_donasi_balasan oleh $nama_pemilik_rekening_balasan sudah kami terima. Terima kasih.";
@@ -154,18 +144,18 @@ class SosisService extends Command
                 /**
                  * Untuk keyword PSB
                  */
-                else if ($jumlah_pecah == 7 and strtoupper($pecah[0]) == 'PSB' or strtoupper($pecah[0]) == 'PSB ' or strtoupper($pecah[0]) == ' PSB ')
+                else if (strtoupper(@$pecah[0]) == 'PSB' or strtoupper(@$pecah[0]) == 'PSB ' or strtoupper(@$pecah[0]) == ' PSB ')
                 {
 
                     // Membaca data dari pecahan sms berdasarkan format
                     // psb # nama santri # no. pendaftaran # jumlah # tanggal kirim # nama pengirim # keperluan kirim
                     $nomor_pengirim_balasan = $no_pengirim;
-                    $nama_santri_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
-                    $no_pendaftaran_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
-                    $jumlah_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
-                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
-                    $nama_pengirim_balasan = str_replace("'", "\'", strtoupper($pecah[5]));
-                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[6]));
+                    $nama_santri_balasan = str_replace("'", "\'", strtoupper(@$pecah[1]));
+                    $no_pendaftaran_balasan = str_replace("'", "\'", strtoupper(@$pecah[2]));
+                    $jumlah_balasan = str_replace("'", "\'", strtoupper(@$pecah[3]));
+                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[4]));
+                    $nama_pengirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[5]));
+                    $keperluan_kirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[6]));
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi pngrman utk $nama_santri_balasan sejmlh $jumlah_balasan utk kprluan $keperluan_kirim_balasan akn sgr kmi proses.";
@@ -194,17 +184,17 @@ class SosisService extends Command
                 /**
                  * Untuk keyword QURBAN
                  */
-                else if ($jumlah_pecah == 5 and strtoupper($pecah[0]) == 'QURBAN' or strtoupper($pecah[0]) == 'QURBAN ' or strtoupper($pecah[0]) == ' QURBAN ')
+                else if (strtoupper(@$pecah[0]) == 'QURBAN' or strtoupper(@$pecah[0]) == 'QURBAN ' or strtoupper(@$pecah[0]) == ' QURBAN ')
                 {
 
                     // Membaca data dari pecahan sms berdasarkan format
                     // Qurban # nominal qurban # tanggal pengiriman # nama pemilik rekening pengirim # keterangan (jumlah dan hewan)
                     $nomor_pengirim_balasan = $no_pengirim;
-                    $nominal_donasi_balasan = str_replace("'", "\'", strtoupper($pecah[1]));
-                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper($pecah[2]));
-                    $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper($pecah[3]));
+                    $nominal_donasi_balasan = str_replace("'", "\'", strtoupper(@$pecah[1]));
+                    $tanggal_kirim_balasan = str_replace("'", "\'", strtoupper(@$pecah[2]));
+                    $nama_pemilik_rekening_balasan = str_replace("'", "\'", strtoupper(@$pecah[3]));
                     $keperluan_kirim_balasan = 'QURBAN';
-                    $keterangan_balasan = str_replace("'", "\'", strtoupper($pecah[4]));
+                    $keterangan_balasan = str_replace("'", "\'", strtoupper(@$pecah[4]));
 
                     // SMS balasan
                     $isi_balasan = "Konfirmasi u/ qurban $nominal_donasi_balasan oleh $nama_pemilik_rekening_balasan sudah kami terima. Terima kasih.";
