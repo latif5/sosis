@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
 use \Excel;
+use \DB;
 
 use App\Inbox;
 
@@ -36,7 +37,7 @@ class InboxController extends Controller
         $cari_bulan = Input::get('cari_bulan', '');
 
         $inbox_all = Inbox::
-              leftJoin('contact', 'inbox.SenderNumber', 'like', 'contact.ponsel')
+              leftJoin('contact', 'inbox.SenderNumber', 'like', DB::raw("CONCAT('%', contact.ponsel)"))
             ->where('TextDecoded', 'like', "%$cari%")
             ->where('ReceivingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)

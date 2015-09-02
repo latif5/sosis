@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
 use \Excel;
+use \DB;
 
 use App\Outbox;
 
@@ -36,7 +37,7 @@ class OutboxController extends Controller
         $cari_bulan = Input::get('cari_bulan', '');
 
         $outbox_all = Outbox::
-              leftJoin('contact', 'outbox.DestinationNumber', 'like', 'contact.ponsel')
+              leftJoin('contact', 'outbox.DestinationNumber', 'like', DB::raw("CONCAT('%', contact.ponsel)"))
             ->where('TextDecoded', 'like', "%$cari%")
             ->where('UpdatedInDB', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)

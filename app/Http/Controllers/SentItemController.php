@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Input;
 use \Excel;
+use \DB;
 
 use App\SentItem;
 
@@ -35,7 +36,7 @@ class SentItemController extends Controller
         $cari_bulan = Input::get('cari_bulan', '');
 
         $sentitem_all = SentItem::
-              leftJoin('contact', 'sentitems.DestinationNumber', 'like', 'contact.ponsel')
+              leftJoin('contact', 'sentitems.DestinationNumber', 'like', DB::raw("CONCAT('%', contact.ponsel)"))
             ->where('TextDecoded', 'like', "%$cari%")
             ->where('SendingDateTime', 'like', "$cari_bulan%")
             ->orderBy($sort, $mode)
