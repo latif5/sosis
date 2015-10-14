@@ -111,7 +111,7 @@ Route::resource('donation',  'DonationController',
         ['only' => ['index']]);
 
 /**
- * Confirmation Routes.
+ * PSB Routes.
  */
 Route::get('psb/export/plain', ['as' => 'psb.export.plain', 'uses' => 'PsbController@exportPlain']);
 Route::get('psb/export/{format}', ['as' => 'psb.export', 'uses' => 'PsbController@export']);
@@ -120,6 +120,13 @@ Route::get('psb/delete/{psb}', ['as' => 'psb.delete', 'uses' => 'PsbController@d
 Route::get('psb/{psb}/{status}', ['as' => 'psb.status', 'uses' => 'PsbController@status']);
 Route::resource('psb',  'PsbController',
         ['only' => ['index']]);
+
+/**
+ * VA Routes.
+ */
+Route::get('va/import', ['as' => 'va.import', 'uses' => 'VaController@import']);
+Route::put('va/import', ['as' => 'va.import.put', 'uses' => 'VaController@importPut']);
+Route::post('va/import', ['as' => 'va.import.post', 'uses' => 'VaController@importPost']);
 
 /**
  * Balance Routes.
