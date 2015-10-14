@@ -25,8 +25,10 @@
                 <li class="visible-xs-block"><a href="{{ route('group.index') }}">Grup</a></li>
 
                 <li class="nav-divider"></li>
+                <li class="visible-xs-block"><a href="{{ route('va.import') }}">Virtual Account</a></li>
                 <li class="visible-xs-block"><a href="{{ route('confirmation.index') }}">Pembayaran</a></li>
                 <li class="visible-xs-block"><a href="{{ route('donation.index') }}">Donasi</a></li>
+                <li class="visible-xs-block"><a href="{{ route('psb.index') }}">PSB</a></li>
 
                 <li class="nav-divider"></li>
                 <li class="visible-xs-block"><a href="{{ route('donation.index') }}">Cek Pulsa</a></li>

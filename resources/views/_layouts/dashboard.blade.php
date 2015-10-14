@@ -188,6 +188,10 @@
             GoToLocation(document.getElementById("group.index").href);
         });
 
+        Mousetrap.bind("v a", function() {
+            GoToLocation(document.getElementById("va.import").href);
+        });
+
         Mousetrap.bind("p e", function() {
             GoToLocation(document.getElementById("confirmation.index").href);
         });

@@ -83,6 +83,17 @@
 
 {{-- Bagian Konfirmasi --}}
 <ul class="nav nav-sidebar">
+    <li class="{{ Request::is('va*') ? 'active' : '' }}">
+        <a href="{{ route('va.import') }}" id="va.import">
+            <span class="glyphicon glyphicon-import"></span>
+            <u>V</u>irtual <u>A</u>ccount
+            @if($badge->confirmation() != 0)
+            <span class="badge">
+                {{ $badge->confirmation() }}
+            </span>
+            @endif
+        </a>
+    </li>
     <li class="{{ Request::is('confirmation*') ? 'active' : '' }}">
         <a href="{{ route('confirmation.index') }}" id="confirmation.index">
             <span class="glyphicon glyphicon-transfer"></span>
