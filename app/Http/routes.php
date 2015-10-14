@@ -89,6 +89,13 @@ Route::resource('group', 'GroupController',
         ['only' => ['index', 'create', 'store', 'edit', 'update']]);
 
 /**
+ * VA Routes.
+ */
+Route::get('va/import', ['as' => 'va.import', 'uses' => 'VaController@import']);
+Route::put('va/import', ['as' => 'va.import.put', 'uses' => 'VaController@importPut']);
+Route::post('va/import', ['as' => 'va.import.post', 'uses' => 'VaController@importPost']);
+
+/**
  * Confirmation Routes.
  */
 Route::get('confirmation/export/plain', ['as' => 'confirmation.export.plain', 'uses' => 'ConfirmationController@exportPlain']);
@@ -120,13 +127,6 @@ Route::get('psb/delete/{psb}', ['as' => 'psb.delete', 'uses' => 'PsbController@d
 Route::get('psb/{psb}/{status}', ['as' => 'psb.status', 'uses' => 'PsbController@status']);
 Route::resource('psb',  'PsbController',
         ['only' => ['index']]);
-
-/**
- * VA Routes.
- */
-Route::get('va/import', ['as' => 'va.import', 'uses' => 'VaController@import']);
-Route::put('va/import', ['as' => 'va.import.put', 'uses' => 'VaController@importPut']);
-Route::post('va/import', ['as' => 'va.import.post', 'uses' => 'VaController@importPost']);
 
 /**
  * Balance Routes.

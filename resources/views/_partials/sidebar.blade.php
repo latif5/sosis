@@ -87,11 +87,6 @@
         <a href="{{ route('va.import') }}" id="va.import">
             <span class="glyphicon glyphicon-import"></span>
             <u>V</u>irtual <u>A</u>ccount
-            @if($badge->confirmation() != 0)
-            <span class="badge">
-                {{ $badge->confirmation() }}
-            </span>
-            @endif
         </a>
     </li>
     <li class="{{ Request::is('confirmation*') ? 'active' : '' }}">
