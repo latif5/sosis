@@ -23,6 +23,7 @@
                                     <th>Nama Santri</th>
                                     <th>Kelas</th>
                                     <th>Jml. Tranfer</th>
+                                    <th>Tgl. Kirim</th>
                                     <th>Pengirim</th>
                                     <th>Keperluan</th>
                                 </tr>
@@ -39,6 +40,7 @@
                                     <td>{{ $excel_row[4] }}</td>
                                     <td>{{ $excel_row[5] }}</td>
                                     <td>{{ $excel_row[6] }}</td>
+                                    <td>{{ $excel_row[7] }}</td>
                                 </tr>
                                 @empty
                                 <tr>

@@ -27,7 +27,7 @@ class VaController extends Controller
         $this->middleware('auth');
         $this->middleware('keuangan');
     }
-    
+
     /**
      * Menampilkan form import data konfirmasi dari va.
      */
@@ -70,9 +70,9 @@ class VaController extends Controller
             $confirmation->santri = !is_null($excel_row[2]) ? $excel_row[2] : '-';
             $confirmation->kelas = !is_null($excel_row[3]) ? $excel_row[3] : '-';
             $confirmation->jumlah = !is_null($excel_row[4]) ? $excel_row[4] : '-';
-            $confirmation->tanggal_kirim = Carbon::now()->subDay()->format('d-m-Y');
-            $confirmation->pengirim = !is_null($excel_row[5]) ? $excel_row[5] : '-';
-            $confirmation->keperluan = !is_null($excel_row[6]) ? $excel_row[6] : '-';
+            $confirmation->tanggal_kirim = !is_null($excel_row[5]) ? $excel_row[5] : '-';
+            $confirmation->pengirim = !is_null($excel_row[6]) ? $excel_row[6] : '-';
+            $confirmation->keperluan = !is_null($excel_row[7]) ? $excel_row[7] : '-';
             $confirmation->status = $request->status;
 
             $confirmation->save();
