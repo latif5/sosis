@@ -13,11 +13,21 @@ use \Session;
 use App\Confirmation;
 
 use App\Http\Requests\ImportVaRequest;
+use App\Http\Requests\ImportVaStatusRequest;
 
 use \Carbon\Carbon;
 
 class VaController extends Controller
 {
+    /**
+     * Middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('keuangan');
+    }
+    
     /**
      * Menampilkan form import data konfirmasi dari va.
      */
@@ -47,7 +57,7 @@ class VaController extends Controller
     /**
      * Memasukkan data import ke tabel confirmation.
      */
-    public function importPost()
+    public function importPost(ImportVaStatusRequest $request)
     {
         $excel = Session::pull('data_va_excel');
 
@@ -55,7 +65,7 @@ class VaController extends Controller
             // Memasukkan data konfirmasi ke database
             $confirmation = new Confirmation;
 
-            $confirmation->tanggal = Carbon::now()->format('Y-m-d');
+            $confirmation->tanggal = Carbon::now()->format('Y-m-d H:i:s');
             $confirmation->ponsel = !is_null($excel_row[1]) ? $excel_row[1] : '-';
             $confirmation->santri = !is_null($excel_row[2]) ? $excel_row[2] : '-';
             $confirmation->kelas = !is_null($excel_row[3]) ? $excel_row[3] : '-';
@@ -63,9 +73,15 @@ class VaController extends Controller
             $confirmation->tanggal_kirim = Carbon::now()->subDay()->format('d-m-Y');
             $confirmation->pengirim = !is_null($excel_row[5]) ? $excel_row[5] : '-';
             $confirmation->keperluan = !is_null($excel_row[6]) ? $excel_row[6] : '-';
-            $confirmation->status = 'Belum';
+            $confirmation->status = $request->status;
 
             $confirmation->save();
+
+            // SMS balasan
+            $isi_balasan = "Konfirmasi pngrman utk $confirmation->santri sejmlh $confirmation->jumlah utk kprluan $confirmation->keperluan akn sgr kmi proses.";
+
+            $send = new SendController;
+            $send->send($confirmation->ponsel, $isi_balasan);
         }
 
         return redirect()->route('confirmation.index')

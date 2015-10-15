@@ -51,6 +51,19 @@
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Status</label>
+                            {!! Form::select('status', [
+                                'Belum' => 'Belum',
+                                'Sudah' => 'Sudah',
+                                'Tunda' => 'Tunda'
+                            ], 'Sudah', $attributes = ['class' => 'form-control selectpicker', 'data-live-search' => 'true', 'data-selected-text-format' => 'count']) !!}
+                            {!! $errors->first('group', '<p class="text-danger"><small>:message</small></p>') !!}
+                        </div>
+                    </div>
+                </div>
             </div> {{-- panel-body --}}
                 
             <div class="panel-footer">
