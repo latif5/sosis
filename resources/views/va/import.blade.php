@@ -12,14 +12,14 @@
             {!! Form::open(['route' => 'va.import.put', 'files' => true, 'method' => 'put']) !!}
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Data</label>
                             <div class="well well-sm">
                                 {!! Form::file('data') !!}
                             </div>
                             {!! $errors->first('data', '<p class="text-danger"><small>:message</small></p>') !!}
-                            <small class="text-muted">Format file harus berupa <strong>nama - keterangan - no.  ponsel</strong> tanpa tabel heading, dengan ekstensi xls atau xlsx</small>
+                            <small class="text-muted">Format file harus berupa <strong>nomor va - nomor ponsel - nama santri - kelas - jumlah transfer - tanggal transfer - nama pengirim - keperluan</strong> tanpa tabel heading, dengan ekstensi xls atau xlsx</small>
                         </div>
                     </div>
                 </div> <!-- ./row -->
